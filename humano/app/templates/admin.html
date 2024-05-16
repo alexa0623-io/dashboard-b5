@@ -126,13 +126,13 @@
                         <li>
                             <a href="#/master-file" class="sidebar-link d-flex align-items-center">
                                 <i id="icon" class="fas fa-user"></i>
-                                <spa class="align-middle">Master File</span>
+                                <span class="align-middle">Master File</span>
                             </a>
                         </li>
                         <li>
                             <a href="#/resume" class="sidebar-link d-flex align-items-center">
                                 <i id="icon" class="fa-regular fa-note-sticky"></i>
-                                <spa class="align-middle">Resume / Applicants</span>
+                                <span class="align-middle">Resume / Applicants</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -268,10 +268,11 @@
                     <div class="border rounded bg-white md:h-100 h-auto">
                         <div class="bg1 card-header rounded-top">
                             <p class="h-100 d-flex align-items-center mx-3">Birthday Celebrants</p>
-                        </div>  
+                        </div>
+                        
                         <div class="mx-3 mt-md-4 mt-3 table-responsive">
                             <div class="overflow-x-auto">
-                                <table class="table w-full text-left">
+                                <table class="table w-full text-left" id="table-birthday-celebration">
                                     <thead class="table-light border-b border-black">
                                         <tr>
                                             <th scope="col" class="px-3">Birthday</th>
@@ -282,54 +283,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{#birthday}}
                                         <tr class="border-b">
-                                            <td class="px-3 text-nowrap">Aug 26, 1997</td>
-                                            <td class="px-3 text-nowrap">054</td>
-                                            <td class="px-3 text-nowrap">A. Goc-ong</td>
-                                            <td class="px-3 text-nowrap">Technical Services</td>
-                                            <td class="px-3 text-nowrap">25</td>
+                                            <td class="px-3 text-nowrap">{{birthday}}</td>
+                                            <td class="px-3 text-nowrap">{{empNo}}</td>
+                                            <td class="px-3 text-nowrap">{{name}}</td>
+                                            <td class="px-3 text-nowrap">{{department}}</td>
+                                            <td class="px-3 text-nowrap">{{age}}</td>
                                         </tr>
-                                        <tr class="border-b">
-                                            <td class="px-3 text-nowrap">Aug 26, 1997</td>
-                                            <td class="px-3 text-nowrap">054</td>
-                                            <td class="px-3 text-nowrap">A. Goc-ong</td>
-                                            <td class="px-3 text-nowrap">Technical Services</td>
-                                            <td class="px-3 text-nowrap">25</td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="px-3 text-nowrap">Aug 26, 1997</td>
-                                            <td class="px-3 text-nowrap">054</td>
-                                            <td class="px-3 text-nowrap">A. Goc-ong</td>
-                                            <td class="px-3 text-nowrap">Technical Services</td>
-                                            <td class="px-3 text-nowrap">25</td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="px-3 text-nowrap">Aug 26, 1997</td>
-                                            <td class="px-3 text-nowrap">054</td>
-                                            <td class="px-3 text-nowrap">A. Goc-ong</td>
-                                            <td class="px-3 text-nowrap">Technical Services</td>
-                                            <td class="px-3 text-nowrap">25</td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="px-3 text-nowrap">Aug 26, 1997</td>
-                                            <td class="px-3 text-nowrap">054</td>
-                                            <td class="px-3 text-nowrap">A. Goc-ong</td>
-                                            <td class="px-3 text-nowrap">Technical Services</td>
-                                            <td class="px-3 text-nowrap">25</td>
-                                        </tr>
+                                        {{/birthday}}
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div>  
 
                         <!-- Pagination -->
-                        <div id="pagi" class="d-flex justify-content-end mx-md-4 mx-3 mt-1 mb-4">
-                            <div class="d-flex gap-1">
-                                <button id="pre-next" class="d-flex align-items-center px-3 py-1 border bg-white" type="Previous">Previous</button>
-                                <button id="pagi-num" class="px-3 py-1 text-center text-white border-0" type="button">1</button>    
-                                <button id="pre-next" class="d-flex align-items-center px-3 border bg-white" type="Previous">Next</button>
-                            </div>
-                        </div> 
+                        <!-- <div id="pagi" class="d-flex justify-content-end mx-md-4 mx-3 mt-1 mb-4"> -->
+                            <!-- <div class="d-flex gap-1"> -->
+                                <!-- <button id="pre-next" class="d-flex align-items-center px-3 py-1 border bg-white" type="Previous">Previous</button> -->
+                                <!-- <button id="pagi-num" class="px-3 py-1 text-center text-white border-0" type="button">1</button>     -->
+                                <!-- <button id="pre-next" class="d-flex align-items-center px-3 border bg-white" type="Previous">Next</button> -->
+                            <!-- </div> -->
+                        <!-- </div>  -->
                     </div>  
                 </div>
 
@@ -450,49 +425,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{#newemployee}}
                                         <tr class="border-b">
-                                            <td class="px-4 text-nowrap">1</td>
-                                            <td class="px-4 text-nowrap">0110</td>
-                                            <td class="px-5 text-nowrap">C. Agripay</td>
-                                            <td class="px-4 text-nowrap">Aug 10, 2022</td>
+                                            <td class="px-4 text-nowrap">{{count}}</td>
+                                            <td class="px-4 text-nowrap">{{empNo}}</td>
+                                            <td class="px-5 text-nowrap">{{name}}</td>
+                                            <td class="px-4 text-nowrap">{{datehired}}</td>
                                         </tr>
-                                        <tr class="border-b">
-                                            <td class="px-4 text-nowrap">1</td>
-                                            <td class="px-4 text-nowrap">0110</td>
-                                            <td class="px-5 text-nowrap">C. Agripay</td>
-                                            <td class="px-4 text-nowrap">Aug 10, 2022</td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="px-4 text-nowrap">1</td>
-                                            <td class="px-4 text-nowrap">0110</td>
-                                            <td class="px-5 text-nowrap">C. Agripay</td>
-                                            <td class="px-4 text-nowrap">Aug 10, 2022</td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="px-4 text-nowrap">1</td>
-                                            <td class="px-4 text-nowrap">0110</td>
-                                            <td class="px-5 text-nowrap">C. Agripay</td>
-                                            <td class="px-4 text-nowrap">Aug 10, 2022</td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="px-4 text-nowrap">1</td>
-                                            <td class="px-4 text-nowrap">0110</td>
-                                            <td class="px-5 text-nowrap">C. Agripay</td>
-                                            <td class="px-4 text-nowrap">Aug 10, 2022</td>
-                                        </tr>
+                                        {{/newemployee}}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
 
                         <!-- Pagination -->
-                        <div id="pagi" class="d-flex justify-content-end px-4 mt-1 mb-4">
+                        <!-- <div id="pagi" class="d-flex justify-content-end px-4 mt-1 mb-4">
                             <div class="d-flex gap-1">
                                 <button id="pre-next" class="d-flex align-items-center px-3 py-1 border bg-white" type="Previous">Previous</button>
                                 <button id="pagi-num" class="px-3 py-1 text-center text-white border-0" type="button">1</button>    
                                 <button id="pre-next" class="d-flex align-items-center px-3 border bg-white" type="Previous">Next</button>
                             </div>
-                        </div> 
+                        </div>  -->
                     </div>  
                 </div>
 
@@ -584,7 +537,7 @@
                     </div>
                 </div>
                 <div id="m-table" class="overflow-x-auto mt-3">
-                    <table class="table w-full text-left">
+                    <table class="table w-full text-left" id="table-master-file">
                         <thead class="table-light border-b border-black bg-white">
                             <tr class="align-middle">
                                 <th scope="col" class="px-3">#</th>

@@ -4,6 +4,8 @@ $(document).ready(function(){
         sideCanvas : $("#sideCanvas"),
         canvas : $("#canvas"),
         navCanvas : $("#navCanvas"),
+        api     : Config.url + "/api",
+        path    : Config.url + "/humano",
         toggleSidebar : function(){
             $(document).ready(function(){
                 $('#toggle-sidebar').on('click', function(){
@@ -117,49 +119,47 @@ $(document).ready(function(){
             });
         },
 
-        calendarDash: function(){
-                $(document).ready(function() {
-                var calendarEl = document.getElementById('calendar');
-                var calendar = new FullCalendar.Calendar(calendarEl, {
-                    // initialView: 'dayGridMonth',
-                    headerToolbar: {
-                        left: 'title',
-                        right: 'customPrev customNext'
-                    },
-                    customButtons: {
-                        customPrev: {
-                            text: '<',
-                            click: function() {
-                                calendar.prev();
-                            }
-                        },
-                        customNext: {
-                            text: '>',
-                            click: function() {
-                                calendar.next();
-                            }
-                        }
-                    },
-                    dayHeaderContent: function(info) {
-                        var dayIndex = info.date.getDay();
-                        var dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-                        return dayLabels[dayIndex];
-                    },
-                    nowIndicator: false
-                });
+        // calendarDash: function(){
+        //         $(document).ready(function() {
+        //         var calendarEl = document.getElementById('calendar');
+        //         var calendar = new FullCalendar.Calendar(calendarEl, {
+        //             // initialView: 'dayGridMonth',
+        //             headerToolbar: {
+        //                 left: 'title',
+        //                 right: 'customPrev customNext'
+        //             },
+        //             customButtons: {
+        //                 customPrev: {
+        //                     text: '<',
+        //                     click: function() {
+        //                         calendar.prev();
+        //                     }
+        //                 },
+        //                 customNext: {
+        //                     text: '>',
+        //                     click: function() {
+        //                         calendar.next();
+        //                     }
+        //                 }
+        //             },
+        //             dayHeaderContent: function(info) {
+        //                 var dayIndex = info.date.getDay();
+        //                 var dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        //                 return dayLabels[dayIndex];
+        //             },
+        //             nowIndicator: false
+        //         });
             
-                calendar.render();
+        //         calendar.render();
             
-                // Customize title font size and color
-                var titleElement = document.querySelector('.fc-toolbar-title');
-                if (titleElement) {
-                    titleElement.style.fontSize = '20px'; // Adjust font size as needed
-                    titleElement.style.color = 'black'; // Adjust color as needed
-                }
-            });
-            
-            
-        }
+        //         // Customize title font size and color
+        //         var titleElement = document.querySelector('.fc-toolbar-title');
+        //         if (titleElement) {
+        //             titleElement.style.fontSize = '20px'; // Adjust font size as needed
+        //             titleElement.style.color = 'black'; // Adjust color as needed
+        //         }
+        //     });
+        // }
     }
 
     // $.Mustache.option.warnOnMissingTemplates = true;
@@ -169,18 +169,81 @@ $(document).ready(function(){
         App.sidebarLink();
         App.deskArrow();
         App.mobileArrow();
-        App.calendarDash();
+        // App.calendarDash();
         App.sideCanvas.html("").append($.Mustache.render("side-nav"));
         App.navCanvas.html("").append($.Mustache.render("admin-nav"));
 
         
         Path.map('#/dashboard').to(function(){
-            App.canvas.html("").append($.Mustache.render("dash-container"));
-            // new DataTable('#table-birthday-celebration');
+            var newsfeed = getJSONDoc(App.api + "/read/newsfeed/" + App.token);
+			var newsfeedList = [];			
+			$.each(newsfeed, function(i, item){
+				var newsfeeds = {
+					uid: item.uid,
+					author: item.author,
+					content: item.content,
+					pubdate: item.pubdate
+				}
+				newsfeedList.push(newsfeeds);
+			});
+
+            var evaluations = getJSONDoc(App.api + "/get/employee/evaluations/");
+            var evaluationList = [];          
+            $.each(evaluations, function(i, item){
+                // console.log(item)
+                var evaluations = {
+                    empNo: item.emp_uid,
+                    fname: item.empfirstname,
+                       lname: item.emplastname,
+                    nextEval: item.next_evaluation,
+                }
+                evaluationList.push(evaluations);
+            });
+			
+			var birthday = getJSONDoc(App.api + "/get/employee/birthdays/");
+			var birthdayList = [];			
+			$.each(birthday, function(i, item){
+				var birthdays = {
+					empNo: item.employeeNo,
+					name: item.employeeName,
+					birthday: item.birthday,
+                    department: item.department,
+					age: item.age
+				}
+				birthdayList.push(birthdays);
+			});
+			
+			var newemployees = getJSONDoc(App.api + "/get/new/hired/employees/");
+			var newemployeeList = [];			
+			var ctr = 0;
+			$.each(newemployees, function(i, item){
+				ctr++;
+				var newemployee = {
+					count: ctr,
+					empNo: item.employeeNo,
+					name: item.employeeName,
+					datehired: item.dateHired
+				}
+				newemployeeList.push(newemployee);
+			});
+			
+			var templateData = {
+				newsfeed: newsfeedList,
+				birthday: birthdayList,
+				newemployee: newemployeeList,
+                evaluation: evaluationList
+			}			
+            console.log(templateData);
+            App.canvas.html("").append($.Mustache.render("dash-container",templateData));
+            // $('#table-birthday-celebration').DataTable({
+            //     paging:false,
+            //     searching:false
+            // });
         });
 
         Path.map('#/master-file').to(function(){
             App.canvas.html("").append($.Mustache.render("master"));
+            $('#table-master-file').DataTable();
         });
 
         Path.map('#/resume-aplication').to(function(){
