@@ -235,15 +235,19 @@ $(document).ready(function(){
 			}			
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("dash-container",templateData));
-            // $('#table-birthday-celebration').DataTable({
-            //     paging:false,
-            //     searching:false
-            // });
+            $('#table-birthday-celebration').DataTable();
         });
 
         Path.map('#/master-file').to(function(){
             App.canvas.html("").append($.Mustache.render("master"));
-            $('#table-master-file').DataTable();
+            $('#table-master-file').DataTable({
+                responsive:true
+            });
+            $('#example').DataTable({
+                responsive:true
+            });
+            
+
         });
 
         Path.map('#/resume-aplication').to(function(){
