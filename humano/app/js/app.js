@@ -174,7 +174,7 @@ $(document).ready(function(){
         App.navCanvas.html("").append($.Mustache.render("admin-nav"));
 
         
-        Path.map('#/dashboard').to(function(){
+        Path.map('#/dashboard/').to(function(){
             var newsfeed = getJSONDoc(App.api + "/read/newsfeed/" + App.token);
 			var newsfeedList = [];			
 			$.each(newsfeed, function(i, item){
@@ -238,16 +238,12 @@ $(document).ready(function(){
             $('#table-birthday-celebration').DataTable();
         });
 
-        Path.map('#/master-file').to(function(){
+        Path.map('#/master-file/').to(function(){
             App.canvas.html("").append($.Mustache.render("master"));
             $('#table-master-file').DataTable({
                 responsive:true
             });
-            $('#example').DataTable({
-                responsive:true
-            });
             
-
         });
 
         Path.map('#/resume-aplication').to(function(){
