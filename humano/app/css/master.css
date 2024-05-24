@@ -6,6 +6,10 @@
     background-color: white;
 }   
 
+.page-item:active{
+    background-color: #107A71 !important;
+}
+
 /* TEXT AND BUTTON */
 #text-btn{
     padding-top: 20px; 
