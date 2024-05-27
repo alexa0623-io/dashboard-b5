@@ -382,6 +382,7 @@ div.dt-container div.dt-search label {
   font-weight: normal;
   white-space: nowrap;
   text-align: left;
+  color: black;
 }
 div.dt-container div.dt-search input {
   margin-left: 0.5em;

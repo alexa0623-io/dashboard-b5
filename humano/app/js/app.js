@@ -162,8 +162,6 @@ $(document).ready(function(){
         // }
     }
 
-    // $.Mustache.option.warnOnMissingTemplates = true;
-
     $.Mustache.load('templates/admin.html').done(function(){
         App.toggleSidebar();
         App.sidebarLink();
@@ -235,19 +233,137 @@ $(document).ready(function(){
 			}			
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("dash-container",templateData));
-            $('#table-birthday-celebration').DataTable();
+            $('#table-birthday-celebration').DataTable({
+                "order": [[0, 'desc']]
+            });
         });
 
         Path.map('#/master-file/').to(function(){
-            App.canvas.html("").append($.Mustache.render("master"));
+            var number = 0;
+            var employees = getJSONDoc(App.api + "/employees/pages/get/" + App.token);
+			var employeesList = [];			
+			$.each(employees, function(i, item){
+                number++;
+				var employeeData = {
+                    number:number,
+					empNo:item.empNo,
+					empUid:item.empUid,
+                    empNickname:item.nickname,
+                    gender:item.gender,
+                    empName:item.lastname + ", " + item.firstname + " " + item.middlename,
+                    costcenter:item.costcenter,
+                    access:item.type,
+                    rule:item.rule,
+				}
+				employeesList.push(employeeData);
+			});
+            // console.log(employeesList);
+            var templateData = {
+                employeesList:employeesList
+            }
+            App.canvas.html("").append($.Mustache.render("master",templateData));
             $('#table-master-file').DataTable({
                 responsive:true
             });
-            
         });
 
-        Path.map('#/resume-aplication').to(function(){
+        Path.map('#/resume-application/').to(function(){
             App.canvas.html("").append($.Mustache.render("resume"));
+            console.log("Hello");
+        });
+
+        // RESUME NEW BTN
+        Path.map('#/resume-button').to(function(){
+            App.canvas.html("").append($.Mustache.render("resume-btn"));
+        });
+
+
+        // SETTINGS
+
+        // Company setup
+        Path.map('#/settings-setup').to(function(){
+            App.canvas.html("").append($.Mustache.render("company-setup"));
+            // App.bootsSwitch();
+        });
+
+        // Announcement
+        Path.map('#/settings-announcements').to(function(){
+            App.canvas.html("").append($.Mustache.render("announcements"));
+        });
+
+        // Cost Center
+        Path.map('#/settings-center').to(function(){
+            App.canvas.html("").append($.Mustache.render("cost-center"));
+        });
+
+        // Department
+        Path.map('#/settings-department').to(function(){
+            App.canvas.html("").append($.Mustache.render("department"));
+        });
+
+        // Education Level 
+        Path.map('#/settings-education').to(function(){
+            App.canvas.html("").append($.Mustache.render("education-level"));
+        });
+
+        // Employment Status
+        Path.map('#/settings-status').to(function(){
+            App.canvas.html("").append($.Mustache.render("employment-status"));
+        });
+
+        // Holiday
+        Path.map('#/settings-holiday').to(function(){
+            App.canvas.html("").append($.Mustache.render("holiday"));
+        });
+
+        // Leave Counts
+        Path.map('#/settings-leave').to(function(){
+            App.canvas.html("").append($.Mustache.render("leave-counts"));
+        });
+
+        // Location
+        Path.map('#/settings-location').to(function(){
+            App.canvas.html("").append($.Mustache.render("location"));
+        });
+
+        // Overtime Type
+        Path.map('#/settings-overtime').to(function(){
+            App.canvas.html("").append($.Mustache.render("overtime-type"));
+        });
+
+        // Rest Day
+        Path.map('#/settings-rest-day').to(function(){
+            App.canvas.html("").append($.Mustache.render("rest-day"));
+        });
+
+        // Rules
+        Path.map('#/settings-rules').to(function(){
+            App.canvas.html("").append($.Mustache.render("rules"));
+        });
+
+        // Shift
+        Path.map('#/settings-shift').to(function(){
+            App.canvas.html("").append($.Mustache.render("shift"));
+        });
+
+        // Memo
+        Path.map('#/settings-memo').to(function(){
+            App.canvas.html("").append($.Mustache.render("memo"));
+        });
+
+        // Certificate
+        Path.map('#/settings-certificate').to(function(){
+            App.canvas.html("").append($.Mustache.render("certficate"));
+        });
+
+        // Request
+        Path.map('#/settings-request').to(function(){
+            App.canvas.html("").append($.Mustache.render("request"));
+        });
+
+        // Billing Dashboard
+        Path.map('#/billing-dashboard').to(function(){
+            App.canvas.html("").append($.Mustache.render("billing"));
         });
 
         Path.root();
