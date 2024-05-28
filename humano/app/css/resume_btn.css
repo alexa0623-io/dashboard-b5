@@ -1,0 +1,92 @@
+.back-main .info{
+    padding-top: 40px;
+    padding-left: 160px; 
+    padding-right: 160px;
+}
+
+.input{
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    border-color: #d6d6d6;
+    font-size: 14px;
+}
+
+.input::placeholder {
+    color: #8b8b8b;
+}
+
+.form-select{
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Custom styles for the select */
+.custom-select {
+    color: #555555;
+    font-size: 14px;
+}
+
+#text-btn .new-resume{
+    padding-left: 25px; 
+    padding-right: 25px; 
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #107A71;
+}
+
+#text-btn .new-resume:hover{
+    background-color: #1CCABB;
+}
+
+#text-btn .resu-new-btn{
+    color: #107A71;
+    font-size: 30px;
+}
+
+#text-btn .resu-new-btn:hover{
+    color: #1CCABB;
+}
+
+.resu-btn .cancel{
+    color: #107A71;
+    border-width: 1.4px;
+    border-color: #107A71;
+    background-color: white;
+}
+
+.resu-btn .ok{
+    color: white;
+    background: #107A71;
+}
+
+.file{
+    font-size: 14px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    height: 40px;
+    font-size: 13px;
+}
+
+@media (max-width: 767px) {
+    #back-main .info{
+        padding-top: 30px;
+        padding-left: 17px; 
+        padding-right: 17px;
+        font-size: 14px;
+    }
+
+    .input{
+        padding-top: 7px; 
+        padding-bottom: 7px;
+        font-size: 13px;
+        color: #686868;
+    }
+
+    .form-select{
+        padding-top: 7px; 
+        padding-bottom: 7px;
+        font-size: 13px;
+    }
+}

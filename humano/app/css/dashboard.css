@@ -111,7 +111,7 @@
 }
 
 .custom-day-header {
-    background-color: #f0f0f0; /* Background color */
+    background-color: #f0f0f0; 
     color: #000000; /* Text color */
     text-align: center; /* Center align text */
 
@@ -127,6 +127,14 @@
 
 
 @media (max-width: 767px) {
+    #dash_table table{
+        background: #000;
+        margin-top: -20px;
+        margin-bottom: -45px;
+    }
+
+    #dash_table pagination
+
     #month{
         margin-top: 30px;
         margin-bottom: 30px;

@@ -1,0 +1,117 @@
+/* BUTTON FOR OTHER PAGE OR MODAL */
+#text-btn .export{
+    background: #F3AA60;
+}
+
+#text-btn .export:hover{
+    background: #ffbd7b;
+}
+
+#text-btn .new{
+    background: #107A71;
+}
+
+#text-btn .new:hover{
+    background: #1CCABB;
+}
+
+/* MODAL STYLE */
+.modal .modal-dialog{
+    margin-top: -20px;
+}
+
+.header_modal{
+    padding: 18px;
+}
+
+.header_modal p{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.header_modal i:hover{
+    color: #107A71;
+}
+
+.modal_body_info{
+    max-height: 55vh; 
+    overflow-y: auto;
+    padding: 32px;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.modal_body_info::-webkit-scrollbar{
+    width: 3px; 
+}
+
+.button_modal div{
+    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.button_modal button{
+    width: 90px;
+    /* margin-top: 6px; */
+}
+
+
+/* table action */
+#m-table .action1{
+    padding: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+}
+
+#m-table .action1 i{
+    font-size: 14px;
+}
+
+#m-table .action2{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .modal-content{
+        margin: 5px;
+        margin-top: 60px;
+    }
+
+    .header_modal p{
+        font-size: 15px;
+    }
+
+    .modal_body_info{
+        padding: 27px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .body_modal label{
+        font-size: 14px;
+    }
+
+    .button_modal div{
+        padding: 18px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    
+    .button_modal button{
+        width: 65px;
+        margin-top: 6px;
+        font-size: 13px;
+    }
+
+    .body_modal option{
+        font-size: 11px;
+    }
+
+}
