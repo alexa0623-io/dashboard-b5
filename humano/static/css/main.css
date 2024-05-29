@@ -39,9 +39,15 @@ body{
     margin-left: 300px;
 }
 
+/* Dashboard MAIN */
 .dash-container{
     margin-top: 12vh;
 }
+
+.back-main{
+    margin-top: 15vh;
+}
+
 
 /*-------------------------
         HEADER
@@ -57,53 +63,61 @@ body{
 }
 
 
-
-
 /*-------------------------
     Navbar (Mobile View)
 ---------------------------*/
 #logo-nav{
-    height: 12vh;
     background-color: #107A71;
-}
-
-.nav-link {
-    color: white;
-    font-size: 18px;
-    margin-top: 8px;
-    border-radius: 10px;
-}
-.navbar-collapse {
-    position: fixed;
-    top: 10%;
-    width: 100%;
-    background-color: #107A71; 
-    z-index: 1000;
     border-radius: 5px;
     box-shadow: rgba(118, 118, 118, 0.2) 0px 8px 24px;
 }
 
+#logo-toggle{
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar-collapse{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.nav-link {
+    color: white;
+    border-radius: 5px;
+    margin-top: 6px;
+}
+
 /* dropdown menu bg */
 .dropdown-menu {
-    background-color: transparent !important;
+    background-color: #22887f !important;
+    max-height: 43vh; 
+    overflow-y: auto;
 }
+
+/* Change scrollbar color */
+.dropdown-menu::-webkit-scrollbar {
+    width: 3px;
+    
+}
+/* Scrollbar Handle */
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background: #c4c4c4;
+}
+
 
 /* dropdown menu style */
-.dropdown-menu a{
-    color: white;
-    font-size: 17px;
-    margin: -6px;
-    margin-left: 18px;
+
+.dropdown-menu li{
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
-
-/* active navbar */
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link:focus,
-.navbar-nav .nav-link:hover {
-    background-color: white !important;
-    color: #107A71 !important;
-    border-radius: 5px;
+.dropdown-menu a{
+    color: white;
+    font-size: 14px;
+    padding-left: 8px;
 }
 
 hr{
@@ -114,7 +128,23 @@ hr{
     background-color: transparent;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 15px;
+}
+
+/* active navbar */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:hover {
+    background-color: white !important;
+    color: #107A71 !important;
+    border-radius: 5px;
+}
+
+.navbar-nav .nav_drop.active,
+.navbar-nav .nav_drop:focus,
+.navbar-nav .nav_drop:hover {
+    color: #107A71 !important;
+    border-radius: 5px;
 }
 
 
@@ -259,4 +289,103 @@ hr{
         padding-top: 24px;
     }   
 
+}
+
+
+/* SCREEN SIZE */
+
+/* IPHONE SE */
+@media (width: 375px) and (height: 667px) {
+
+    .back-main{
+        margin-top: 15vh;
+    }
+}
+
+/* IPHONE XR */
+@media (width: 414px) and (height: 896px) {
+
+    .back-main{
+        margin-top: 13vh;
+    }
+}
+
+/* IPHONE PRO */
+@media (width: 390px) and (height: 844px) {
+
+    .back-main{
+        margin-top: 13vh;
+    }
+}
+
+/* IPHONE 14 PRO */
+@media (width: 430px) and (height: 932px) {
+
+    .back-main{
+        margin-top: 13vh;
+    }
+}
+
+/* PIXEL 7 */
+@media (width: 412px) and (height: 915px) {
+
+    .back-main{
+        margin-top: 13vh;
+    }
+}
+
+/* SAMSUNG G S8 */
+@media (width: 360px) and (height: 740px) {
+
+    .back-main{
+        margin-top: 14vh;
+    }
+}
+
+/* IPAD MINI */
+@media (width: 768px) and (height: 1024px) {
+
+    .back-main{
+        margin-top: 14.5vh;
+    }
+}
+
+/* IPAD AIR */
+@media (width: 820px) and (height: 1180px) {
+
+    .back-main{
+        margin-top: 14vh;
+    }
+}
+
+/* SURFACE PRO 7 */
+@media (width: 912px) and (height: 1368px) {
+
+    .back-main{
+        margin-top: 13.8vh;
+    }
+}
+
+/* GALAXY Z */
+@media (width: 344px) and (height: 882px) {
+
+    .back-main{
+        margin-top: 13.5vh;
+    }
+}
+
+/* ASUS */
+@media (width: 853px) and (height: 1280px) {
+
+    .back-main{
+        margin-top: 14vh;
+    }
+}
+
+/* SAMSUNG G A51 */
+@media (width: 412px) and (height: 914px) {
+
+    .back-main{
+        margin-top: 13vh;
+    }
 }

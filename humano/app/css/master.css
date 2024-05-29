@@ -1,10 +1,4 @@
-/* BG MAIN */
-#back-main{
-    /* margin-left: 32px;
-    margin-right: 32px;
-    margin-top: 32px; */
-    background-color: white;
-}   
+
 
 .page-item:active{
     background-color: #107A71 !important;
@@ -57,13 +51,6 @@
     #show{
         display: none;
     }
-
-    /* WHITE BG */
-    /* #back-main{
-        padding-left: 17px;
-        padding-right: 17px;
-        padding-top: 20px;
-    }     */
 
     /* TEXT AND BUTTON */
     #text-btn{
