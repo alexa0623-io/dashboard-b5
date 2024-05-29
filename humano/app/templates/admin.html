@@ -574,37 +574,15 @@
                         <div id="dep" class="px-1 my-md-4 my-3">
                             <div class="overflow-x-auto">
                                 <table class="w-100">
+                                    {{#empcount}}
                                     <tr>
-                                        <td class="px-3 py-2">ADMIN</td>
-                                        <td class="px-3 py-2 text-center">5</td>
+                                        <td class="px-3 py-2">{{deptname}}</td>
+                                        <td class="px-3 py-2 text-center">{{count}}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="px-3 py-2">SALES</td>
-                                        <td class="px-3 py-2 text-center">20</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-3 py-2">HR</td>
-                                        <td class="px-3 py-2 text-center">3</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-3 py-2">TECHNICAL SERVICES</td>
-                                        <td class="px-3 py-2 text-center">10</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-3 py-2">IT SALES</td>
-                                        <td class="px-3 py-2 text-center">10</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-3 py-2">IT SERVICES</td>
-                                        <td class="px-3 py-2 text-center">10</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-3 py-2">IT SOLUTION</td>
-                                        <td class="px-3 py-2 text-center">3</td>
-                                    </tr>
+                                    {{/empcount}}
                                     <tr class="text-end fw-medium">
                                         <td class="px-1 md:px-0 py-2 fs-6">TOTAL :</td>
-                                        <td class="px-1 md:px-0 py-2 text-center fs-4" style="color: #107A71;">60</td>
+                                        <td class="px-1 md:px-0 py-2 text-center fs-4" style="color: #107A71;">{{totalemp}}</td>
                                     </tr>
                                 </table>
                             </div>

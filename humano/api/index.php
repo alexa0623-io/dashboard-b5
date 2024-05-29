@@ -22,50 +22,16 @@ use Base32\Base32;
 $app = new Slim();
 
 $app->get("/test",function(){
-    // $dateGranted = date("Y-m-d");
-    // first_monthly_amortization_date($dateGranted);
-    // echo $date;
-    
-    // $loanUid = "8991C8CD-3B43-6B9D-6FAE-6D6A7A1E15C5";
-    // $amortization = 1000;
-    // $terms = 6;
-    // $amount = 1000;
-    // $remarks ="N/A";
-    // $email = "edjohnpaulgallardo28@gmail.com";
-    // $loanAmount = 3000;
-    // $empName = "Ed John Paul Gallardo";
-    // mail_request_to_admin($email,$empName,$loanAmount);
-    // $refNumber = generateRefNum();
-    // $uid = xguid();
-    // echo $refNumber."<br>";
-    // echo $uid."<br>";
-    // echo generateApplyNo();
-    // create_cash_advance_loan_setup();
-    // $data = read_all_cash_advance_loans();
-    // echo jsonify($data);
-    // $requid = "CF96947A-7503-EDC9-D98D-B3EDF5D1CEB8";
-    // read_all_cash_advance_loan_request_active();
-    // $req_uid = xguid();
-    // $emp_uid = "25E50611-8B11-24E9-F10D-B2CB13F7CE66";
-    // $loan_uid = "DAF39A62-3BB6-854D-B7D6-076B39556D79";
-    // $empEmail = "edjohnpaulgallardo28@gmail.com";
-    // $loanAmount = 5000;
-    // $empName = "Jade Almoquera";
-    // $loanPeriod = 2.5;
-    // $amortization = "1000";
-    // $interest = "0.00";
-    // $payment = "15th/30th";
-    // update_cash_advance_loan_request_archived($emp_uid);
-    // create_cash_advance_loan_request($req_uid,$emp_uid,$loan_uid);
-    // create_cash_advance_loan_request_entry($req_uid,$emp_uid,$loan_uid,$empEmail,$loanAmount,$loanPeriod,$amortization,$interest,$payment);
-    // mail_request_to_admin($empEmail,$empName,$loanAmount);
-    // create_emp_loans_payments($emp_uid);
-    // read_emp_loans_new_uid_by_emp_uid($emp_uid);
-    // read_cash_advance_loan_requests($emp_uid);
-    $emp_uid = "25E50611-8B11-24E9-F10D-B2CB13F7CE66";
-    $noOfPayment = 3;  
-    create_emp_loans_payments($emp_uid,$noOfPayment);
-    echo "Payment created";
+    $depts = get_departments();
+    foreach($depts as $dept)
+    {
+        $data[] = array(
+            "deptuid" => $dept->uid,
+            "deptname" => $dept->group,
+            "count" => count_per_department($dept->uid)
+        );
+    }
+    echo jsonify($data);
 });
 
 $app->get("/get/old/timein", function() {
@@ -105,6 +71,19 @@ $app->get("/condition", function() {
     }else {
         echo " false";
     }
+});
+
+$app->get("/number/of/employees/per/dept/", function(){
+    $depts = get_departments();
+    foreach($depts as $dept)
+    {
+        $data[] = array(
+            "deptuid" => $dept->uid,
+            "deptname" => $dept->group,
+            "count" => count_per_department($dept->uid)
+        );
+    }
+    echo jsonify($data);
 });
 
 $app->get("/sample", function() {

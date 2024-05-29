@@ -224,12 +224,30 @@ $(document).ready(function(){
 				}
 				newemployeeList.push(newemployee);
 			});
+
+            var countperdept = getJSONDoc(App.api + "/number/of/employees/per/dept/");
+            var countList = [];
+            var total=0;
+            $.each(countperdept,function(i,item){
+                var countemp = {
+                    deptname : item.deptname,
+                    count: item.count
+                }
+                countList.push(countemp);
+            });
+            for(i=0;i<countperdept.length;i++)
+                {
+                    total += countperdept[i].count
+                }
+                console.log(total);
 			
 			var templateData = {
 				newsfeed: newsfeedList,
 				birthday: birthdayList,
 				newemployee: newemployeeList,
-                evaluation: evaluationList
+                evaluation: evaluationList,
+                empcount : countList,
+                totalemp : total
 			}			
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("dash-container",templateData));

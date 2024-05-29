@@ -1,4 +1,23 @@
 <?php
+function get_departments_by_uid($departmentUid)
+{
+    $query = ORM::forTable("department")->where("uid",$departmentUid)->findOne();
+    return $query;
+}
+
+function get_departments()
+{
+    $query = ORM::forTable('department')->findMany();
+    return $query;
+}
+
+function count_per_department($deptuid)
+{
+    $query = ORM::forTable('emp_department')->where('department_uid',$deptuid)->count();
+    return $query;
+}
+
+
 function getOffsetByTimeZone($localTimeZone){
     $time           = new DateTime(date('Y-m-d H:i:s'), new DateTimeZone($localTimeZone));
     $timezoneOffset = str_replace(":00", "", $time->format('P'));
