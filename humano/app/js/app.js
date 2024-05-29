@@ -343,6 +343,39 @@ $(document).ready(function(){
                     }
                 }
             });
+            $("#table-master-file tbody").off("click", ".update-empnum-btn").on("click", ".update-empnum-btn",function(){
+                var empUid = $(this).attr('data-empuid');
+                $.getJSON(App.api + "/employee/data/get/" + empUid + "." + App.token, function(data) {
+                    $("input[name=curEmpNo]").val(data.empNumber);
+                });
+
+                $(document).off("submit", "#updateEmployeeNumberForm").on("submit", "#updateEmployeeNumberForm", function(e){
+                    e.preventDefault();
+                    var empNumber = $("input[name=empNo]").val();
+
+                    if(!empNumber){
+                        alert("Please Fill all The Fields!");
+                    }else{
+                        $.ajax({
+                            type    : "POST",
+                            url     : App.api + "/update/emp/number/" + empUid,
+                            dataType: "json",
+                            data    : {
+                                empNumber: empNumber
+                            },
+                            success: function(data){
+                                if(data.prompt == 0){
+                                    $("form")[0].reset();
+                                    $("#updateEmployeeNumberModal").modal("hide");
+                                    window.location.reload();
+                                }else{
+                                    alert("Employee Number " + data.num + " is Taken.");
+                                }
+                            }
+                        });
+                    }
+                });
+            })
         });
 
         Path.map('#/resume-application/').to(function(){
