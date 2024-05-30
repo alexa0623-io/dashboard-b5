@@ -15,6 +15,16 @@
     background: #1CCABB;
 }
 
+/* SEARCH BTN */
+.employee-search{
+    color: white;
+    background: #107A71;
+}
+.employee-search:hover{
+    color: white;
+    background: #1CCABB;
+}
+
 /* MODAL STYLE */
 .modal .modal-dialog{
     margin-top: -20px;

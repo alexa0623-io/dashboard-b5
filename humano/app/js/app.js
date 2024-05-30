@@ -332,7 +332,9 @@ $(document).ready(function(){
             var templateData = {
                 employeesList:employeesList
             }
+            
             App.canvas.html("").append($.Mustache.render("master",templateData));
+
             $('#table-master-file').DataTable({
                 "language": {
                     "paginate": {
@@ -343,6 +345,8 @@ $(document).ready(function(){
                     }
                 }
             });
+            
+
             $("#table-master-file tbody").off("click", ".update-empnum-btn").on("click", ".update-empnum-btn",function(){
                 var empUid = $(this).attr('data-empuid');
                 $.getJSON(App.api + "/employee/data/get/" + empUid + "." + App.token, function(data) {
@@ -375,7 +379,178 @@ $(document).ready(function(){
                         });
                     }
                 });
-            })
+            });
+
+            $("#employeeTextboxHidden").hide();
+            $("#new-emp-btn").hide();
+
+            function enable() {
+                $("input[name=firstname]").removeAttr("Disabled");
+                $("input[name=middlename]").removeAttr("Disabled");
+                $("input[name=lastname]").removeAttr("Disabled");
+            }
+
+            function disable() {
+                $("input[name=firstname]").attr("Disabled", "Disabled");
+                $("input[name=middlename]").attr("Disabled", "Disabled");
+                $("input[name=lastname]").attr("Disabled", "Disabled");
+            }
+
+            function textboxClear() {
+                $("input[name=firstname]").val("");
+                $("input[name=middlename]").val("");
+                $("input[name=lastname]").val("");
+            }
+            function validations(){
+                $("input[name=firstname]").blur(function(e){
+                    var firstname = $(this).val();
+                    if(firstname.length == 0){
+                        $("#error-message-firstname").text("Please fill this up.");
+                    }else{
+                        $("#error-message-firstname").empty();
+                    }
+                });
+
+                $("input[name=middlename]").blur(function(){
+                    var middlename = $(this).val();
+                    if(middlename.length == 0){
+                        $("#error-message-middlename").text("Please fill this up.");
+                    }else{
+                        $("#error-message-middlename").empty();
+                    }
+                });
+
+                $("input[name=lastname]").blur(function(){
+                    var lastname = $(this).val();
+                    if(lastname.length == 0){
+                        $("#error-message-lastname").text("Please fill this up.");
+                    }else{
+                        $("#error-message-lastname").empty();
+                    }
+                });
+
+                $("select[name=usertype]").blur(function(){
+                    var usertype = $(this).val();
+                    if(usertype.length == 0){
+                        $("#error-message-usertype").text("Please fill this up.");
+                    }else{
+                        $("#error-message-usertype").empty();
+                    }
+                });
+
+                $("input[name=username]").blur(function(){
+                    var username = $(this).val();
+                    if(username.length == 0){
+                        $("#error-message-username").text("Please fill this up.");
+                    }else{
+                        $("#error-message-username").empty();
+                    }
+                });
+            }
+
+            $(document).off("click", "#employeeSearch").on("click", "#employeeSearch", function(e){
+                console.log("Button clicked");
+                e.preventDefault();
+                var firstname  = $("input[name=firstname]").val();
+                var middlename = $("input[name=middlename]").val();
+                var lastname   = $("input[name=lastname]").val();
+
+                if(firstname == null || firstname == ""){
+                    $("#error-message-firstname").text("Please fill this up.");
+                    $("#error-message-firstname").fadeOut(3000);
+                }else if(middlename == null || middlename == ""){
+                    $("#error-message-middlename").text("Please fill this up.");
+                    $("#error-message-middlename").fadeOut(3000);
+                }else if(lastname == null || lastname == ""){
+                    $("#error-message-lastname").text("Please fill this up.");
+                    $("#error-message-lastname").fadeOut(3000);
+                }else{
+                    $.ajax({
+                        type    : "POST",
+                        url     : App.api + "/employee/name/search/",
+                        dataType: "json",
+                        data    : {
+                            firstname : firstname,
+                            middlename: middlename,
+                            lastname  : lastname
+                        },
+                        success: function(data) {
+                            $("#new-emp-btn").show();
+                            if (data.status == 0) {
+                                var status = confirm(firstname + " " + middlename + " " + lastname + " is deactivated. \n Reactivate account?");
+                                if (status) {
+                                    $.ajax({
+                                        type: "POST",
+                                        url : App.api + "/employee/status/update/",
+                                        data: {
+                                            status: 1,
+                                            empUid: data.empUid
+                                        },
+                                        success: function() {
+                                            $("form")[0].reset();
+                                            alert(firstname + " " + middlename + " " + lastname + " activated");
+                                        }
+                                    });
+                                }
+                            } else if (data.status == 1) {
+                                alert("Record already existing!");
+                            } else {
+                                $("#employeeTextboxHidden").show();
+                                $("#employeeSearch").remove();
+                                disable();
+                            }
+                        }
+                    });
+                }
+            });
+
+            $("#newEmployeeForm").submit(function(e) {
+                e.preventDefault();
+                var firstname  = $("input[name=firstname]").val();
+                var middlename = $("input[name=middlename]").val();
+                var lastname   = $("input[name=lastname]").val();
+                var marital    = $("select[name=marital]").val();
+                var usertype   = $("select[name=usertype]").val();
+                var username   = $("input[name=username]").val();
+                var password   = 123;
+                // var salary = $("input[name=salary]").val();
+                // var currency = $("select[name=currency]").val();
+                // var payPeriod = $("select[name=payPeriod]").val();
+
+                $.ajax({
+                    type    : "POST",
+                    url     : App.api + "/employee/new/",
+                    dataType: "json",
+                    data    : {
+                        firstname : firstname,
+                        middlename: middlename,
+                        lastname  : lastname,
+                        marital   : marital,
+                        usertype  : usertype,
+                        username  : username,
+                        password  : password
+                    },
+                    success: function(data) {
+                        if(data.error == 1){
+                            alert(data.errorMessage);
+                        }else{
+                            alert(firstname + " " + middlename + " " + lastname + " has been added");
+                            $("#newEmployee").modal("toggle");
+                            $("form")[0].reset();
+                            // $("input[name=firstname]").val("");
+                            // $("input[name=middlename]").val("");
+                            // $("input[name=lastname]").val("");
+                            // $("select[name=marital]").val("");
+                            // $("select[name=usertype]").val("");
+                            // $("input[name=username]").val("");
+                            enable();
+                            $("#employeeTextboxHidden").hide();
+                            getEmployeesPages();
+                        }
+                    }
+                });
+            });
+
         });
 
         Path.map('#/resume-application/').to(function(){

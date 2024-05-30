@@ -454,14 +454,14 @@
                 <span class="fw-medium">Master File</span>
                 <div class="d-flex gap-2">
                     <button class="export rounded border-0 text-white">Export</button>
-                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#newEmployee">
                         New
                     </button>
                 </div>
             </div>
         
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="newEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
@@ -474,23 +474,56 @@
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Firstname</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" name="firstname" id="validationCustom01" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Middlename</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" name="middlename" id="validationCustom02" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Lastname</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" name="lastname" id="validationCustom03" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
+                                        </div>
+                                        <button class="employee-search btn mt-3" type="button"  id="employeeSearch">Search</button>
+                                    </div>
+                                    <div id="employeeTextboxHidden">
+                                        <div class="form-group mt-3">
+                                            <label class="form-label">Marital Status</label>
+                                            <select name="marital" id="marital" class="form-control ">
+                                                <option value=""></option>
+                                                <option value="Single">Single</option>
+                                                <option value="Married">Married</option>
+                                            </select>
+                                            <span class="error-message" id="error-message-marital"></span>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label class="form-label">Usertype</label>
+                                            <select name="usertype" id="usertype" class="form-control">
+                                                <option value=""></option>
+                                                <option value="Administrator">Administrator</option>
+                                                <option value="HumanResource">Human Resource</option>
+                                                <option value="Accounting">Accounting</option>
+                                                <option value="Employee">Employee</option>
+                                            </select>
+                                            <span class="error-message" id="error-message-usertype"></span>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label class="form-label">Username:</label>
+                                            <input type="text" name="username" id="username" class="form-control" />
+                                            <span class="error-message" id="error-message-username"></span>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" name="password" id="password" class="form-control" value="123" disabled/>
+                                            <span class="error-message" id="error-message-password"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -499,7 +532,7 @@
                                 <div class="button_modal">
                                     <div class="w-100 d-flex justify-content-end gap-2 border-top">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button class="btn btn-success bg-blue" type="submit">Save</button>
+                                        <button class="btn btn-success bg-blue" type="submit" id="new-emp-btn" >Save</button>
                                     </div>
                                 </div>
                             </form> 
@@ -526,15 +559,15 @@
                         <tbody class="align-middle">
                             {{#employeesList}}
                             <tr>
-                                <td>{{number}}</td>
-                                <td>{{empNo}}</td>
-                                <td>{{empName}}</td>
-                                <td>{{costcenter}}</td>
-                                <td>{{access}}</td>
-                                <td>{{rule}}</td>
-                                <td> <button class="update-empnum-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#updateEmployeeNumberModal" data-empuid="{{empUid}}"><i class="fa-solid fa-wrench"></i></button> </td>
-                            </tr>
-                            {{/employeesList}}
+                                 <td>{{number}}</td>
+                                 <td>{{empNo}}</td>
+                                 <td>{{empName}}</td>
+                                 <td>{{costcenter}}</td>
+                                 <td>{{access}}</td>
+                                 <td>{{rule}}</td>
+                                 <td><button class="update-empnum-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#updateEmployeeNumberModal" data-empuid="{{empUid}}"><i class="fa-solid fa-wrench"></i></button></td>
+                             </tr>
+                             {{/employeesList}}
                         </tbody>
                     </table>
                 </div>
@@ -553,14 +586,14 @@
                                     <div class="modal-body-info">
                                         <div class="">
                                             <label for="validationCustom01" class="form-label">Current Employee Number</label>
-                                            <input type="text" class="form-control input" name="curEmpNo" id="validationCustom01" readonly>
+                                            <input type="text" class="form-control input" name="curEmpNo" id="validationCustom04" readonly>
                                             <div class="invalid-feedback">
                                                 Please fill this up.
                                             </div>
                                         </div>
                                         <div class="mt-3">
                                             <label for="validationCustom01" class="form-label">Employee Number</label>
-                                            <input type="text" class="form-control input" name="empNo" id="validationCustom01" required>
+                                            <input type="text" class="form-control input" name="empNo" id="validationCustom05" required>
                                             <div class="invalid-feedback">
                                                 Please fill this up.
                                             </div>
