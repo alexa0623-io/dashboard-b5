@@ -1,0 +1,212 @@
+.billing{
+    margin-top: 11vh;
+}
+
+.billing .box-1{
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15)
+}
+
+/* DATE INPUT */
+.billing form div{
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.billing form input{
+    width: 20%; 
+    border: 1px solid #B2B2B2;
+}
+
+/* CARDS PAID & UNPAID */
+.bill-cards{
+    padding-left: 30px; 
+    padding-right: 30px; 
+}
+
+.bill-cards .card{
+    border: none;
+    background-color: #E1EEED;
+}
+
+.bill-cards .card-1{
+    height: 130px;
+}
+
+.card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+}
+
+.card-icon .icon {
+    width: 100px;
+    height: 100px; 
+    font-size: 50px;
+    color: #107A71;
+    background-color: #f0f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.cards-info p{
+    color: #107A71;
+}
+
+/* CARD TEXT */
+.bill-cards label{
+    font-size: 28px;
+}
+
+/* NAV PILLS (TABLE) */
+.billing .nav-pills .nav-link{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.billing .nav-pills .nav-link {
+    text-align: center;
+    font-weight: 500;
+    background-color: white !important;
+    color: #107A71 !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15)
+}
+
+.billing .nav-pills .nav-link.active,
+.billing .nav-pills .nav-link:hover{
+    background-color:#107A71 !important;
+    color: white !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15)
+}
+
+.billing .tab-pane{
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15)
+}
+
+/* TABLE */
+.billing-table{
+    padding-left: 30px; 
+    padding-right: 30px; 
+}
+
+.custom-search {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 12px;
+}
+
+
+@media (max-width: 1200px) {
+    .card-icon .icon {
+        width: 80px;
+        height: 80px;
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    h5{
+        font-size: 16px;
+    }
+
+    /* FORM */
+    .billing form div{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .billing form input {
+        width: 100%;
+    }
+
+    
+    .bill-cards{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .bill-cards .card-1{
+        height: 80px;
+    }
+
+    /* ICON CIRCLE */
+    .card-icon .icon {
+        width: 60px;
+        height: 60px;
+        font-size: 35px;
+    }
+
+    /* CARD TEXT */
+    .cards-info p{
+        font-size: 14px;
+    }
+    
+    .cards-info span{
+        font-size: 12px;
+    }
+
+    .cards-info label{
+        font-size: 18px;
+    }
+
+    /* UNPAID - PAID */
+    .cards-info p{
+        margin-top: -5px;
+        margin-bottom: 8px;
+    }
+
+    /* TABLE */
+    .billing-table{
+        padding-left: 20px; 
+        padding-right: 20px; 
+    }
+
+
+}
+
+/* IPAD MINI */
+@media (width: 768px) and (height: 1024px) {
+
+    .bill-cards .card-1{
+        height: 100px;
+    }
+
+    /* ICON CIRCLE */
+    .card-icon .icon {
+        width: 80px;
+        height: 80px;
+        font-size: 50px;
+    }
+
+    /* CARD TEXT */
+    .cards-info p{
+        font-size: 16px;
+    }
+    
+    .cards-info span{
+        font-size: 16px;
+    }
+
+    .cards-info label{
+        font-size: 24px;
+    }
+
+    /* UNPAID - PAID */
+    .cards-info p{
+        margin-top: -5px;
+        margin-bottom: 8px;
+    }
+}
+
+/* IPAD AIR */
+@media (width: 1280px) and (height: 800px) {
+
+    .bill-cards .card-1{
+        gap: -10px;
+    }
+}

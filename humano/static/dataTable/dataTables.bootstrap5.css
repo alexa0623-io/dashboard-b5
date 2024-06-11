@@ -444,8 +444,8 @@ div.dt-container div.dt-paging {
   margin: 0;
 }
 div.dt-container div.dt-paging ul.pagination {
-  margin: 10px 10px;
-  flex-wrap: wrap;
+  margin-top: 10px;
+  /* flex-wrap: wrap; */
 }
 div.dt-container div.dt-row {
   position: relative;

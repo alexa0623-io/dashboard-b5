@@ -83,7 +83,7 @@ body{
     padding-right: 15px;
 }
 
-.nav-link {
+.navbar-nav .nav-link {
     color: white;
     border-radius: 5px;
     margin-top: 6px;
@@ -140,9 +140,9 @@ hr{
     border-radius: 5px;
 }
 
-.navbar-nav .nav_drop.active,
-.navbar-nav .nav_drop:focus,
-.navbar-nav .nav_drop:hover {
+.navbar-nav .nav-drop.active,
+.navbar-nav .nav-drop:focus,
+.navbar-nav .nav-drop:hover {
     color: #107A71 !important;
     border-radius: 5px;
 }

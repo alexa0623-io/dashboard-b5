@@ -1,0 +1,566 @@
+.master-modal-back-main{
+    padding-left: 30px; 
+    padding-right: 30px; 
+    padding-top: 20px;
+}
+
+
+/* NAV PILLS */
+.master-nav{
+    padding-top: 17px;
+}
+
+.master-nav button{
+    background-color: white;
+    border: none !important;
+    font-size: 13px;
+    margin-top: -2px;
+    color: rgb(162, 162, 162);
+    /* box-shadow: none !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 10px; */
+}
+
+.master-nav button:hover,
+.master-nav button.active {
+    background-color: #107A71 !important;
+    color: white;
+    /* color: #107A71; */
+    text-decoration-line: underline; 
+}
+
+.master-nav i {
+    color: #107A71;
+    font-size: 10px;
+}
+
+
+    /* color: #107A71 !important; */
+    /* background-color: white !important; */
+
+/* TITLE */
+.employee-details a{
+    margin-top: -95px;
+    margin-bottom: 80px;
+    color: #107A71;
+    font-size: 30px;
+}
+
+.employee-details a:hover{
+    color: #1CCABB;
+}
+
+.employee-details a span{
+    font-size: 24px;
+}
+
+
+/* NAV PILLS CONTENT */
+.master-tab-content{
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.master-tab-content .change-pro{
+    background-color: #107A71;
+    border: none !important;
+    color: white;
+    font-size: 16px;
+    padding: 14px;
+}
+
+.master-tab-content .change-pro:hover{
+    background-color: #1c9b90;
+}
+
+.master-tab-content .change-pass{
+    background-color: #F3AA60;
+    border: none !important;
+    color: white;
+    font-size: 16px;
+    padding: 14px;
+}
+
+.master-tab-content .change-pass:hover{
+    background-color: #f0af6f;
+}
+
+/* MASTER TAB USER */
+.tab-user{
+    width: 40%;
+}
+
+.tab-user #tab-drop{
+    height: 30vh;
+    background: #D9D9D9;
+}
+
+/* .tab-user img{
+    width: 130px; 
+    color: #898989;
+    margin-top: 10px;
+    object-fit: cover;
+
+} */
+
+.tab-user i{
+    font-size: 120px;
+    color: #898989;
+    margin-top: 20px;
+}
+
+.tab-user p{
+    color: #898989;
+    margin-top: 10px;
+}
+
+/* GREEN BG PERSONAL DETAILS / INFO */
+.tab-personal{
+    background-color: #69A9A3;
+    color: white;
+    font-size: 16px;
+}
+
+.mid-last{
+    margin-top: 32px;
+}
+
+.tab-hr{
+    border-color: #eeeeee;
+}
+
+.master-tab-content form label{
+    margin-bottom: 4px;
+}
+
+/* Bottom BTN */
+.tab-btn button{
+    background-color: #107A71;
+    color: white;
+    font-size: 16px;
+}
+
+.tab-btn button:hover{
+    background-color: #1CCABB;
+}
+
+@media (max-width: 430px) {
+    .master-modal-back-main{
+        padding-left: 20px; 
+        padding-right: 20px; 
+    }
+
+    .employee-details a{
+        margin-top: -205px;
+        margin-bottom: 200px;
+        color: #107A71;
+    }   
+    
+    .employee-details a span{
+        font-size: 15px;
+    }
+
+    .tab-user i{
+        font-size: 80px;
+        color: #898989;
+        margin-top: 20px;
+    }
+    
+    .tab-user p{
+        font-size: 14px;
+    }
+
+    /* MASTER TAB USER */
+
+    /* GREEN BG PERSONAL DETAILS / INFO */
+    .tab-personal{
+        background-color: #69A9A3;
+        color: white;
+        font-size: 14px;
+    }
+
+    .tab-user{
+        width: 100%;
+    }
+
+    .mid-last{
+        margin-top: 10px;
+    }
+
+    .master-tab-content form label{
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .tab-hr{
+        border: none;
+    }
+
+    .with-hr{
+        margin-top: -18px;
+    }
+
+    /* USER BUTTON */
+    .master-tab-content .change-pro{
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    .master-tab-content .change-pass{
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    /* BOTTOM BTN */
+    .tab-btn button{
+        background-color: #107A71;
+        color: white;
+        font-size: 13px;
+    }
+}
+
+
+/* IPAD MINI */
+@media (width: 768px) and (height: 1024px) {
+
+    .employee-details a{
+        margin-top: -210px;
+        margin-bottom: 190px;
+        color: #107A71;
+    }   
+
+    /* MASTER TAB USER */
+
+    .tab-user{
+        width: 100%;
+    }
+}
+
+/* SURFACE PRO 7 */
+@media (width: 912px) and (height: 1368px) {
+
+    .employee-details a{
+        margin-top: -130px;
+        margin-bottom: 120px;
+        color: #107A71;
+    }   
+
+    /* MASTER TAB USER */
+
+    .tab-user{
+        /* width: 100%; */
+    }
+}
+
+/* SURFACE DUO */
+@media (width: 540px) and (height: 720px) {
+
+    .employee-details a{
+        margin-top: -160px;
+        margin-bottom: 160px;
+    }
+    
+    /* MASTER TAB USER */
+    .tab-user{
+        width: 100%;
+    }
+
+    .mid-last{
+        margin-top: 10px;
+    }
+
+    .master-tab-content form label{
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .tab-hr{
+        border: none;
+    }
+
+    .with-hr{
+        margin-top: -18px;
+    }
+}
+
+/* GALAXY Z */
+@media (width: 344px) and (height: 882px) {
+
+    .employee-details a{
+        margin-top: -245px;
+        margin-bottom: 240px;
+    }
+
+    /* MASTER TAB USER */
+    .tab-user{
+        width: 100%;
+    }
+
+    .mid-last{
+        margin-top: 10px;
+    }
+
+    .master-tab-content form label{
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .tab-hr{
+        border: none;
+    }
+
+    .with-hr{
+        margin-top: -18px;
+    }
+}
+
+/* SAMSUNG GALAXY 51 */
+@media (width: 412px) and (height: 914px) {
+
+    .employee-details a{
+        margin-top: -200px;
+        margin-bottom: 190px;
+        color: #107A71;
+    }   
+
+    /* MASTER TAB USER */
+
+    .tab-user{
+        width: 100%;
+    }
+
+    .employee-details a span{
+        font-size: 15px;
+    }
+}
+
+/* NEST HUB */
+@media (width: 1024px) and (height: 600px) {
+
+    .employee-details a{
+        margin-top: -140px;
+        margin-bottom: 120px;
+    }   
+
+    .tab-user p{
+        font-size: 14px;
+    } 
+
+    /* USER BUTTON */
+    .master-tab-content .change-pro{
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    .master-tab-content .change-pass{
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    /* MASTER TAB USER */
+
+    .mid-last{
+        margin-top: 10px;
+    }
+
+    .master-tab-content form label{
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    /* BOTTOM BTN */
+    .tab-btn button{
+        background-color: #107A71;
+        color: white;
+        font-size: 13px;
+    }
+
+}
+
+/* NEST HUB MAX*/
+@media (width: 1280px) and (height: 800px) {
+
+    .employee-details a{
+        margin-top: -140px;
+        margin-bottom: 120px;
+    }   
+    
+    /* MASTER TAB USER */
+
+    .mid-last{
+        margin-top: 10px;
+    }
+
+    .master-tab-content form label{
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+}
+
+
+@media (min-width: 992px) and (max-width: 1429px){
+
+    .employee-details a{
+        margin-top: -125px;
+        margin-bottom: 120px;
+    }   
+
+    .employee-details a span{
+        font-size: 17px;
+    }
+
+    /* MASTER TAB USER */
+    /* .tab-user{
+        width: 100%;
+    } */
+}
+
+
+@media (min-width: 891px) and (max-width: 991px){
+
+    .employee-details a{
+        margin-top: -130px;
+        margin-bottom: 120px;
+    }   
+
+    .employee-details a span{
+        font-size: 17px;
+    }
+
+    /* MASTER TAB USER */
+    .tab-user{
+        width: 100%;
+    }
+}
+
+
+@media (min-width: 787px) and (max-width: 902px){
+
+    .employee-details a{
+        margin-top: -170px;
+        margin-bottom: 160px;
+    }   
+
+    .employee-details a span{
+        font-size: 17px;
+    }
+
+    /* MASTER TAB USER */
+    .tab-user{
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 786px){
+
+    .employee-details a{
+        margin-top: -165px;
+        margin-bottom: 155px;
+    } 
+
+    .employee-details a span{
+        font-size: 17px;
+    }
+
+    /* MASTER TAB USER */
+    .tab-user{
+        width: 100%;
+    }
+}
+
+@media (min-width: 592px) and (max-width: 768px){
+
+    .employee-details a{
+        margin-top: -125px;
+        margin-bottom: 120px;
+    }   
+
+    .employee-details a span{
+        font-size: 16px;
+    }
+
+    /* MASTER TAB USER */
+    .tab-user{
+        width: 100%;
+    }
+
+    .mid-last{
+        margin-top: 10px;
+    }
+
+    .master-tab-content form label{
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .tab-hr{
+        border: none;
+    }
+
+    .with-hr{
+        margin-top: -18px;
+    }
+}
+
+@media (min-width: 571px) and (max-width: 591px){
+    .master-modal-back-main{
+        padding-left: 20px; 
+        padding-right: 20px; 
+    }
+
+    .employee-details a{
+        margin-top: -140px;
+        margin-bottom: 115px;
+    } 
+
+    .employee-details a span{
+        font-size: 16px;
+    }
+
+    /* MASTER TAB USER */
+    .tab-user{
+        width: 100%;
+    }
+}
+
+@media (min-width: 460px) and (max-width: 570px){
+
+    .master-modal-back-main{
+        padding-left: 20px; 
+        padding-right: 20px; 
+    }
+
+    .employee-details a{
+        margin-top: -175px;
+        margin-bottom: 150px;
+    }   
+
+    .employee-details a span{
+        font-size: 16px;
+    }
+
+    /* MASTER TAB USER */
+    .tab-user{
+        width: 100%;
+    }
+
+    .mid-last{
+        margin-top: 10px;
+    }
+
+    .master-tab-content form label{
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .tab-hr{
+        border: none;
+    }
+
+    .with-hr{
+        margin-top: -18px;
+    }
+}
