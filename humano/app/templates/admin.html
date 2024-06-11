@@ -469,7 +469,7 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
+                        <div class="body-modal">
                             <form class="row my-1 needs-validation" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
@@ -581,7 +581,7 @@
                                 <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                             </div>
     
-                            <div class="body_modal">
+                            <div class="body-modal">
                                 <form class="row my-1 needs-validation" id="updateEmployeeNumberForm" novalidate>
                                     <div class="modal-body-info">
                                         <div class="">
@@ -635,7 +635,7 @@
                                 <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                             </div>
     
-                            <div class="body_modal">
+                            <div class="body-modal">
                                 <form class="row my-1 needs-validation" novalidate>
                                     <div class="modal-body-info">
                                         <div class="">
@@ -777,11 +777,11 @@
         <div class="bg-white"> 
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3">
                 <span class="fw-medium">Company Setup</span>
-                <button class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">New</button>
+                <button class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#addSettings">New</button>
             </div> 
             
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="addSettings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
@@ -789,19 +789,19 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="new-settings-form" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Items</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" name="items" id="items" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Value</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" name="content" id="content" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -835,20 +835,22 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#companySetup}}
                             <tr>
-                                <td>1</td>
-                                <td>Company Logo</td>
-                                <td>files/ais-logo.jpg</td>
-                                <td>Enabled</td>
+                                <td>{{number}}</td>
+                                <td>{{items}}</td>
+                                <td>{{content}}</td>
+                                <td>{{status}}</td>
                                 <td> 
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>   
+                                    <button class="edit-settings btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#editSettings" data-id="{{uid}}">Edit</button>   
                                 </td>  
                             </tr>
+                            {{/companySetup}}
                         </tbody>
                     </table>    
 
                     <!-- Edit Modal -->
-                    <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="editSettings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
@@ -856,32 +858,33 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
         
-                                <div class="body_modal">
+                                <div class="body-modal">
                                     <form class="row my-1 needs-validation" novalidate>
+                                        <input type="hidden" name="edit-uid" class="form-control" hidden required/>
                                         <div class="modal-body-info">
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Items</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="edit-items">
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Value</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="edit-content" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="d-flex gap-5 mt-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="edit-status" id="flexRadioDefault1" value="Enable">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                     Enable
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    <input class="form-check-input" type="radio" name="edit-status" id="flexRadioDefault2" value="Disable">
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                     Disable
                                                     </label>
@@ -925,12 +928,12 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="addAnnouncement" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Content</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" required></textarea>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -963,17 +966,19 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#announcements}}
                             <tr>
-                                <td>1</td>
-                                <td>Sept. 17 to Oct. 03, 2022 - The Oktoberfest is the world's largest Volksfest, featuring a beer festival and a travelling funfair.</td>
-                                <td>Sept 20, 2024</td>
+                                <td>{{number}}</td>
+                                <td>{{content}}</td>
+                                <td>{{date}}</td>
                                 <td class="action">
                                     <div class="d-flex gap-2">
-                                        <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>       
-                                        <button class="action2 btn btn-outline-danger">delete</button>   
+                                        <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-index="{{announceuid}}">Edit</button>       
+                                        <button class="delete-btn btn btn-outline-danger" data-index="{{announceuid}}" data-bs-target="#announcement-delete" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close">Delete</button>   
                                     </div>
                                 </td>   
                             </tr>
+                            {{/announcements}}
                         </tbody>
                     </table>    
                     
@@ -986,12 +991,13 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
         
-                                <div class="body_modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="edit-announcement" novalidate>
                                         <div class="modal-body-info">
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Content</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                                <input type="text" name="edit-uid" hidden>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="edit-content" required></textarea>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
@@ -1003,6 +1009,34 @@
                                             <div class="w-100 d-flex justify-content-end gap-2 border-top">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                 <button class="btn btn-success bg-blue" type="submit">Update</button>
+                                            </div>
+                                        </div>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="announcement-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" >
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
+                                    <p class="modal-title" id="exampleModalLabel">Delete Announcement</p>
+                                    <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                </div>
+        
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="delete-announcement" novalidate>
+                                        <div class="modal-body-info">
+                                            <div class="">
+                                                <h5 class="text-center">Are you sure you want to delete this announcement?</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Button -->
+                                        <div class="button_modal">
+                                            <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                <button class="btn btn-danger bg-red" type="submit">Yes</button>
                                             </div>
                                         </div>
                                     </form> 
@@ -1022,11 +1056,11 @@
         <div class="bg-white"> 
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3">
                 <span class="fw-medium">Cost Center</span>
-                <button class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Cost Center</button>
+                <button class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#add-cost-center">Add New Cost Center</button>
             </div> 
             
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="add-cost-center" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
@@ -1034,32 +1068,30 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="addCostCenter" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Cost Center</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="costcenter" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Description</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="ccDescription" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Rest Day</label>
-                                        <select class="form-select" id="validationCustom01" required>
+                                        <select class="form-select" id="validationCustom01" name="selPayPeriod" required>
                                             <option selected disabled value="">--Select--</option>
-                                            <option value="1">Daily</option>
-                                            <option value="2">Fixed</option>
-                                            <option value="3">Monthly</option>
-                                            <option value="3">Semi-Monthly</option>
-                                            <option value="3">Weekly</option>
+                                            {{#frequencyList}}
+                                            <option value="{{frequencyuid}}">{{frequencyname}}</option>
+                                            {{/frequencyList}}
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a valid state.
@@ -1087,27 +1119,29 @@
                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
                             <tr>
                                 <th>#</th>
-                                <th>Content</th>
+                                <th>Name</th>
                                 <th>Description</th>
                                 <th>Pay Period</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#costCenterList}}
                             <tr>
-                                <td>1</td>
-                                <td>Avasia Information Systems, Inc. - Pasig</td>
-                                <td>Pasig Head Office</td>
-                                <td>Semi-Monthly</td>
+                                <td>{{number}}</td>
+                                <td>{{costcentername}}</td>
+                                <td>{{costcenterdesc}}</td>
+                                <td>{{payperiod}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>  
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-index="{{costcenteruid}}">Edit</button>  
                                 </td>   
                             </tr>
+                            {{/costCenterList}}
                         </tbody>
                     </table>    
                     
                     <!-- Edit Modal -->
-                    <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
@@ -1115,32 +1149,30 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
 
-                                <div class="body_modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="form-cost-center-edit" novalidate>
                                         <div class="modal-body-info">
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Cost Center</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="cost-center-edit" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Description</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="cost-center-desc-edit" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Pay Period</label>
-                                                <select class="form-select" id="validationCustom01" required>
+                                                <select class="form-select" id="sel-pay-period-edit" name="sel-pay-period-edit" required>
                                                     <!-- <option selected disabled value="">--Select--</option> -->
-                                                    <option value="1">Daily</option>
-                                                    <option value="2">Fixed</option>
-                                                    <option value="3">Monthly</option>
-                                                    <option value="3">Semi-Monthly</option>
-                                                    <option value="3">Weekly</option>
+                                                    {{#frequencyList}}
+                                                    <option value="{{frequencyuid}}">{{frequencyname}}</option>
+                                                    {{/frequencyList}}
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select a valid state.
@@ -1148,13 +1180,13 @@
                                             </div>
                                             <div class="d-flex gap-5 mt-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Enable">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                         Enable
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Disable">
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                         Disable
                                                     </label>
@@ -1198,12 +1230,12 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="new-department" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Deparment</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control" id="validationCustom01" name="add-department" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -1230,22 +1262,22 @@
                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
                             <tr>
                                 <th>#</th>
-                                <th>Items</th>
-                                <th>Value</th>
-                                <th>Active</th>
+                                <th>Department</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#departments}}
                             <tr>
-                                <td>1</td>
-                                <td>Company Logo</td>
-                                <td>files/ais-logo.jpg</td>
-                                <td>Enabled</td>
+                                <td>{{number}}</td>
+                                <td>{{deptname}}</td>
+                                <td>{{status}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button> 
+                                    <button class="edit-btn-department btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-index="{{deptuid}}">Edit</button> 
                                 </td>   
                             </tr>
+                            {{/departments}}
                         </tbody>
                     </table>    
                     
@@ -1258,18 +1290,19 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
         
-                                <div class="body_modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="edit-department" novalidate>
                                         <div class="modal-body-info">
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Deparment</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+
+                                                <input type="text" class="form-control" id="validationCustom01" name="edit-department" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-4">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="edit-status"checked>
                                                 <label class="form-check-label" for="flexCheckChecked">Active</label>
                                             </div>
                                         </div>
@@ -1310,12 +1343,12 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="new-educ-level-form" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Level</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="add-edu-level" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -1348,14 +1381,16 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#levelTable}}
                             <tr>
-                                <td>1</td>
-                                <td>Primary</td>
-                                <td>Enabled</td>
+                                <td>{{number}}</td>
+                                <td>{{level}}</td>
+                                <td>{{status}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>   
+                                    <button class="edit-btn-level btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{leveluid}}">Edit</button>   
                                 </td>   
                             </tr>
+                            {{/levelTable}}
                         </tbody>
                     </table>    
                     
@@ -1368,12 +1403,12 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
 
-                                <div class="body_modal">
+                                <div class="body-modal">
                                     <form class="row my-1 needs-validation" novalidate>
                                         <div class="modal-body-info">
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Level</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="edit-level" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
@@ -1417,12 +1452,12 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="new-empstatus-form" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Employment Status</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="empstatus" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -1433,7 +1468,7 @@
                                 <div class="button_modal">
                                     <div class="w-100 d-flex justify-content-end gap-2 border-top">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button class="btn btn-success bg-blue" type="submit">Sumit</button>
+                                        <button class="btn btn-success bg-blue" type="submit">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -1448,17 +1483,21 @@
                     <table class="table mt-2" id="table-employment-status" style="width: 100%;">
                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
                             <tr>
+                                <th>#</th>
                                 <th>Employment Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#empstatusList}}
                             <tr>
-                                <td>Regular</td>
+                                <td>{{number}}</td>
+                                <td>{{statusname}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>   
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{statusuid}}">Edit</button>   
                                 </td>   
                             </tr>
+                            {{/empstatusList}}
                         </tbody>
                     </table>    
                     
@@ -1471,25 +1510,25 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
         
-                                <div class="body_modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="edit-empStatus-form" novalidate>
                                         <div class="modal-body-info">
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Employment Status</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control" id="validationCustom01" name="edit-empstatus">
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="d-flex gap-5 mt-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="status" value="Enable" id="flexRadioDefault1">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                     Enable
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    <input class="form-check-input" type="radio" name="status" value="Disable" id="flexRadioDefault2" checked>
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                     Disable
                                                     </label>
@@ -1534,18 +1573,16 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="new-holiday-form" novalidate>
                                 <div class="modal-body-info">
                                     <div>
                                         <label for="validationCustom01" class="form-label">Rest Day</label>
-                                        <select class="form-select" id="validationCustom01" required>
+                                        <select class="form-select" id="validationCustom01" name="holidayType" required>
                                             <option selected disabled value="">--Select--</option>
-                                            <option value="1">Special Holiday</option>
-                                            <option value="2">Special Holiday on Rest Day</option>
-                                            <option value="3">Regular Holiday</option>
-                                            <option value="4">Rest Day</option>
-                                            <option value="5">Regular Holiday on Rest Day</option>
+                                            {{#holidaytypeList}}
+                                            <option value="{{holidayTypeUid}}">{{nameType}}</option>
+                                            {{/holidaytypeList}}
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a valid state.
@@ -1553,14 +1590,14 @@
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom02" class="form-label">Name</label>
-                                        <input type="text" class="form-control input" id="validationCustom02" required>
+                                        <input type="text" class="form-control input" id="validationCustom02" name="holidayName" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom03" class="form-label">Date</label>
-                                        <input type="date" class="form-control input" id="validationCustom03" required>
+                                        <input type="date" class="form-control input" id="validationCustom03" name="holidayDate" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -1593,14 +1630,16 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#holidayLists}}
                             <tr>
-                                <td>1</td>
-                                <td>Maundy Thursday</td>
-                                <td>March 28, 2024</td>
+                                <td>{{number}}</td>
+                                <td>{{holidayName}}</td>
+                                <td>{{holidayDate}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>   
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{holidayUid}}">Edit</button>   
                                 </td>   
                             </tr>
+                            {{/holidayLists}}
                         </tbody>
                     </table>    
                     
@@ -1614,18 +1653,15 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
 
-                                <div class="body_modal">
-                                    <form class="row g-3 my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row g-3 my-1 needs-validation" id="edit-holiday-form" novalidate>
                                         <div class="modal-body-info">
                                             <div>
-                                                <label for="validationCustom01" class="form-label">Rest Day</label>
-                                                <select class="form-select" id="validationCustom01" required>
-                                                    <option selected disabled value="">--Select--</option>
-                                                    <option value="1">Special Holiday</option>
-                                                    <option value="2">Special Holiday on Rest Day</option>
-                                                    <option value="3">Regular Holiday</option>
-                                                    <option value="4">Rest Day</option>
-                                                    <option value="5">Regular Holiday on Rest Day</option>
+                                                <label for="validationCustom01" class="form-label">Holiday Type</label>
+                                                <select class="form-select" name="holidayTypes" id="validationCustom01" required>
+                                                    {{#holidaytypeList}}
+                                                    <option value="{{holidayTypeUid}}">{{nameType}}</option>
+                                                    {{/holidaytypeList}}
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select a valid state.
@@ -1633,16 +1669,30 @@
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom02" class="form-label">Name</label>
-                                                <input type="text" class="form-control input" id="validationCustom02" required>
+                                                <input type="text" class="form-control input" id="validationCustom02" name="holidayNames" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom03" class="form-label">Date</label>
-                                                <input type="date" class="form-control input" id="validationCustom03" required>
+                                                <input type="date" class="form-control input" id="validationCustom03" name="holidayDates" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-5 mt-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Enable" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                    Enable
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Disable" id="flexRadioDefault2" >
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                    Disable
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1670,7 +1720,7 @@
     <div class="back-main bg-white h-100 mx-md-4 mx-3">
         <div class="bg-white"> 
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3">
-                <span class="fw-medium">The Remaining Number of Leaves in Year 2024</span>
+                <span class="fw-medium">The Remaining Number of Leaves in Year {{year}}</span>
                 <button class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">New</button>
             </div> 
             
@@ -1683,47 +1733,59 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="new-leaveCount-form" novalidate>
                                 <div class="modal-body-info">
-                                    <div class="">
+                                    <div>
+                                        <label for="validationCustom01" class="form-label">Employee Name</label>
+                                        <select class="form-select" name="employeeName" id="validationCustom01" required>
+                                            <option selected disabled value="">--Select--</option>
+                                            {{#employeeList}}
+                                            <option value="{{uid}}">{{lastname}}, {{firstname}} {{middlename}}</option>
+                                            {{/employeeList}}
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid state.
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Sick Leave</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="number" class="form-control input" id="validationCustom01" name="sickLeave" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Birthday Leave</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="number" class="form-control input" id="validationCustom01" name="bdayLeave" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Bereavement Leave</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="number" class="form-control input" id="validationCustom01" name="breavLeave" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Vacation Leave</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="number" class="form-control input" id="validationCustom01" name="vacLeave" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Maternity Leave</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="number" class="form-control input" id="validationCustom01" name="matLeave" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Paternity Leave</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="number" class="form-control input" id="validationCustom01" name="patLeave" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -1763,21 +1825,23 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#leaveCountsList}}
                             <tr>
-                                <td>1</td>
-                                <td>0006</td>
-                                <td>A. Goc-ong</td>
-                                <td>7</td>
-                                <td>1</td>
-                                <td>0</td>
-                                <td>1</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{number}}</td>
+                                <td>{{empNo}}</td>
+                                <td>{{empName}}</td>
+                                <td>{{SL}}</td>
+                                <td>{{BL}}</td>
+                                <td>{{BV}}</td>
+                                <td>{{VL}}</td>
+                                <td>{{ML}}</td>
+                                <td>{{PL}}</td>
+                                <td>{{w}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>   
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{leavecountUid}}" data-empuid={{empuid}}>Edit</button>   
                                 </td>   
                             </tr>
+                            {{/leaveCountsList}}
                         </tbody>
                     </table>    
                     
@@ -1789,50 +1853,75 @@
                                     <p class="modal-title" id="exampleModalLabel">Edit Employment Status</p>
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
-
-                                <div class="body_modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="edit-leaveCount-form" novalidate>
                                         <div class="modal-body-info">
+                                            <div>
+                                                <label for="validationCustom01" class="form-label">Employee Name</label>
+                                                <select class="form-select" name="employeeName" id="validationCustom01" disabled>
+                                                    <option selected disabled value="">--Select--</option>
+                                                    {{#employeeList}}
+                                                    <option value="{{uid}}">{{lastname}}, {{firstname}} {{middlename}}</option>
+                                                    {{/employeeList}}
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please select a valid state.
+                                                </div>
+                                            </div>
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Sick Leave</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="number" class="form-control input" id="validationCustom01" name="sickLeaveUpdate" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Birthday Leave</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="number" class="form-control input" id="validationCustom01" name="bdayLeaveUpdate" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Bereavement Leave</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="number" class="form-control input" id="validationCustom01" name="breavLeaveUpdate" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Vacation Leave</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="number" class="form-control input" id="validationCustom01" name="vacLeaveUpdate" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Maternity Leave</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="number" class="form-control input" id="validationCustom01" name="matLeaveUpdate" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Paternity Leave</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="number" class="form-control input" id="validationCustom01" name="patLeaveUpdate" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-5 mt-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Enable" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                    Enable
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Disable" id="flexRadioDefault2" >
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                    Disable
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1873,19 +1962,19 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="location-form" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Location Name</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="loc-names" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Fingerprint</label>
-                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="loc-fingerprint" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -1918,14 +2007,16 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#locationsList}}
                             <tr>
-                                <td>1</td>
-                                <td>AISI - Pasig</td>
-                                <td>401237</td>
+                                <td>{{number}}</td>
+                                <td>{{name}}</td>
+                                <td>{{fingerprint}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>   
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{locationuid}}">Edit</button>   
                                 </td>   
                             </tr>
+                            {{/locationsList}}
                         </tbody>
                     </table>    
                     
@@ -1938,32 +2029,32 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
         
-                                <div class="body_modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="locationFormEdit" novalidate>
                                         <div class="modal-body-info">
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Location Name</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control" id="loc-names" name="loc-names" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Fingerprint</label>
-                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <input type="number" class="form-control" id="validationCustom01" name="loc-fingerprints" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="d-flex gap-5 mt-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Enable">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                     Enable
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    <input class="form-check-input" type="radio" name="status" value="Disable" id="flexRadioDefault2">
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                     Disable
                                                     </label>
@@ -2008,16 +2099,16 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="overtimeTypeForm" novalidate>
                                 <div class="modal-body-info">
                                     <div>
                                         <label for="validationCustom01" class="form-label">Rest Day</label>
-                                        <select class="form-select" id="validationCustom01" required>
+                                        <select class="form-select" id="validationCustom01" name="overtimeType" required>
                                             <option selected disabled value="">--Select--</option>
-                                            <option value="1">Premium</option>
-                                            <option value="2">Overtime</option>
-                                            <option value="3">Night Shift</option>
+                                            <option value="premium">Premium</option>
+                                            <option value="overtime">Overtime</option>
+                                            <option value="nightshift">Night Shift</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a valid state.
@@ -2025,28 +2116,28 @@
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom02" class="form-label">Name</label>
-                                        <input type="text" class="form-control input" id="validationCustom02" required>
+                                        <input type="text" class="form-control input" id="validationCustom02" name="overtimeName" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom03" class="form-label">Code</label>
-                                        <input type="text" class="form-control input" id="validationCustom03" required>
+                                        <input type="text" class="form-control input" id="validationCustom03" name="overtimeCode" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom04" class="form-label">Rate</label>
-                                        <input type="text" class="form-control input" id="validationCustom04" required>
+                                        <input type="text" class="form-control input" id="validationCustom04" name="overtimeRate" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom05" class="form-label">Additional Rate</label>
-                                        <input type="text" class="form-control input" id="validationCustom05" required>
+                                        <input type="text" class="form-control input" id="validationCustom05" name="overtimeRateAd" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -2082,17 +2173,19 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#overtimeTypeLists}}
                             <tr>
-                                <td>1</td>
-                                <td>Rest Day</td>
-                                <td>Premium</td>
-                                <td>OT</td>
-                                <td>1.3</td>
-                                <td>2</td>
+                                <td>{{number}}</td>
+                                <td>{{name}}</td>
+                                <td>{{kind}}</td>
+                                <td>{{code}}</td>
+                                <td>{{rate}}</td>
+                                <td>{{additionalrate}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Update</button>  
-                                </td>   
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{overtimeTypeUid}}">Update</button>  
+                                </td>
                             </tr>
+                            {{/overtimeTypeLists}}   
                         </tbody>
                     </table>    
                     
@@ -2104,16 +2197,16 @@
                                     <p class="modal-title" id="exampleModalLabel">Edit Employment Status</p>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="body_modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="overtimeTypeFormEdit" novalidate>
                                         <div class="modal-body-info">
                                             <div>
                                                 <label for="validationCustom01" class="form-label">Rest Day</label>
-                                                <select class="form-select" id="validationCustom01" required>
+                                                <select class="form-select" id="validationCustom01" name="overtimeTypeEdit" required>
                                                     <option selected disabled value="">--Select--</option>
-                                                    <option value="1">Premium</option>
-                                                    <option value="2">Overtime</option>
-                                                    <option value="3">Night Shift</option>
+                                                    <option value="premium">Premium</option>
+                                                    <option value="overtime">Overtime</option>
+                                                    <option value="nightshift">Night Shift</option>
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select a valid state.
@@ -2121,30 +2214,44 @@
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom02" class="form-label">Name</label>
-                                                <input type="text" class="form-control input" id="validationCustom02" required>
+                                                <input type="text" class="form-control input" id="validationCustom02" name="overtimeNameEdit" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom03" class="form-label">Code</label>
-                                                <input type="text" class="form-control input" id="validationCustom03" required>
+                                                <input type="text" class="form-control input" id="validationCustom03" name="overtimeCodeEdit" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom04" class="form-label">Rate</label>
-                                                <input type="text" class="form-control input" id="validationCustom04" required>
+                                                <input type="text" class="form-control input" id="validationCustom04" name="overtimeRateEdit" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom05" class="form-label">Additional Rate</label>
-                                                <input type="text" class="form-control input" id="validationCustom05" required>
+                                                <input type="text" class="form-control input" id="validationCustom05" name="overtimeRateAdEdit" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-5 mt-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Enable">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                    Enable
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Disable" id="flexRadioDefault2">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                    Disable
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -2185,20 +2292,20 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="new-rest-form" novalidate>
                                 <div class="modal-body-info">
                                     <div class="select_option">
                                         <label for="validationCustom01" class="form-label">Rest Day</label>
-                                        <select class="form-select" id="validationCustom01" required>
+                                        <select class="form-select" id="validationCustom01" name="restDay" required>
                                             <option selected disabled value="">--Select--</option>
-                                            <option value="1">Monday</option>
-                                            <option value="2">Tuesday</option>
-                                            <option value="3">Wednesday</option>
-                                            <option value="4">Thursday</option>
-                                            <option value="5">Friday</option>
-                                            <option value="6">Saturday</option>
-                                            <option value="7">Sunday</option>
+                                            <option value="Monday">Monday</option>
+                                            <option value="Tuesday">Tuesday</option>
+                                            <option value="Wednesday">Wednesday</option>
+                                            <option value="Thursday">Thursday</option>
+                                            <option value="Friday">Friday</option>
+                                            <option value="Saturday">Saturday</option>
+                                            <option value="Sunday">Sunday</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a valid state.
@@ -2230,12 +2337,14 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#restDayList}}
                             <tr>
-                                <td>Saturday</td>
+                                <td>{{restDayName}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>  
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{restdayUid}}">Edit</button>  
                                 </td>   
                             </tr>
+                            {{/restDayList}}
                         </tbody>
                     </table>    
                     
@@ -2248,20 +2357,20 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
         
-                                <div class="body_modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="restdayFormEdit" novalidate>
                                         <div class="modal-body-info">
                                             <div class="select_option">
                                                 <label for="validationCustom01" class="form-label">Rest Day</label>
-                                                <select class="form-select" id="validationCustom01" required>
+                                                <select class="form-select" id="validationCustom01" name="restdays" required>
                                                     <option selected disabled value="">--Select--</option>
-                                                    <option value="1">Monday</option>
-                                                    <option value="2">Tuesday</option>
-                                                    <option value="3">Wednesday</option>
-                                                    <option value="4">Thursday</option>
-                                                    <option value="5">Friday</option>
-                                                    <option value="6">Saturday</option>
-                                                    <option value="7">Sunday</option>
+                                                    <option value="Monday">Monday</option>
+                                                    <option value="Tuesday">Tuesday</option>
+                                                    <option value="Wednesday">Wednesday</option>
+                                                    <option value="Thursday">Thursday</option>
+                                                    <option value="Friday">Friday</option>
+                                                    <option value="Saturday">Saturday</option>
+                                                    <option value="Sunday">Sunday</option>
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select a valid state.
@@ -2269,13 +2378,13 @@
                                             </div>
                                             <div class="d-flex gap-5 mt-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="status" value="Enable" id="flexRadioDefault1">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                     Enable
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    <input class="form-check-input" type="radio" name="status" value="Disable" id="flexRadioDefault2">
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                     Disable
                                                     </label>
@@ -2369,7 +2478,7 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
                         
-                        <div class="body_modal">
+                        <div class="body-modal">
                             <form class="row my-1 needs-validation" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
@@ -2463,7 +2572,7 @@
                                 </div>
         
                                 
-                                <div class="body_modal">
+                                <div class="body-modal">
                                     <form class="row my-1 needs-validation" novalidate>
                                         <div class="modal-body-info">
                                             <div class="">
@@ -2539,7 +2648,7 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
+                        <div class="body-modal">
                             <form class="row my-1 needs-validation" novalidate>
                                 <div class="modal-body-info">
                                     <div class="select_option">
@@ -2598,7 +2707,7 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
         
-                                <div class="body_modal">
+                                <div class="body-modal">
                                     <form class="row my-1 needs-validation" novalidate>
                                         <div class="modal-body-info">
                                             <div class="select_option">
@@ -2646,7 +2755,7 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
+                        <div class="body-modal">
                             <form class="row my-1 needs-validation" novalidate>
                                 <div class="modal-body-info">
                                     <div class="select_option">
@@ -2705,7 +2814,7 @@
                                     <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                 </div>
         
-                                <div class="body_modal">
+                                <div class="body-modal">
                                     <form class="row my-1 needs-validation" novalidate>
                                         <div class="modal-body-info">
                                             <div class="select_option">
@@ -2753,7 +2862,7 @@
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
-                        <div class="body_modal">
+                        <div class="body-modal">
                             <form class="row my-1 needs-validation" novalidate>
                                 <div class="modal-body-info">
                                     <div class="select_option">

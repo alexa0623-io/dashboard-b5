@@ -704,7 +704,7 @@ function employmentStatusIsExisting($name){
 
 function employmentStatusCount($name){
     $query = ORM::forTable("hris_employment_status")->select_expr("count(employment_status_uid)", "count")->where("name", $name)->findOne();
-        return $query;
+        // return $query;
 }
 
 function getEmploymentStatusUidAndStatus($name){
