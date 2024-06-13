@@ -2420,17 +2420,10 @@
             
             <div class="px-md-4 px-3 py-5">
                 <div>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected="1">1</option>
-                        <option value="2">6:00 AM - 3:00 PM (No Grace Period)</option>
-                        <option value="2">7:00 AM - 4:00 PM (With Grace Period)</option>
-                        <option value="2">7:00 PM - 4:00 AM (With Grace Period)</option>
-                        <option value="3">8:00 AM - 5:00 PM (w/o Grace Period)</option>
-                        <option value="2">8:00 AM - 5:00 PM (With Grace Period)</option>
-                        <option value="3">9:00 AM - 6:00 PM (w/o Grace Period)</option>
-                        <option value="2">9:00 AM - 6:00 PM (With Grace Period)</option>
-                        <option value="3">9:00 AM - 7:00 PM (With Grace Period)</option>
-                        <option value="3">9:00 PM - 7:00 AM (w/o Grace Period)</option>
+                    <select class="form-select selRule" id="selRule" name="selRule" aria-label="Default select example">
+                        {{#rulesList}}
+                        <option value={{ruleUid}}>{{ruleName}}</option>
+                        {{/rulesList}}
                       </select>
                 </div>
 
@@ -2445,16 +2438,77 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#rulesById}}
                             <tr>
-                                <td>1</td>
-                                <td>8: 00 AM - 6:00 Pm (with grace period): (08:00 AM - 06:00 PM)</td>
+                                <td>{{day}}</td>
+                                <td>{{shift}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>  
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-uid="{{ruleUid}}" aria-label="Close" data-bs-target="#edit_modal">Edit</button>  
                                 </td>   
                             </tr>
+                            {{/rulesById}}
                         </tbody>
-                    </table>    
+                    </table>
+                    <!-- Edit Modal -->
+                    <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+
+                            <div class="modal-content">
+                                <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
+                                    <p class="modal-title" id="exampleModalLabel">Edit Rule</p>
+                                    <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                </div>
+        
+                                
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="editRulesform" novalidate>
+                                        <div class="modal-body-info">
+                                            <div class="">
+                                                <label for="validationCustom01" class="form-label">Day</label>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="ruleDay" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <label for="validationCustom01" class="form-label">Rules</label>
+                                                <select class="form-select ruleShift" id="ruleShift" name="ruleShift" aria-label="Default select example">
+                                                    <option selected disabled value="">--Select--</option>
+                                                  </select>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-5 mt-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Enable" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                    Enable
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Disable" id="flexRadioDefault2">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                    Disable
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <!-- Button -->
+                                        <div class="button_modal">
+                                            <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <button class="btn btn-success bg-blue" type="submit">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
                 </div>
+
             </div>
         </div>
     </div>
@@ -2479,39 +2533,39 @@
                         </div>
                         
                         <div class="body-modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                            <form class="row my-1 needs-validation" id="new-shift-form" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label">Name</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="timeName" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Start</label>
-                                        <input type="Time" class="form-control input" id="validationCustom01" required>
+                                        <input type="Time" class="form-control input" id="validationCustom01" name="startTime" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">End</label>
-                                        <input type="Time" class="form-control input" id="validationCustom01" required>
+                                        <input type="Time" class="form-control input" id="validationCustom01" name="endTime" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Grace Period</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="gracePeriod" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label">Batch</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="batch" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -2547,17 +2601,19 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#shiftsList}}
                             <tr>
-                                <td>1</td>
-                                <td>9:00 AM - 6:00 PM (with Grace Period)</td>
-                                <td>09:00 AM</td>
-                                <td>06:00 PM</td>
-                                <td>15</td>
-                                <td>Batch 2</td>
+                                <td>{{number}}</td>
+                                <td>{{shiftName}}</td>
+                                <td>{{shiftFrom}}</td>
+                                <td>{{shiftTo}}</td>
+                                <td>{{shiftGrace}}</td>
+                                <td>{{shiftBatch}}</td>
                                 <td>
-                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>  
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-uid="{{shiftUid}}" aria-label="Close" data-bs-target="#edit_modal">Edit</button>  
                                 </td>   
                             </tr>
+                            {{/shiftsList}}
                         </tbody>
                     </table>    
                     
@@ -2573,41 +2629,55 @@
         
                                 
                                 <div class="body-modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                    <form class="row my-1 needs-validation" id="edit-shift-form" novalidate>
                                         <div class="modal-body-info">
                                             <div class="">
                                                 <label for="validationCustom01" class="form-label">Name</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="shiftNames" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Start</label>
-                                                <input type="Time" class="form-control input" id="validationCustom01" required>
+                                                <input type="Time" class="form-control input" id="validationCustom01" name="shiftStarts" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">End</label>
-                                                <input type="Time" class="form-control input" id="validationCustom01" required>
+                                                <input type="Time" class="form-control input" id="validationCustom01" name="shiftEnds" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Grace Period</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="gracePeriods" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
                                                 </div>
                                             </div>
                                             <div class="mt-3">
                                                 <label for="validationCustom01" class="form-label">Batch</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="batches" required>
                                                 <div class="invalid-feedback">
                                                     Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-5 mt-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Enable" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                    Enable
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="status" value="Disable" id="flexRadioDefault2">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                    Disable
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -2685,16 +2755,18 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#memosList}}
                             <tr>
-                                <td>1</td>
-                                <td>Absences</td>
+                                <td>{{number}}</td>
+                                <td>{{memoName}}</td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>       
-                                        <button class="action2 btn btn-outline-danger">delete</button>   
+                                        <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{memoUid}}">Edit</button>       
+                                        <button class="action2 btn btn-outline-danger" data-uid="{{memoUid}}">delete</button>   
                                     </div>                                
                                 </td>   
                             </tr>
+                            {{/memosList}}
                         </tbody>
                     </table>    
                     

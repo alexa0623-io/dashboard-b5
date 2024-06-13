@@ -1748,50 +1748,239 @@ $(document).ready(function(){
 
         // Rules
         Path.map('#/settings-rules/').to(function(){
-            App.canvas.html("").append($.Mustache.render("rules"));
-            
-            $('#table-rules').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+            var rulesList =  [];
+            var RulesById = [];
+            var rules = getJSONDoc(App.api + "/get/rules/number/");
+            $.each(rules,function(i,item){
+                var rule = {
+                    ruleUid:item.ruleUid,
+                    ruleName:item.ruleName
                 }
+                rulesList.push(rule)
+            });
+
+            var rulebyId = getJSONDoc(App.api + "/get/rules/id/" + rules[0].ruleUid);
+            $.each(rulebyId,function(i,item){
+                var ruleid = {
+                    day:item.day,
+                    shift:item.shift,
+                    ruleUid:item.ruleUid +"."+item.day
+                }
+                RulesById.push(ruleid);
+            });
+
+            var templateData = {
+                rulesList:rulesList,
+                rulesById:RulesById
+            }
+            console.log(templateData);
+            App.canvas.html("").append($.Mustache.render("rules",templateData));
+            tableID = '#table-rules';
+            renderToDataTable(tableID);
+            
+            $(document).off("change",".selRule").on("change",".selRule",function(e){
+                e.preventDefault();
+                RulesById.splice(0,RulesById.length);
+                var rule = $("select[name=selRule]").val();
+                var ruleUids = getJSONDoc(App.api + "/get/rules/id/" + rule);
+                $.each(ruleUids,function(i,item){
+                    var ruleid = {
+                        day:item.day,
+                        shift:item.shift,
+                        ruleUid:item.ruleUid +"."+item.day
+                    }
+                    RulesById.push(ruleid);
+                });
+                console.log(templateData);
+                App.canvas.html("").append($.Mustache.render("rules",templateData));
+                renderToDataTable(tableID);
+                $("select[name=selRule]").val(rule);
+            });
+
+            $(document).off("click",".edit-btn").on("click",".edit-btn",function(e){
+                e.preventDefault();
+                var data = $(this).attr("data-uid");
+                var dataIndex = data.split(".");
+                var rule = dataIndex[0];
+                var day = dataIndex[1];
+                console.log(rule+" "+day);
+                $.getJSON(App.api + "/get/rule/data/" + rule + "." + day, function(ruledata){
+                    console.log(ruledata);
+                    if (ruledata.status == 1) {
+                        $("input[value=Enable]").prop("checked", true);
+                    } else {
+                        $("input[value=Disable]").prop("checked", true);
+                    }
+
+                    $("input[name=ruleDay]").val(ruledata.day);
+                    $("#ruleShift").find("option").remove().end();
+
+                    $.getJSON(App.api + "/shift/get/data/" + App.token, function(shiftdata) {
+                        $.each(shiftdata, function(i, item){
+                            if(ruledata.shiftUid != item.shiftUid){
+                                $("#ruleShift").append("<option value=" + item.shiftUid + " >" + item.name + ": (" + item.start + " - " + item.end +")</option>");
+                            }else{
+                                $("#ruleShift").append("<option value=" + item.shiftUid + " selected>" + item.name + ": (" + item.start + " - " + item.end +")</option>");
+                            }
+                        });
+                        console.log(shiftdata);
+                    });
+                });
+                $(document).off("submit","#editRulesform").on("submit","#editRulesform",function(e){
+                    e.preventDefault();
+                    var shift = $("select[name=ruleShift]").val();
+                    var status = 0;
+                    if ($("input[name='status']:checked").val()==="Enable") {
+                        status = 1;
+                    }
+    
+                    $.ajax({
+                        type: "POST",
+                        url: App.api + "/rule/update/",
+                        data: {
+                            rule: rule,
+                            day: day,
+                            shift: shift,
+                            status: status
+                        },
+                        success: function(){
+                            alert("Successfully Updated!");
+                            window.location.reload();
+                        }
+                    });
+                    
+                })
             });
         });
 
         // Shift
         Path.map('#/settings-shift/').to(function(){
-            App.canvas.html("").append($.Mustache.render("shift"));
-            
-            $('#table-shift').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+            var ctr = 0;
+            var shiftsList = [];
+            var shifts = getJSONDoc(App.api + "/shift/get/data/" + App.token);
+            console.log(shifts);
+            $.each(shifts,function(i,item){
+                ctr++;
+                var shift = {
+                    number:ctr,
+                    shiftUid:item.shiftUid,
+                    shiftName:item.name,
+                    shiftFrom:item.start,
+                    shiftTo:item.end,
+                    shiftGrace:item.grace,
+                    shiftBatch:item.batch
+                }
+                shiftsList.push(shift);
+            });
+
+            var templateData = {
+                shiftsList:shiftsList
+            }
+            App.canvas.html("").append($.Mustache.render("shift",templateData));
+            tableID = "#table-shift";
+            renderToDataTable(tableID);
+
+            $(document).off("submit", "#new-shift-form").on("submit", "#new-shift-form", function(e) {
+                e.preventDefault();
+                var name = $("input[name=timeName]").val();
+                var start = $("input[name=startTime]").val();
+                var end = $("input[name=endTime]").val();
+                var gracePeriod = $("input[name=gracePeriod]").val();
+                var batch = $("input[name=batch]").val();
+
+                if(!name || !start || !end || !batch || !gracePeriod){
+                    alert("Please Fill All The Fields!");
+                }else{
+                    $.ajax({
+                        type: "POST",
+                        url: App.api + "/shift/new/" + App.token,
+                        data: {
+                            name: name,
+                            start: start,
+                            end: end,
+                            grace: gracePeriod,
+                            batch: batch
+                        },
+                        success: function() {
+                            alert("Successfully Added!");
+                            window.location.reload();
+                        }
+                    });
                 }
             });
+
+            $("#table-shift tbody").off("click", "td .edit-btn").on("click", "td .edit-btn", function(e) {
+                e.preventDefault();
+                var uid = $(this).attr("data-uid");
+                $.getJSON(App.api + "/shift/details/get/" + uid + "." + App.token, function(data) {
+                    if (data.status == 1) {
+                        $("input[value=Enable]").prop("checked", true);
+                    } else {
+                        $("input[value=Disable]").prop("checked", true);
+                    }
+                   
+                    $("input[name=shiftNames]").val(data.name);
+                    $("input[name=shiftStarts]").val(data.start);
+                    $("input[name=shiftEnds]").val(data.end);
+                    $("input[name=batches]").val(data.batch);
+                    $("input[name=gracePeriods]").val(data.grace);
+                    $("input[name=status]").val(status);
+                });
+
+                $(document).off("submit", "#edit-shift-form").on("submit", "#edit-shift-form", function(e) {
+                    e.preventDefault();
+                    var name = $("input[name=shiftNames]").val();
+                    var start = $("input[name=shiftStarts]").val();
+                    var end = $("input[name=shiftEnds]").val();
+                    var gracePeriod = $("input[name=gracePeriods]").val();
+                    var batch = $("input[name=batches]").val();
+                    var status = 0;
+                    if ($("input[name='status']").is(":checked")) {
+                        status = 1;
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: App.api + "/shift/update/" + uid + "." + App.token,
+                        data: {
+                            name: name,
+                            start: start,
+                            end: end,
+                            grace: gracePeriod,
+                            batch: batch,
+                            status: status
+                        },
+                        success: function() {
+                            alert("Successfully Updated");
+                            window.location.reload();
+                        }
+                    });
+                });
+            });
+            
         });
 
         // Memo
         Path.map('#/settings-memo/').to(function(){
-            App.canvas.html("").append($.Mustache.render("memo"));
-            
-            $('#table-memo').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
+            var number = 0;
+            var memosList = [];
+            var memos = getJSONDoc(App.api + "/get/memo/type/" + App.token);
+            console.log(memos);
+            $.each(memos,function(i,item){
+                number++;
+                var memo = {
+                    number:number,
+                    memoUid:item.uid,
+                    memoName:item.name
+                }               
+                memosList.push(memo)
             });
+            var templateData = {
+                memosList:memosList
+            }
+            App.canvas.html("").append($.Mustache.render("memo",templateData));
+            tableID = '#table-memo';
+            renderToDataTable(tableID);
         });
 
         // Certificate
