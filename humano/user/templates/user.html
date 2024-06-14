@@ -1,0 +1,1305 @@
+
+<script type="text/template" id="admin-nav">
+    <!-- HEADER -->
+    <div class="w-100">
+        <div class="d-none d-md-block ">    
+            <div id="head" class="d-flex justify-content-between align-items-center text-white p-4">
+                <div id="toggle-sidebar" style="cursor: pointer;">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div style="cursor: pointer;">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile View -->
+    <div class="d-block d-md-none w-100 sticky-top">
+        <nav id="logo-nav" class="navbar navbar-expand-xl navbar-light">
+            <div class="w-100">
+                <div id="logo-toggle" class="h-100 d-flex justify-content-between align-items-center">
+                    <div class="logo">
+                        <img src="/static/img/logo.png" style="height: 7vh;">
+                    </div>
+                    <button class="navbar-toggler border px-3 py-2 rounded text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul id="mobile-btn"  class="navbar-nav me-auto mb-2 mb-lg-0 mt-3">
+                        <li class="nav-item">
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/dashboard/">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/profile/">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/master-file/">Work Experience</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/master-file/">Education</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link mrequest-btn d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="flex items-center">
+                                    <span class="group-hover:text-white">Under Construction</span>
+                                </div>
+                                <div>
+                                    <i id="mrequest-arrow" class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Training & Development</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Loans</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Certificate</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Memo</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Knowledge Based</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <hr class="my-3">
+                    <button class="logout d-flex align-items-center gap-2 mb-2 mx-2" type="button">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <div class="align-self-center">Logout</div>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</script>
+
+<!-- Desktop View (SIDEBAR)-->
+<script type="text/html" id="side-nav" class="">
+    <div class="d-none d-md-block">
+        <div id="side-header" class="d-flex justify-content-center align-items-center"> 
+            <img src="/static/img/logo.png">
+        </div>
+
+        <!-- Sidebar Content -->
+        <div class="side-scroll">
+            <div id="side-btn">
+                <!-- Sidebar user -->
+                <div id="side-user">
+                    <div class="d-flex flex-column align-items-center">
+                        <div id="side-circle" class="d-flex align-items-center justify-content-center rounded-circle">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <p class="mt-2">John Doe</p>
+                    </div>
+                    <hr class="mx-3">
+                </div>
+
+                <!-- Sidebar menu --> 
+                <div class="h-full">
+                    <ul id="side-menu" class="navbar-nav me-auto mb-2 px-2">
+                        <li>
+                            <a href="#/dashboard/" class="sidebar-link d-flex align-items-center">
+                                <i id="icon" class="fa-solid fa-house"></i>
+                                <span class="" style="margin-left: -4px;">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/profile/" class="sidebar-link d-flex align-items-center">
+                                <i id="icon" class="fas fa-user"></i>
+                                <spa class="align-middle">Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/dependents/" class="sidebar-link d-flex align-items-center">
+                                <i id="icon" class="fa-regular fa-note-sticky"></i>
+                                <spa class="align-middle">Dependents</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/work-experience/" class="sidebar-link d-flex align-items-center">
+                                <i id="icon" class="fa-regular fa-note-sticky"></i>
+                                <spa class="align-middle">Work Experience</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/education/" class="sidebar-link d-flex align-items-center">
+                                <i id="icon" class="fa-regular fa-note-sticky"></i>
+                                <spa class="align-middle">Education</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="request-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#request" aria-expanded="false" aria-control="request">
+                                <div class="d-flex align-items-center">
+                                    <i id="icon" class="fa-solid fa-gift"></i>
+                                    <span class="">Under Construction</span>
+                                </div>
+                                <i id="request-arrow" class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <ul id="request" class="sidebar-dropdown collapse rounded" data-bs-parent="#sidebar">
+                                <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Training & Development</a></li>
+                                <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Loans</a></li>
+                                <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Certificate</a></li>
+                                <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Memo</a></li>
+                                <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Knowledge Based</a></li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!-- DASHBOARD -->
+<script type="text/template" id="user-dash">
+    <div class="dash-container">
+        <div id="main">
+            <div class="row text-white fw-light">
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-md-4 mb-2">
+                    <div id="cards" class="bg1 border rounded d-flex align-items-center justify-content-between p-3">
+                        <div>
+                            <h3 class="card-title fw-normal">20</h3>
+                            <p class="card-text">LEAVE</p>
+                        </div>
+                        <img id="leave" src="../static/img/leave.png" class="">  
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-md-4 mb-2">
+                    <div id="cards" class="bg2 border rounded d-flex align-items-center justify-content-between p-3">
+                        <div>
+                            <h3 class="card-title fw-normal">30</h3>
+                            <p class="card-text">OVERTIME</p>
+                        </div>
+                        <img src="../static/img/overtime.png"> 
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-md-4 mb-2">
+                    <div id="cards" class="bg3 border rounded d-flex align-items-center justify-content-between p-3">
+                        <div>
+                            <h2 class="card-title fw-normal">45</h2>
+                            <p class="card-text">HOLIDAY & RESTDAY</p>
+                        </div>
+                        <img src="../static/img/holiday.png">   
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-md-4 mb-3">
+                    <div id="cards" class="bg4 border rounded d-flex align-items-center justify-content-between p-3">
+                        <div class="">
+                            <h3 class="card-title fw-normal">13</h3>
+                            <div class="d-flex align-items-center gap-2">
+                                <p class="card-text">NEW EMPLOYEE</p>
+                            </div>
+                        </div>
+                        <img src="../static/img/new.png">   
+                    </div>
+                </div>
+            </div>
+
+            <div id="d-table" class="row text-white fw-light">
+                <div class="col-lg-8 col-md-6 col-sm-12 mb-md-4 mb-3">
+                    <div class="h-100 w-100 bg-white rounded border">
+                        <div class="bg1 card-header rounded-top">
+                            <p class="h-100 d-flex align-items-center mx-3">Birthday Celebrants</p>
+                        </div>
+                        <div id="dash-table" class="mx-3 mt-md-2 mt-0 table-responsive">
+                            <table class="table w-full" id="table-birthday-celebration" style="width: 100%;">
+                                <thead class="table-light border-b border-black">
+                                    <tr>
+                                        <th scope="col" class="px-3">Birthday</th>
+                                        <th scope="col" class="px-3 text-nowrap">Employee #</th>
+                                        <th scope="col" class="px-3">Name</th>
+                                        <th scope="col" class="px-3">Department</th>
+                                        <th scope="col" class="px-3">Age</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="px-3 text-nowrap"></td>
+                                        <td class="px-3 text-nowrap"></td>
+                                        <td class="px-3 text-nowrap"></td>
+                                        <td class="px-3 text-nowrap"></td>
+                                        <td class="px-3 text-nowrap"></td>
+                                    </tr>   
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>
+                </div>
+
+                <!-- CALENDAR -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-4 mb-3">
+                    <div class="border rounded bg-white md:h-100 h-auto">
+                        <div class="bg1 card-header rounded-top ">
+                            <p class="h-100 d-flex align-items-center px-3 fw-medium">Calendar</p>
+                        </div>  
+
+                        <div id="cal" class="w-full mt-1">
+                            <div>
+                                <div id="month" class="d-flex align-items-center justify-content-between text-black">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                    <span>March 2024</span>    
+                                    <i class="fa-solid fa-chevron-right text-[#107A71] text-sm"></i>
+                                </div>
+                                <div class="w-full flex justify-center text-center px-1">
+                                    <table class="w-100">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" >S</th>
+                                                <th scope="col" >M</th>
+                                                <th scope="col" >T</th>
+                                                <th scope="col" >W</th>
+                                                <th scope="col" >T</th>
+                                                <th scope="col" >F</th>
+                                                <th scope="col" >S</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="col" id="light">25</td>
+                                                <td scope="col" id="light">26</td>
+                                                <td scope="col" id="light">27</th>
+                                                <td scope="col" id="light">28</th>
+                                                <td scope="col" id="light">29</th>
+                                                <td scope="col">1</th>
+                                                <td scope="col">2</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">3</td>
+                                                <td scope="col">4</td>
+                                                <td scope="col">5</th>
+                                                <td scope="col">6</th>
+                                                <td scope="col">7</th>
+                                                <td scope="col">8</th>
+                                                <td scope="col">9</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">10</td>
+                                                <td scope="col">11</td>
+                                                <td scope="col">12</th>
+                                                <td scope="col">13</th>
+                                                <td scope="col">14</th>
+                                                <td scope="col">15</th>
+                                                <td scope="col">16</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">17</td>
+                                                <td scope="col">18</td>
+                                                <td scope="col">19</th>
+                                                <td scope="col">20</th>
+                                                <td scope="col">21</th>
+                                                <td scope="col">22</th>
+                                                <td scope="col">23</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">24</td>
+                                                <td scope="col">25</td>
+                                                <td scope="col">26</th>
+                                                <td scope="col">27</th>
+                                                <td scope="col">28</th>
+                                                <td scope="col">29</th>
+                                                <td scope="col">30</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">31</td>
+                                                <td scope="col" id="light">1</td>
+                                                <td scope="col" id="light">2</th>
+                                                <td scope="col" id="light">3</th>
+                                                <td scope="col" id="light">4</th>
+                                                <td scope="col" id="light">5</th>
+                                                <td scope="col" id="light">6</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Employee -->
+            <div id="d-table" class="row text-white fw-light">
+                <div class="col-lg-8 col-md-6 col-sm-12 mb-md-4 mb-3">
+                    <div class="h-100 w-100 bg-white rounded border">
+                        <div class="bg1 card-header rounded-top">
+                            <p class="h-100 d-flex align-items-center mx-3">New Employee</p>
+                        </div>
+                        <div id="dash-table" class="mx-3 mt-md-2 mt-0 table-responsive">
+                            <table class="table w-full" id="table-new-employee" style="width: 100%;">
+                                <thead class="table-light border-b border-black">
+                                    <tr>
+                                        <th scope="col" class="px-4">#</th>
+                                        <th scope="col" class="px-4 text-nowrap">Employee #</th>
+                                        <th scope="col" class="px-5">Name</th>
+                                        <th scope="col" class="px-4">Date Hired</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="px-4 text-nowrap"></td>
+                                        <td class="px-4 text-nowrap"></td>
+                                        <td class="px-5 text-nowrap"></td>
+                                        <td class="px-4 text-nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>  
+                </div>
+
+                <!-- Department -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-4 mb-2">
+                    <div class="border rounded bg-white md:h-100 h-auto">
+                        <div class="bg3 card-header rounded-top ">
+                            <p class="h-100 d-flex align-items-center px-3 fw-medium">Department</p>
+                        </div>  
+                        <div id="dep" class="px-1 my-md-4 my-3">
+                            <div class="overflow-x-auto">
+                                <table class="w-100">
+                                    <tr>
+                                        <td class="px-3 py-2">ADMIN</td>
+                                        <td class="px-3 py-2 text-center">5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">SALES</td>
+                                        <td class="px-3 py-2 text-center">20</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">HR</td>
+                                        <td class="px-3 py-2 text-center">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">TECHNICAL SERVICES</td>
+                                        <td class="px-3 py-2 text-center">10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">IT SALES</td>
+                                        <td class="px-3 py-2 text-center">10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">IT SERVICES</td>
+                                        <td class="px-3 py-2 text-center">10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">IT SOLUTION</td>
+                                        <td class="px-3 py-2 text-center">3</td>
+                                    </tr>
+                                    <tr class="text-end fw-medium">
+                                        <td class="px-1 md:px-0 py-2 fs-6">TOTAL :</td>
+                                        <td class="px-1 md:px-0 py-2 text-center fs-4" style="color: #107A71;">60</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!-- PROFILE -->
+<script type="text/template" id="user-profile">
+    <div class="back-main">
+        <div class="user-profile h-100">
+            <div class="user-employee-details fw-medium d-flex align-items-center gap-3 mb-2" >
+                <span class="">PROFILE</span>
+            </div>
+    
+            <div class="d-flex flex-lg-row flex-column gap-3">
+                <div class="tab-user h-25 d-flex flex-column justify-content-center rounded bg-white p-3">
+                    <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2 mb-3">
+                        <i id="tab-icon" class="fa-solid fa-user"></i>
+                        <p id="tab-text">Image not available</p>
+                    </div>
+    
+                    <!-- BUTTON -->
+                    <button type="button" class="change-pro mb-2 rounded" data-bs-toggle="modal" data-bs-target="#changeProfile">
+                        Change Profile
+                    </button>
+                    <!-- <button class="change-pass py-md-3 py-2 rounded">Change Password</button> -->
+                    <button type="button" class="change-pass rounded" data-bs-toggle="modal" data-bs-target="#changePassword">
+                        Change Password
+                    </button>
+                </div>
+    
+                <!-- MODAL -->
+                <!-- Change Profile Modal -->
+                <div class="modal fade" id="changeProfile" tabindex="-1" aria-labelledby="changeProfile" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                <p class="modal-title" id="changeProfile">Upload Profile Picture</p>
+                                <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                            </div>
+                            <div class="body-modal p-3 py-4">
+                                <input type="file" id="tab_input_file" accept="image/*" class="form-control">
+                            </div>
+                            
+                            <!-- BUTTON -->
+                            <div class="">
+                                <div class="w-100 d-flex justify-content-end gap-2 border-top px-3 py-2">
+                                    <button class="btn btn-success w-25" type="submit" id="savePhoto">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Change Password Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                <p class="modal-title" id="exampleModalLabel">New Employee</p>
+                                <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                            </div>
+    
+                            <div class="body-modal">
+                                <form class="row my-1 needs-validation" novalidate>
+                                    <div class="modal-body-info">
+                                        <div class="">
+                                            <label for="validationCustom01" class="form-label">Enter Current Password</label>
+                                            <input type="text" class="form-control input" id="validationCustom01" required>
+                                            <div class="invalid-feedback">
+                                                Please fill this up.
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label for="validationCustom01" class="form-label">Enter Your New Password</label>
+                                            <input type="text" class="form-control input" id="validationCustom01" required>
+                                            <div class="invalid-feedback">
+                                                Please fill this up.
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <label for="validationCustom01" class="form-label">Re-enter Your New Password</label>
+                                            <input type="text" class="form-control input" id="validationCustom01" required>
+                                            <div class="invalid-feedback">
+                                                Please fill this up.
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <!-- Button -->
+                                    <div class="button-modal">
+                                        <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-success bg-blue w-auto" type="submit">Change Password</button>
+                                        </div>
+                                    </div>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="w-100" style="height: 70vh;">
+                    <label class="user-personal w-100 rounded-top fw-medium p-3 px-md-4 px-3">Personal Information</label>
+                    <!-- <label class="w-100 rounded-top fw-medium p-3 px-md-4 px-3">Personal Information</label> -->
+                    <div class="personal-info bg-white">
+                        <form class="g-md-4 g-3">
+                            <!-- 1st row -->
+                            <div class="row pt-md-4 pt-2 px-md-4 px-3 mb-md-4 mb-0">
+                                <div class="col-md-4 mt-md-0 mt-3">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="input form-control" placeholder="first name">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="mid-last input form-control" placeholder="middle name">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="mid-last input form-control" placeholder="last name">
+                                </div>
+                            </div>
+                            
+                            <!-- <hr class="master-tab-hr"> -->
+    
+                            <!-- 2nd row -->
+                            <div class="row px-md-4 px-3 mb-md-4 mb-0">
+                                <div class="col-md-4 mt-md-0 mt-3">
+                                    <label class="form-label">Nickname</label>
+                                    <input type="text" class="input form-control">
+                                </div>  
+                                <div class="col-md-4 mt-md-0 mt-3">
+                                    <label class="form-label">Birthday</label>
+                                    <input type="date" class="input form-control">
+                                </div>
+                                <div class="col-md-4 mt-md-0 mt-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="input form-control">
+                                </div>
+                            </div>
+                            
+                            <hr class="tab-hr">
+    
+                            <!-- 3rd row -->
+                            <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
+                                <div class="col-md-6">
+                                    <label for="validationCustom01" class="form-label">Gender</label>
+                                    <select class="form-select" id="validationCustom01" required>
+                                        <option selected disabled value="">--Select--</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid state.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-md-0 mt-3">
+                                    <label for="validationCustom01" class="form-label">Marital</label>
+                                    <select class="form-select" id="validationCustom01" required>
+                                        <option selected disabled value="">--Select--</option>
+                                        <option value="1">Married</option>
+                                        <option value="2">Single</option>
+                                        <option value="3">Living Common Law</option>
+                                        <option value="4">Widowed</option>
+                                        <option value="5">Separate</option>
+                                        <option value="6">Divorced</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid state.
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!-- 4th row -->
+                            <div class="row px-md-4 px-3 mb-md-4 mb-0">
+                                <div class="col-md-6 mt-md-0 mt-3">
+                                    <label for="validationCustom01" class="form-label">Nationality</label>
+                                    <select class="form-select" id="validationCustom01" required>
+                                        <option selected disabled value="">--Select--</option>
+                                        <option value="1">Afghan</option>
+                                        <option value="2">American</option>
+                                        <option value="3">Argentine</option>
+                                        <option value="4">Australian</option>
+                                        <option value="5">Belgian</option>
+                                        <option value="6">Bolivian</option>
+                                        <option value="7">British</option>
+                                        <option value="8">Cambodia</option>
+                                        <option value="9">Cameroonian</option>
+                                        <option value="10">Canadian</option>
+                                        <option value="11">Chilean</option>
+                                        <option value="12">Chinese</option>
+                                        <option value="13">Calombia</option>
+                                        <option value="14">Costa Rican</option>
+                                        <option value="15">Cuban</option>
+                                        <option value="16">Danish</option>
+                                        <option value="17">Dominican</option>
+                                        <option value="18">Dutch</option>
+                                        <option value="19">Ecuadorian</option>
+                                        <option value="20">Egyptian</option>
+                                        <option value="21">Estonian</option>
+                                        <option value="22">Ethiopian</option>
+                                        <option value="23">Finnish</option>
+                                        <option value="24">French</option>
+                                        <option value="25">German</option>
+                                        <option value="26">Ghanaian</option>
+                                        <option value="27">Greek</option>
+                                        <option value="28">Guatemalan</option>
+                                        <option value="29">Haitian</option>
+                                        <option value="30">Honduran</option>
+                                        <option value="31">Indonesian</option>
+                                        <option value="32">Iranian</option>
+                                        <option value="33">Irish</option>
+                                        <option value="34">Italian</option>
+                                        <option value="35">Japanese</option>
+                                        <option value="36">Jordanian</option>
+                                        <option value="37">Kenyan</option>
+                                        <option value="38">Korean</option>
+                                        <option value="39">Laotian</option>
+                                        <option value="40">Latvian</option>
+                                        <option value="41">Lithuanian</option>
+                                        <option value="42">Malaysian</option>
+                                        <option value="43">Mexican</option>
+                                        <option value="44">Moroccan</option>
+                                        <option value="45">New Zealander</option>
+                                        <option value="46">Nicaraguan</option>
+                                        <option value="47">Norwegian</option>
+                                        <option value="48">Panamanian</option>
+                                        <option value="49">Paraguayan</option>
+                                        <option value="50">Peruvian</option>
+                                        <option value="51">Polish</option>
+                                        <option value="52">Portuguese</option>
+                                        <option value="53">Puerto Rican</option>
+                                        <option value="54">Romanian</option>
+                                        <option value="56">Russian</option>
+                                        <option value="57">Salvadorian</option>
+                                        <option value="58">Saudi</option>
+                                        <option value="59">Scottish</option>
+                                        <option value="60">Spanish</option>
+                                        <option value="61">Swedish</option>
+                                        <option value="62">Swiss</option>
+                                        <option value="63">Taiwanese</option>
+                                        <option value="64">Tajik</option>
+                                        <option value="65">Thai</option>
+                                        <option value="66">Turkish</option>
+                                        <option value="67">Ukrainian</option>
+                                        <option value="68">Uruguayan</option>
+                                        <option value="69">Venezuelan</option>
+                                        <option value="70">Vietnamese</option>
+                                        <option value="71">Welsh</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid state.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-md-0 mt-3">
+                                    <label class="form-label">Religion</label>
+                                    <input type="text" class="input form-control">
+                                </div>
+                            </div>
+                            
+                            <hr class="tab-hr">
+    
+                            <!-- 5th row -->
+                            <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
+                                <div class="col-md-3">
+                                    <label class="form-label">House Info</label>
+                                    <input type="text" class="input form-control" placeholder="House No./Street">
+                                </div>  
+                                <div class="col-md-3">
+                                    <input type="text" class="mid-last input form-control" placeholder="Barangay">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="mid-last input form-control" placeholder="City">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="mid-last input form-control" placeholder="Region">
+                                </div>
+                            </div>
+    
+                            <hr class="tab-hr">
+    
+                            <!-- 6th row -->
+                            <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
+                                <div class="col-md-4">
+                                    <label class="form-label">Height</label>
+                                    <input type="text" class="input form-control">
+                                </div>
+                                <div class="col-md-4 mt-md-0 mt-3">
+                                    <label class="form-label">Weight</label>
+                                    <input type="text" class="input form-control">
+                                </div>
+                                <div class="col-md-4 mt-md-0 mt-3">
+                                    <label class="form-label">Blood Type</label>
+                                    <input type="text" class="input form-control">
+                                </div>
+                            </div>
+                            
+                            <hr class="tab-hr">
+    
+                            <!-- 7th row -->
+                            <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
+                                <div class="col-md-6">
+                                    <label class="form-label">Driver License</label>
+                                    <input type="text" class="input form-control">
+                                </div>
+                                <div class="col-md-6 mt-md-0 mt-3">
+                                    <label class="form-label">License Expired</label>
+                                    <input type="text" class="input form-control">
+                                </div>
+                            </div>
+    
+                            <!-- <hr class="master-tab-hr"> -->
+    
+                            <!-- 8th row -->
+                            <div class="row px-md-4 px-3 mb-md-4 mb-0">
+                                <div class="col-md-3 mt-md-0 mt-3">
+                                    <label class="form-label">SSS</label>
+                                    <input type="text" class="input form-control" placeholder="SSS">
+                                </div>  
+                                <div class="col-md-3 mt-md-0 mt-3">
+                                    <label class="form-label">BIR</label>
+                                    <input type="text" class="input form-control" placeholder="BIR">
+                                </div>  
+                                <div class="col-md-3 mt-md-0 mt-3">
+                                    <label class="form-label">Philhealth No.</label>
+                                    <input type="text" class="input form-control" placeholder="Philhealth No.">
+                                </div>  
+                                <div class="col-md-3 mt-md-0 mt-3">
+                                    <label class="form-label">Pag-ibig No.</label>
+                                    <input type="text" class="input form-control" placeholder="Pag-ibig No.">
+                                </div>  
+                            </div>
+                            
+                            <!-- <hr class="master-tab-hr"> -->
+    
+                            <!-- 9th row -->
+                            <div class="row px-md-4 px-3 mb-md-4 mb-3">
+                                <div class="col-md-6 mt-md-0 mt-3">
+                                    <label for="validationCustom01" class="form-label">Tax Status</label>
+                                    <select class="form-select" id="validationCustom01" required>
+                                        <option selected disabled value="">--Select--</option>
+                                        <option value="1">Z</option>
+                                        <option value="2">S/ME</option>
+                                        <option value="1">ME1/S2</option>
+                                        <option value="2">ME2/S2</option>
+                                        <option value="2">ME3/S3</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid state.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-md-0 mt-3">
+                                    <label for="validationCustom01" class="form-label">Status</label>
+                                    <select class="form-select" id="validationCustom01" required>
+                                        <option selected disabled value="">--Select--</option>
+                                        <option value="1">Active</option>
+                                        <option value="2">Inactive</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid state.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-btn px-md-4 px-3 pb-md-5 pb-4">
+                                <button class="ok rounded border-0 w-100 py-2">Update</button>
+                            </div>  
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</script>
+
+<!-- DEPENDENTS -->
+<script type="text/template" id="user-dependents">
+    <div class="back-main">
+        <div class="user-profile h-100">
+            <div class="user-employee-details fw-medium d-flex align-items-center gap-3 mb-2" >
+                <span class="">DEPENDENTS</span>
+            </div>
+    
+            <div class="d-flex flex-lg-row flex-column gap-3">
+                <div class="tab-user h-25 rounded bg-white p-3">
+                    <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Image not available</p>
+                    </div>
+                </div>
+
+                <div class="w-100 bg-white rounded" style="height: 80vh;"> 
+                    <div id="text-btn" class="d-flex align-items-center justify-content-end px-3 border-0 py-3">
+                        <button class="new rounded text-white border-0 px-4 py-2" data-bs-toggle="modal" data-bs-target="#new-work">New</button>
+                    </div> 
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="new-work" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                    <p class="modal-title">Add Dependents</p>
+                                    <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                </div>
+
+                                <div class="body-modal"> 
+                                    <form class="row my-1 needs-validation" novalidate>
+                                        <div class="modal-body-info">
+                                            <div>
+                                                <label for="validationCustom01" class="form-label">Dependent Name</label>
+                                                <input type="text" class="form-control input" id="validationCustom01"required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">Dependent Relationship</label>
+                                                <select class="form-select" id="validationCustom01" required>
+                                                    <option selected disabled value="">--Select--</option>
+                                                    <option value="1">Mother</option>
+                                                    <option value="2">Father</option>
+                                                    <option value="3">Spouse</option>
+                                                    <option value="4">Children</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please select a valid state.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">Dependent Birthday</label>
+                                                <input type="date" class="form-control input" id="validationCustom01" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">Dependent Contact #</label>
+                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Button -->
+                                        <div class="button-modal">
+                                            <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <button class="btn btn-success bg-blue" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <!-- TABLE -->
+                    <div class="p-3 pt-0">
+                        <div id="m-table" class="table-responsive">
+                            <table class="table" id="table-dependents" style="width: 100%;">
+                                <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Relatonship</th>
+                                        <th>Birthday</th>
+                                        <th class="text-md-start text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-md-start text-end">
+                                            <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
+                                        </td>   
+                                    </tr>
+                                </tbody>
+                            </table>    
+                            
+                            <!-- Edit Modal -->
+                            <div class="modal fade" id="edit-work" tabindex="-1" aria-labelledby="edit-work" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                            <p class="modal-title">Edit Dependents"</p>
+                                            <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                        </div>
+        
+                                        <div class="body-modal"> 
+                                            <form class="row my-1 needs-validation" novalidate>
+                                                <div class="modal-body-info">
+                                                    <div>
+                                                        <label for="validationCustom01" class="form-label">Dependent Name</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01"required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">Dependent Relationship</label>
+                                                        <select class="form-select" id="validationCustom01" required>
+                                                            <option selected disabled value="">--Select--</option>
+                                                            <option value="1">Mother</option>
+                                                            <option value="2">Father</option>
+                                                            <option value="3">Spouse</option>
+                                                            <option value="4">Children</option>
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Please select a valid state.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">Dependent Birthday</label>
+                                                        <input type="date" class="form-control input" id="validationCustom01" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">Dependent Contact #</label>
+                                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <!-- Button -->
+                                                <div class="button-modal">
+                                                    <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button class="btn btn-success bg-blue" type="submit">Update</button>
+                                                    </div>
+                                                </div>
+                                            </form> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+</script>
+
+<!-- WORK EXPERIENCE -->
+<script type="text/template" id="user-work-experience">
+    <div class="back-main">
+        <div class="user-profile h-100">
+            <div class="user-employee-details fw-medium d-flex align-items-center gap-3 mb-2" >
+                <span class="">WORK EXPERIENCE</span>
+            </div>
+            
+    
+            <div class="d-flex flex-lg-row flex-column gap-3">
+                <div class="tab-user h-25 rounded bg-white p-3">
+                    <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Image not available</p>
+                    </div>
+                </div>
+
+                <div class="w-100 bg-white rounded" style="height: 80vh;"> 
+                    <div id="text-btn" class="d-flex align-items-center justify-content-end px-3 border-0 py-3">
+                        <button class="new rounded text-white border-0 px-4 py-2" data-bs-toggle="modal" data-bs-target="#new-work">New</button>
+                    </div> 
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="new-work" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                    <p class="modal-title">Add New</p>
+                                    <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                </div>
+
+                                <div class="body-modal"> 
+                                    <form class="row my-1 needs-validation" novalidate>
+                                        <div class="modal-body-info">
+                                            <div>
+                                                <label for="validationCustom01" class="form-label">Employer</label>
+                                                <input type="text" class="form-control input" id="validationCustom01" placeholder="Employer" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">Position</label>
+                                                <input type="text" class="form-control input" id="validationCustom01" placeholder="Position" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">Date Employeed</label>
+                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">Employment Status</label>
+                                                <select class="form-select" id="validationCustom01" required>
+                                                    <option selected disabled value="">--Select--</option>
+                                                    <option value="1">Regular</option>
+                                                    <option value="2">Contractual</option>
+                                                    <option value="3">Freelancer</option>
+                                                    <option value="4">Part-time</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please select a valid state.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Button -->
+                                        <div class="button-modal">
+                                            <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <button class="btn btn-success bg-blue" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <!-- TABLE -->
+                    <div class="p-3 pt-0">
+                        <div id="m-table" class="table-responsive">
+                            <table class="table" id="table-work-experience" style="width: 100%;">
+                                <thead class="table-light border-b border-black bg-white align-middle">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Employer</th>
+                                        <th>Position</th>
+                                        <th>Date Employeed</th>
+                                        <th>Employment Status</th>
+                                        <th class="text-md-start text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-md-start text-end">
+                                            <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
+                                        </td>   
+                                    </tr>
+                                </tbody>
+                            </table>    
+                            
+                            <!-- Edit Modal -->
+                            <div class="modal fade" id="edit-work" tabindex="-1" aria-labelledby="edit-work" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                            <p class="modal-title">Edit Work Experience"</p>
+                                            <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                        </div>
+        
+                                        <div class="body-modal"> 
+                                            <form class="row my-1 needs-validation" novalidate>
+                                                <div class="modal-body-info">
+                                                    <div>
+                                                        <label for="validationCustom01" class="form-label">Employer</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Employer" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">Position</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Position" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">Date Employeed</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">Employment Status</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Status" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <!-- Button -->
+                                                <div class="button-modal">
+                                                    <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button class="btn btn-success bg-blue" type="submit">Update</button>
+                                                    </div>
+                                                </div>
+                                            </form> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+</script>
+
+<!-- EDUCATION -->
+<script type="text/template" id="user-education">
+    <div class="back-main">
+        <div class="user-profile h-100">
+            <div class="user-employee-details fw-medium d-flex align-items-center gap-3 mb-2" >
+                <span class="">EDUCATION</span>
+            </div>
+            
+    
+            <div class="d-flex flex-lg-row flex-column gap-3">
+                <div class="tab-user h-25 rounded bg-white p-3">
+                    <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Image not available</p>
+                    </div>
+                </div>
+
+                <div class="w-100 bg-white rounded" style="height: 80vh;"> 
+                    <div id="text-btn" class="d-flex align-items-center justify-content-end px-3 border-0 py-3">
+                        <button class="new rounded text-white border-0 px-4 py-2" data-bs-toggle="modal" data-bs-target="#new-work">New</button>
+                    </div> 
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="new-work" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                    <p class="modal-title">Add Education</p>
+                                    <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                </div>
+
+                                <div class="body-modal"> 
+                                    <form class="row my-1 needs-validation" novalidate>
+                                        <div class="modal-body-info">
+                                            <div class="">
+                                                <label for="validationCustom01" class="form-label">Level</label>
+                                                <select class="form-select" id="validationCustom01" required>
+                                                    <option selected disabled value="">--Select--</option>
+                                                    <option value="1">Primary</option>
+                                                    <option value="2">Secondary</option>
+                                                    <option value="3">Vocational</option>
+                                                    <option value="4">Tertiary</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please select a valid state.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">School</label>
+                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">Course</label>
+                                                <input type="text" class="form-control input" id="validationCustom01" placeholder="Major" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="validationCustom01" class="form-label">School Year</label>
+                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <div class="invalid-feedback">
+                                                    Please fill this up.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Button -->
+                                        <div class="button-modal">
+                                            <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <button class="btn btn-success bg-blue" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <!-- TABLE -->
+                    <div class="p-3 pt-0">
+                        <div id="m-table" class="table-responsive">
+                            <table class="table" id="table-education" style="width: 100%;">
+                                <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Level</th>
+                                        <th>School</th>
+                                        <th>Year</th>
+                                        <th>Course</th>
+                                        <th class="text-md-start text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-md-start text-end">
+                                            <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
+                                        </td>   
+                                    </tr>
+                                </tbody>
+                            </table>    
+                            
+                            <!-- Edit Modal -->
+                            <div class="modal fade" id="edit-work" tabindex="-1" aria-labelledby="edit-work" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                            <p class="modal-title">Edit Education</p>
+                                            <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                        </div>
+        
+                                        <div class="body-modal"> 
+                                            <form class="row my-1 needs-validation" novalidate>
+                                                <div class="modal-body-info">
+                                                    <div class="">
+                                                        <label for="validationCustom01" class="form-label">Level</label>
+                                                        <select class="form-select" id="validationCustom01" required>
+                                                            <option selected disabled value="">--Select--</option>
+                                                            <option value="1">Primary</option>
+                                                            <option value="2">Secondary</option>
+                                                            <option value="3">Vocational</option>
+                                                            <option value="4">Tertiary</option>
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Please select a valid state.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">School</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">Course</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Major" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">School Year</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <!-- Button -->
+                                                <div class="button-modal">
+                                                    <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button class="btn btn-success bg-blue" type="submit">Update</button>
+                                                    </div>
+                                                </div>
+                                            </form> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+</script>
+
+
+
+

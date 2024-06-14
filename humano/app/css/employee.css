@@ -1,0 +1,289 @@
+.master-modal-back-main{
+    padding-left: 30px; 
+    padding-right: 30px; 
+    /* padding-top: 20px; */
+}
+
+
+/* NAV PILLS */
+.master-nav{
+    /* padding-top: 17px; */
+    box-shadow: rgba(118, 118, 118, 0.1) 0px 8px 24px;
+}
+
+.master-nav button{
+    background-color: white;
+    border: none !important;
+    font-size: 15px;
+    color: rgb(154, 154, 154);
+}
+
+.master-nav button:hover,
+.master-nav button.active {
+    /* background-color: #107A71 !important; */
+    background-color: #3d918a15 !important;
+    color: #107A71 !important;
+    font-weight: 500;
+    /* color: #107A71 !important; */
+    text-decoration-line: underline; 
+    text-transform:uppercase ;
+}
+
+.master-nav i {
+    color: #107A71;
+    font-size: 10px;
+}
+
+
+    /* color: #107A71 !important; */
+    /* background-color: white !important; */
+
+/* TITLE */
+.employee-details a{
+    margin-top: 40px;;
+    color: #107A71;
+    margin-bottom: 15px
+}
+
+.employee-details a:hover{
+    color: #1CCABB;
+}
+
+.employee-details i{
+    /* margin-bottom: -5px; */
+    font-size: 20px;
+}
+
+.employee-details a span{
+    font-size: 20px;
+}
+
+
+/* NAV PILLS CONTENT */
+.master-tab-content{
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.master-tab-content .change-pro{
+    background-color: #107A71;
+    border: none !important;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* BUTTON FOR LEFT SIDE */
+.master-tab-content .change-pro:hover{
+    background-color: #1c9b90;
+}
+
+.master-tab-content .change-pass{
+    background-color: #F3AA60;
+    border: none !important;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* BUTTON FOR BOTTOM */
+.master-tab-content .ok{
+    color: white;
+    background: #107A71;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.master-tab-content .change-pass:hover{
+    background-color: #f0af6f;
+}
+
+/* MASTER TAB USER */
+.tab-user{
+    width: 40%;
+}
+
+.tab-user #tab-drop{
+    height: 30vh;
+    background: #D9D9D9;
+}
+
+/* .tab-user img{
+    width: 130px; 
+    color: #898989;
+    margin-top: 10px;
+    object-fit: cover;
+
+} */
+
+.tab-user i{
+    font-size: 120px;
+    color: #898989;
+    margin-top: 20px;
+}
+
+.tab-user p{
+    color: #898989;
+    margin-top: 10px;
+}
+
+/* GREEN BG PERSONAL DETAILS / INFO */
+.tab-personal{
+    background-color: #69A9A3;
+    color: white;
+    font-size: 16px;
+}
+
+.mid-last{
+    margin-top: 32px;
+}
+
+.tab-hr{
+    border-color: #eeeeee;
+}
+
+.master-tab-content form label{
+    margin-bottom: 4px;
+}
+
+/* Bottom BTN */
+.tab-btn button{
+    background-color: #107A71;
+    color: white;
+    font-size: 16px;
+}
+
+.tab-btn button:hover{
+    background-color: #1CCABB;
+}
+
+.input{
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    border-color: #d6d6d6;
+    font-size: 14px;
+}
+
+.input::placeholder {
+    color: #8b8b8b;
+}
+
+.form-select{
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Custom styles for the select */
+.custom-select {
+    color: #555555;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .master-modal-back-main{
+        padding-left: 20px; 
+        padding-right: 20px; 
+    }
+
+    
+    .master-nav button{
+        background-color: white;
+        border: none !important;
+        font-size: 13px;
+        color: rgb(154, 154, 154);
+    }
+
+    .employee-details a{
+        margin-bottom: 15px
+    }
+    
+    .employee-details a:hover{
+        color: #1CCABB;
+    }
+    
+    .employee-details i{
+        margin-bottom: -2px;
+        font-size: 20px;
+    }
+    
+    .employee-details a span{
+        font-size: 15px;
+    }
+
+    .tab-user i{
+        font-size: 80px;
+        color: #898989;
+        margin-top: 20px;
+    }
+    
+    .tab-user p{
+        font-size: 14px;
+    }
+
+    /* MASTER TAB USER */
+
+    /* GREEN BG PERSONAL DETAILS / INFO */
+    .tab-personal{
+        background-color: #69A9A3;
+        color: white;
+        font-size: 14px;
+    }
+
+    .tab-user{
+        width: 100%;
+    }
+
+    .mid-last{
+        margin-top: 10px;
+    }
+
+    .master-tab-content form label{
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .tab-hr{
+        border: none;
+    }
+
+    .with-hr{
+        margin-top: -18px;
+    }
+
+    /* USER BUTTON */
+    .master-tab-content .change-pro{
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    .master-tab-content .change-pass{
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    .master-tab-content .ok{
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    /* BOTTOM BTN */
+    .tab-btn button{
+        background-color: #107A71;
+        color: white;
+        font-size: 13px;
+    }
+
+    .input{
+        padding-top: 7px; 
+        padding-bottom: 7px;
+        font-size: 13px;
+        color: #686868;
+    }
+
+    .form-select{
+        padding-top: 7px; 
+        padding-bottom: 7px;
+        font-size: 13px;
+    }
+}

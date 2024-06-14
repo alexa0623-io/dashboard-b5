@@ -145,6 +145,7 @@ $(document).ready(function(){
             });
         },
 
+
         // calendarDash: function(){
         //         $(document).ready(function() {
         //         var calendarEl = document.getElementById('calendar');
@@ -186,6 +187,33 @@ $(document).ready(function(){
         //         }
         //     });
         // }
+
+        // activePills: function() {
+        //     $(document).ready(function(){
+        //         $('.nav-btn').click(function(){
+        //             $('.nav-btn').removeClass('active');
+        //             $(this).addClass('active');
+        //         });
+        //     });
+        // }
+
+        uploadImage: function() {
+            $(document).ready(function () {
+                $('#tab_input_file').on('change', function (e) {
+                    var file = e.target.files[0];
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#preview_image').attr('src', e.target.result);
+                            $('#tab_img_view p').hide(); // Hide the "Image not available" text
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                });
+        
+            });
+
+        }
     }
 
     $.Mustache.load('templates/admin.html').done(function(){
@@ -194,6 +222,8 @@ $(document).ready(function(){
         App.deskArrow();
         App.mobileArrow();
         App.navbarLinkDropdown();
+        App.uploadImage();
+        // App.activePills();
         // App.dataTable();
         App.formValidation();
         // App.calendarDash();
@@ -312,6 +342,7 @@ $(document).ready(function(){
             });
         });
 
+        // MASTER FILE
         Path.map('#/master-file/').to(function(){
             var number = 0;
             var employees = getJSONDoc(App.api + "/employees/pages/get/" + App.token);
@@ -547,6 +578,99 @@ $(document).ready(function(){
 
         });
 
+        // Master modal link
+        Path.map('#/master-file-modal-name/').to(function(){
+            App.canvas.html("").append($.Mustache.render("master-file-modal-name"));
+            $('#table-employee-status').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-department').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-salary').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-rules').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-cost-center').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-dependents').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-education').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-work-experience').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+        });
+
+        // RESUME
         Path.map('#/resume-application/').to(function(){
             App.canvas.html("").append($.Mustache.render("resume"));
             $('#table-resume-aplication').DataTable({

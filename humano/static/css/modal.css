@@ -7,6 +7,14 @@
     background: #ffbd7b;
 }
 
+#master-file-modal{
+    background: #F3AA60;
+}
+
+#master-file-modal .search:hover{
+    background: #ffbd7b;
+}
+
 #text-btn .new{
     background: #107A71;
 }
@@ -30,16 +38,16 @@
     margin-top: -20px;
 }
 
-.header_modal{
+.header-modal{
     padding: 18px;
 }
 
-.header_modal p{
+.header-modal p{
     font-size: 20px;
     font-weight: 600;
 }
 
-.header_modal i:hover{
+.header-modal i:hover{
     color: #107A71;
 }
 
@@ -55,13 +63,13 @@
     width: 3px; 
 }
 
-.button_modal div{
+.button-modal div{
     padding: 20px;
     padding-top: 20px;
     padding-bottom: 15px;
 }
 
-.button_modal button{
+.button-modal button{
     width: 90px;
     /* margin-top: 6px; */
 }
@@ -87,6 +95,34 @@
     border-radius: 5px;
 }
 
+/* MASTER BTN ID MODAL  */
+/* name */
+.update-employee-info .btn-name{
+    background-color: #198754;
+}
+
+.update-employee-info .btn-name:hover{
+    background-color: #219b62;
+}
+
+/* Cost Center */
+.update-employee-info .btn-cost{
+    background-color: #f3aa60;
+}
+
+.update-employee-info .btn-cost:hover{
+    background-color: #f5b472
+}
+
+/* Rule */
+.update-employee-info .btn-rule{
+    background-color: #6C757D;
+}
+
+.update-employee-info .btn-rule:hover{
+    background-color: #7e878f
+}
+
 @media only screen and (max-width: 768px) {
 
     .modal-content{
@@ -94,7 +130,7 @@
         margin-top: 60px;
     }
 
-    .header_modal p{
+    .header-modal p{
         font-size: 15px;
     }
 
@@ -108,13 +144,13 @@
         font-size: 14px;
     }
 
-    .button_modal div{
+    .button-modal div{
         padding: 18px;
         padding-top: 12px;
         padding-bottom: 12px;
     }
     
-    .button_modal button{
+    .button-modal button{
         width: 65px;
         margin-top: 6px;
         font-size: 13px;

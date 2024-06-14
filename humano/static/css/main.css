@@ -48,6 +48,10 @@ body{
     margin-top: 15vh;
 }
 
+.back-main .text-btn span{
+    font-size: 201px;
+}
+
 
 /*-------------------------
         HEADER
@@ -83,7 +87,7 @@ body{
     padding-right: 15px;
 }
 
-.nav-link {
+.navbar-nav .nav-link {
     color: white;
     border-radius: 5px;
     margin-top: 6px;
@@ -140,9 +144,9 @@ hr{
     border-radius: 5px;
 }
 
-.navbar-nav .nav_drop.active,
-.navbar-nav .nav_drop:focus,
-.navbar-nav .nav_drop:hover {
+.navbar-nav .nav-drop.active,
+.navbar-nav .nav-drop:focus,
+.navbar-nav .nav-drop:hover {
     color: #107A71 !important;
     border-radius: 5px;
 }
@@ -211,7 +215,23 @@ hr{
 
 #icon{
     margin-right: 18px;
-    /* margin-top: px; */
+}
+
+/* .krono-user #icon{
+    margin-left: 1px; 
+    margin-top: 2px;
+} */
+
+.krono-user i{
+    margin-top: 2px;
+}
+
+.krono-user-absent{
+    margin-left: 2px;
+}
+
+.krono-user-text{
+    font-size: 12px
 }
 
 #side-menu a{
@@ -264,7 +284,18 @@ hr{
     background-color: rgba(121, 121, 121, 0.5);
 }
 
+/* #side-btn .side-overtime{
+    background: #c14141;
+    color: #ffffff;
+} */
 
+
+/* #side-btn .side-overtime.active,
+#side-btn .side-overtime:hover {
+    background-color: white !important;
+    color: #107A71 !important;
+    border-radius: 5px;
+} */
 
 /*-------------------------
         MAIN
@@ -275,6 +306,8 @@ hr{
     padding-right: 24px;
     padding-top: 24px;
 }
+
+
 
 
 @media only screen and (max-width: 768px) {
