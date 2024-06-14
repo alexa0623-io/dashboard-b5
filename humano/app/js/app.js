@@ -2270,6 +2270,45 @@ $(document).ready(function(){
             renderToDataTable(tableID);
         });
 
+        Path.map('#/billing/').to(function(){
+            App.canvas.html("").append($.Mustache.render("billing"));
+            // App.canvas.html("").append($.Mustache.render("billings-list"));
+            
+            $('#table-unpaid-billing').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-paid-billing').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+            $('#table-billing-list').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+
+        });
+
         Path.root('#/dashboard/');
         Path.listen();
     });
