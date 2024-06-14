@@ -124,21 +124,37 @@ $(document).ready(function(){
         },
 
         uploadImage: function() {
-            $(document).ready(function () {
-                $('#tab_input_file').on('change', function (e) {
-                    var file = e.target.files[0];
+            $(document).ready(function() {
+                $('#savePhoto').on('click', function() {
+                    const input = $('#tab_input_file')[0];
+                    const file = input.files[0];
                     if (file) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            $('#preview_image').attr('src', e.target.result);
-                            $('#tab_img_view p').hide(); // Hide the "Image not available" text
-                        }
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const img = $('<img>', {
+                                src: e.target.result,
+                                class: 'img-fluid rounded-2',
+                                css: {
+                                    'width': '100%', 
+                                    'height': '100%'
+                                }
+                            });
+                            
+                            const tabDrop = $('#tab-drop');
+                            
+                            // Clear existing content
+                            tabDrop.empty();
+                            
+                            // Append the new image
+                            tabDrop.append(img);
+                            
+                            // Hide the modal
+                            $('#changeProfile').modal('hide');
+                        };
                         reader.readAsDataURL(file);
                     }
                 });
-        
             });
-
         }
     }
 
@@ -513,8 +529,15 @@ $(document).ready(function(){
                         "next": "Next",
                         "last": "Last"
                     }
-                }
+                },
+                
             });
+        });
+
+        // LOADING
+        Path.map('#/loading/').to(function(){
+            App.canvas.html("").append($.Mustache.render("loading"));
+            
         });
         
 

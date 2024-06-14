@@ -405,20 +405,46 @@
             </div>
     
             <div class="d-flex flex-lg-row flex-column gap-3">
-                <div class="tab-user h-25 d-flex flex-column justify-content-center rounded bg-white px-3 py-4">
+                <div class="tab-user h-25 d-flex flex-column justify-content-center rounded bg-white p-3">
                     <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2 mb-3">
-                        <i class="fa-solid fa-user"></i>
-                        <p>Image not available</p>
+                        <i id="tab-icon" class="fa-solid fa-user"></i>
+                        <p id="tab-text">Image not available</p>
                     </div>
-                    
-                    <button class="change-pro mb-2 py-md-3 py-2 rounded">Change Profile</button>
+    
+                    <!-- BUTTON -->
+                    <button type="button" class="change-pro mb-2 rounded" data-bs-toggle="modal" data-bs-target="#changeProfile">
+                        Change Profile
+                    </button>
                     <!-- <button class="change-pass py-md-3 py-2 rounded">Change Password</button> -->
-                    <button type="button" class="change-pass py-md-3 py-2 rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="change-pass rounded" data-bs-toggle="modal" data-bs-target="#changePassword">
                         Change Password
                     </button>
                 </div>
     
-                <!-- Modal -->
+                <!-- MODAL -->
+                <!-- Change Profile Modal -->
+                <div class="modal fade" id="changeProfile" tabindex="-1" aria-labelledby="changeProfile" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                <p class="modal-title" id="changeProfile">Upload Profile Picture</p>
+                                <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                            </div>
+                            <div class="body-modal p-3 py-4">
+                                <input type="file" id="tab_input_file" accept="image/*" class="form-control">
+                            </div>
+                            
+                            <!-- BUTTON -->
+                            <div class="">
+                                <div class="w-100 d-flex justify-content-end gap-2 border-top px-3 py-2">
+                                    <button class="btn btn-success w-25" type="submit" id="savePhoto">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Change Password Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -727,7 +753,7 @@
                             </div>
                             
                             <div class="tab-btn px-md-4 px-3 pb-md-5 pb-4">
-                                <button class="ok rounded border-0 w-100 py-md-3 py-2">Update</button>
+                                <button class="ok rounded border-0 w-100 py-2">Update</button>
                             </div>  
                         </form> 
                     </div>
@@ -745,10 +771,9 @@
             <div class="user-employee-details fw-medium d-flex align-items-center gap-3 mb-2" >
                 <span class="">DEPENDENTS</span>
             </div>
-            
     
             <div class="d-flex flex-lg-row flex-column gap-3">
-                <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                <div class="tab-user h-25 rounded bg-white p-3">
                     <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                         <i class="fa-solid fa-user"></i>
                         <p>Image not available</p>
@@ -929,7 +954,7 @@
             
     
             <div class="d-flex flex-lg-row flex-column gap-3">
-                <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                <div class="tab-user h-25 rounded bg-white p-3">
                     <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                         <i class="fa-solid fa-user"></i>
                         <p>Image not available</p>
@@ -1006,7 +1031,7 @@
                     <div class="p-3 pt-0">
                         <div id="m-table" class="table-responsive">
                             <table class="table" id="table-work-experience" style="width: 100%;">
-                                <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
+                                <thead class="table-light border-b border-black bg-white align-middle">
                                     <tr>
                                         <th>#</th>
                                         <th>Employer</th>
@@ -1104,7 +1129,7 @@
             
     
             <div class="d-flex flex-lg-row flex-column gap-3">
-                <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                <div class="tab-user h-25 rounded bg-white p-3">
                     <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                         <i class="fa-solid fa-user"></i>
                         <p>Image not available</p>

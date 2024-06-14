@@ -134,14 +134,15 @@
                         </li>
                         <li>
                             <a href="#/scheduling/" class="sidebar-link d-flex align-items-center">
-                                <i id="icon" class="fas fa-user"></i>
+                                <!-- <i id="icon" class="fas fa-user"></i> -->
+                                <i id="icon" class="fa-solid fa-calendar-days"></i>
                                 <spa class="align-middle">Scheduling</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a id="request-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#request" aria-expanded="false" aria-control="request">
                                 <div class="d-flex align-items-center">
-                                    <i id="icon" class="fa-solid fa-gift"></i>
+                                    <i id="icon" class="fa-solid fa-note-sticky"></i>
                                     <span class="">Request</span>
                                 </div>
                                 <i id="request-arrow" class="fa-solid fa-angle-down"></i>
@@ -157,7 +158,7 @@
                         <li class="sidebar-item">
                             <a id="report-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#report" aria-expanded="false" aria-control="report">
                                 <div class="d-flex align-items-center">
-                                    <i id="icon" class="fa-solid fa-gift"></i>
+                                    <i id="icon" class="fa-regular fa-newspaper"></i>
                                     <span class="">Report</span>
                                 </div>
                                 <i id="report-arrow" class="fa-solid fa-angle-down"></i>
@@ -172,7 +173,7 @@
                         <li class="sidebar-item">
                             <a id="setting-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#setting" aria-expanded="false" aria-control="setting">
                                 <div class="d-flex align-items-center">
-                                    <i id="icon" class="fa-solid fa-gift"></i>
+                                    <i id="icon" class="fa-solid fa-gear"></i>
                                     <span class="">Settings</span>
                                 </div>
                                 <i id="setting-arrow" class="fa-solid fa-angle-down"></i>
@@ -180,6 +181,11 @@
                             <ul id="setting" class="sidebar-dropdown collapse rounded" data-bs-parent="#sidebar">
                                 <li class="sidebar-item w-100"><a href="#/location/" class="sidebar-drop">○ Location</a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="#/loading/" class="sidebar-link d-flex align-items-center">
+                                <spa class="align-middle">Loading</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -630,46 +636,45 @@
         <div class="master-modal-back-main">
             <!-- Nav Pills -->
             <!-- <div class="master-nav d-flex gap-3  rounded-2 mb-3 align-items-center"> -->
-                <ul class="master-nav nav nav-pills w-100 gap-2 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
+                <ul class="master-nav nav nav-pills w-100 gap-3 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link active" id="pills-personal-details" data-bs-toggle="pill" data-bs-target="#personal-details" type="button" role="tab" aria-controls="personal-details" aria-selected="true">Personal Details</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-employment-status" data-bs-toggle="pill" data-bs-target="#employment-status" type="button" role="tab" aria-controls="employment-status" aria-selected="false">Employment Status</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-department" data-bs-toggle="pill" data-bs-target="#department" type="button" role="tab" aria-controls="department" aria-selected="false">Department</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-salary" data-bs-toggle="pill" data-bs-target="#salary" type="button" role="tab" aria-controls="salary" aria-selected="false">Salary</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-rules" data-bs-toggle="pill" data-bs-target="#rules" type="button" role="tab" aria-controls="rules" aria-selected="false">Rules</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-cost-center" data-bs-toggle="pill" data-bs-target="#cost-center" type="button" role="tab" aria-controls="cost-center" aria-selected="false">Cost Center</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-dependents" data-bs-toggle="pill" data-bs-target="#dependents" type="button" role="tab" aria-controls="dependents" aria-selected="false">Dependents</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-allowance" data-bs-toggle="pill" data-bs-target="#allowance" type="button" role="tab" aria-controls="allowance" aria-selected="false">Allowance</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-loans" data-bs-toggle="pill" data-bs-target="#loans" type="button" role="tab" aria-controls="loans" aria-selected="false">Loans</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-documents" data-bs-toggle="pill" data-bs-target="#documents" type="button" role="tab" aria-controls="documents" aria-selected="false">Documents</button>
-                        <i class="fa-solid fa-chevron-right"></i>
                     </li>
                 </ul>
             <!-- </div> -->
@@ -680,40 +685,57 @@
                 <!-- PERSONAL DETAILS -->
                 <div class="tab-pane fade show active h-100 " id="personal-details" role="tabpanel" aria-labelledby="pills-personal-details">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / PERSONAL DETAILS</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 d-flex flex-column justify-content-center rounded bg-white px-3 py-md-4 py-3">
-                            <!-- <form action="/upload" method="post" class="mb-3">
-                                <label for="tab_input_file" id="tab_drop" class="w-100 rounded-2 d-flex align-items-center justify-content-center">
-                                    <input type="file" accept="image/*" id="tab_input_file" name="image" hidden>
-                                    <div id="tab_img_view" class="d-flex flex-column justify-content-center align-items-center text-center">
-                                        <img id="preview_image" src="/static/img/user-solid.png" alt="">
-                                        <p>Image not available</p>
-                                    </div>
-                                </label>
-                            </form> -->
+                        <div class="tab-user h-25 d-flex flex-column justify-content-center rounded bg-white p-3 ">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2 mb-3">
-                                <i class="fa-solid fa-user"></i>
-                                <p>Image not available</p>
+                                <i id="tab-icon" class="fa-solid fa-user"></i>
+                                <p id="tab-text">Image not available</p>
                             </div>
-                            
-                            <button class="change-pro mb-2 rounded">Change Profile</button>
+            
+                            <!-- BUTTON -->
+                            <button type="button" class="change-pro mb-2 rounded" data-bs-toggle="modal" data-bs-target="#changeProfile">
+                                Change Profile
+                            </button>
                             <!-- <button class="change-pass py-md-3 py-2 rounded">Change Password</button> -->
-                            <button type="button" class="change-pass rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="change-pass rounded" data-bs-toggle="modal" data-bs-target="#changePassword">
                                 Change Password
                             </button>
                         </div>
-    
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            
+                        <!-- MODAL -->
+                        <!-- Change Profile Modal -->
+                        <div class="modal fade" id="changeProfile" tabindex="-1" aria-labelledby="changeProfile" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
-                                        <p class="modal-title" id="exampleModalLabel">New Employee</p>
+                                        <p class="modal-title" id="changeProfile">Upload Profile Picture</p>
+                                        <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                    </div>
+                                    <div class="body-modal p-3 py-4">
+                                        <input type="file" id="tab_input_file" accept="image/*" class="form-control">
+                                    </div>
+                                    
+                                    <!-- BUTTON -->
+                                    <div class="">
+                                        <div class="w-100 d-flex justify-content-end gap-2 border-top px-3 py-2">
+                                            <button class="btn btn-success w-25" type="submit" id="savePhoto">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Change Password Modal -->
+                        <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePassword" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                        <p class="modal-title" id="changePassword">New Employee</p>
                                         <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                     </div>
     
@@ -740,7 +762,7 @@
                                             <div class="button-modal">
                                                 <div class="w-100 d-flex justify-content-end gap-2 border-top">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <button class="btn btn-success bg-blue w-auto" type="submit">Change Password</button>
+                                                    <button class="btn btn-success w-auto" type="submit">Change Password</button>
                                                 </div>
                                             </div>
                                         </form> 
@@ -951,17 +973,17 @@
                 <!-- EMPLOYEE STATUS -->
                 <div class="tab-pane fade" id="employment-status" role="tabpanel" aria-labelledby="pills-employment-status">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / EMPLOYEE STATUS</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                             <!-- <p class="mt-5">Name</p> -->
                         </div>
@@ -1077,17 +1099,17 @@
                 <!-- DEPARTMENT -->
                 <div class="tab-pane fade" id="department" role="tabpanel" aria-labelledby="pills-department">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / DEPARTMENT</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                         </div>
                         
@@ -1170,17 +1192,17 @@
                 <!-- SALARY -->
                 <div class="tab-pane fade" id="salary" role="tabpanel" aria-labelledby="pills-salary">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / SALARY</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                         </div>
                         
@@ -1319,17 +1341,17 @@
                 <!-- RULES -->
                 <div class="tab-pane fade" id="rules" role="tabpanel" aria-labelledby="pills-rules">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / RULE ASSIGNMENT</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                         </div>
                         
@@ -1422,17 +1444,17 @@
                 <!-- COST CENTER -->
                 <div class="tab-pane fade" id="cost-center" role="tabpanel" aria-labelledby="pills-cost-center">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / COST CENTER ASSIGNMENT</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                         </div>
                         
@@ -1529,17 +1551,17 @@
                 <!-- DEPENDENTS -->
                 <div class="tab-pane fade" id="dependents" role="tabpanel" aria-labelledby="pills-dependents">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / DEPENDENTS</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                         </div>
                         
@@ -1706,17 +1728,17 @@
                 <!-- ALLOWANCE -->
                 <div class="tab-pane fade" id="allowance" role="tabpanel" aria-labelledby="pills-allowance">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / ALLOWANCE</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                         </div>
                         
@@ -1836,17 +1858,17 @@
                 <!-- LOANS -->
                 <div class="tab-pane fade" id="loans" role="tabpanel" aria-labelledby="pills-loans">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / LOANS</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                         </div>
                         
@@ -1938,17 +1960,17 @@
                 <!-- DOCUMENTS -->
                 <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="pills-documents">
                     <div class="employee-details fw-medium w-md-25 w-100" >
-                        <a href="#/master-file/" class="d-flex align-items-center gap-3 w-auto">
-                            <i class="fa-solid fa-angles-left resu-new-btn"></i>
+                        <a href="#/master-file/" class="d-flex align-items-center gap-2 w-auto">
+                            <i class="fa-regular fa-circle-left"></i>
                             <span>EMPLOYEE / DOCUMENTS</span>
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 rounded bg-white px-3 py-4">
+                        <div class="tab-user h-25 rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2">
                                 <i class="fa-solid fa-user"></i>
                                 <p>Image not available</p>
-                                <p class="mt-5">Name</p>
+                                <!-- <p class="mt-5">Name</p> -->
                             </div>
                         </div>
                         
@@ -2022,18 +2044,17 @@
 
         <div class="master-modal-back-main">
             <!-- Nav Pills -->
-                <ul class="master-nav nav nav-pills w-100 gap-2 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
+                <ul class="master-nav nav nav-pills w-100 gap-3 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link active" id="pills-listing" data-bs-toggle="pill" data-bs-target="#listing" type="button" role="tab" aria-controls="listing" aria-selected="true">Listing</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-employee" data-bs-toggle="pill" data-bs-target="#employee" type="button" role="tab" aria-controls="employee" aria-selected="false">Employee</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-group" data-bs-toggle="pill" data-bs-target="#group" type="button" role="tab" aria-controls="group" aria-selected="false">Group</button>
-                        <i class="fa-solid fa-chevron-right"></i>
                     </li>
                 </ul>
             <!-- </div> -->
@@ -2670,14 +2691,13 @@
     <div class="back-main h-100 pt-2">
         <div class="master-modal-back-main">
             <!-- Nav Pills -->
-                <ul class="master-nav nav nav-pills w-100 gap-2 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
+                <ul class="master-nav nav nav-pills w-100 gap-3 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link active" id="pills-all" data-bs-toggle="pill" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
                         <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-employee" data-bs-toggle="pill" data-bs-target="#employee" type="button" role="tab" aria-controls="employee" aria-selected="false">Employees</button>
-                        <i class="fa-solid fa-chevron-right"></i>
                     </li>
                 </ul>
             <!-- </div> -->
@@ -2690,7 +2710,7 @@
                     <div class="w-100 bg-white rounded mt-3 " style="height: 80vh;">  
                         <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3">
                             <span class="fw-medium">Timesheet Overview</span>
-                            <button class="new rounded text-white border-0" data-bs-toggle="modal" data-bs-target="#new-all">PDF</button>
+                            <!-- <button class="new rounded text-white border-0" data-bs-toggle="modal" data-bs-target="#new-all">PDF</button> -->
                         </div> 
                         <form class="mt-2 p-md-4 p-3 needs-validation" novalidate>
                             <div class="row">
@@ -3172,10 +3192,10 @@
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3 fw-medium">
                 <span class="fw-medium">Leave Request</span>
                 <div class="d-flex gap-2">
-                    <button type="button" class="export rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Request
                     </button>
-                    <button class="new rounded border-0 text-white">PDF</button>
+                    <!-- <button class="new rounded border-0 text-white">PDF</button> -->
                 </div>
             </div>
 
@@ -3478,10 +3498,10 @@
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3 fw-medium">
                 <span class="fw-medium">Overtime Request</span>
                 <div class="d-flex gap-2">
-                    <button type="button" class="export rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Request
                     </button>
-                    <button class="new rounded border-0 text-white">PDF</button>
+                    <!-- <button class="new rounded border-0 text-white">PDF</button> -->
                 </div>
             </div>
 
@@ -3784,7 +3804,7 @@
         <div class="bg-white"> 
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3 fw-medium">
                 <span class="fw-medium">Holiday & Rest Day</span>
-                <button class="export rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">REQUEST</button>
+                <button class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Request</button>
             </div>
 
             <!-- Modal -->
@@ -4089,10 +4109,10 @@
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3 fw-medium">
                 <span class="fw-medium">Adjustment for Time</span>
                 <div class="d-flex gap-2">
-                    <button type="button" class="export rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Request
                     </button>
-                    <button class="new rounded border-0 text-white">PDF</button>
+                    <!-- <button class="new rounded border-0 text-white">PDF</button> -->
                 </div>
             </div>
 
@@ -4815,6 +4835,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</script>
+
+<!-- LOADING -->
+<script type="text/template" id="loading">
+    <div class="loading d-flex align-items-center justify-content-center gap-5" style="height:100vh">
+        <span class="loader"></span>
+        <div class="loadingScreen">
+            <span class="loadingScreen__text__span">h</span>
+            <span class="loadingScreen__text__span">u</span>
+            <span class="loadingScreen__text__span">m</span>
+            <span class="loadingScreen__text__span">a</span>
+            <span class="loadingScreen__text__span">n</span>
+            <span class="loadingScreen__text__span">o</span>
         </div>
     </div>
 </script>

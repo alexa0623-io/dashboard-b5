@@ -53,19 +53,28 @@ $(document).ready(function(){
         // Desktop view arrow
         deskArrow: function() {
             $(document).ready(() => {
-               $('#request_btn').on('click', function(){
-                    $("#request-arrow").toggleClass("rotate");
-                    $("#report-arrow").removeClass("rotate");
-               })
-
-               $('#report_btn').on('click', function(){
-                    $("#report-arrow").toggleClass("rotate");
-                    $("#request-arrow").removeClass("rotate");
+                $('#request_btn').on('click', function(){
+                        $("#request-arrow").toggleClass("rotate");
+                        $("#report-arrow").removeClass("rotate");
+                        $("#setting-arrow").removeClass("rotate");
                 })
 
-                $(".sidebar-link:not(#request_btn):not(#report_btn)").click(function() {
+                $('#report_btn').on('click', function(){
+                    $("#report-arrow").toggleClass("rotate");
+                    $("#request-arrow").removeClass("rotate");
+                    $("#setting-arrow").removeClass("rotate");
+                })
+
+                $('#setting_btn').on('click', function(){
+                    $("#setting-arrow").toggleClass("rotate");
                     $("#report-arrow").removeClass("rotate");
                     $("#request-arrow").removeClass("rotate");
+                 })
+
+                $(".sidebar-link:not(#request_btn):not(#report_btn):not(#setting_btn)").click(function() {
+                    $("#report-arrow").removeClass("rotate");
+                    $("#request-arrow").removeClass("rotate");
+                    $("#setting-arrow").removeClass("rotate");
                 });
             });
         },
@@ -74,19 +83,28 @@ $(document).ready(function(){
         // Mobile view arrow
         mobileArrow: function() {
             $(document).ready(() => {
-               $('.mrequest_btn').on('click', function(){
-                    $("#mrequest-arrow").toggleClass("rotate");
-                    $("#mreport-arrow").removeClass("rotate");
-               })
-
-               $('.mreport_btn').on('click', function(){
-                    $("#mreport-arrow").toggleClass("rotate");
-                    $("#mrequest-arrow").removeClass("rotate");
+                $('.mrequest_btn').on('click', function(){
+                        $("#mrequest-arrow").toggleClass("rotate");
+                        $("#mreport-arrow").removeClass("rotate");
+                        $("#msetting-arrow").removeClass("rotate");
                 })
 
-                $(".nav-link:not(.mrequest_btn):not(.mreport_btn)").click(function() {
+                $('.mreport_btn').on('click', function(){
+                    $("#mreport-arrow").toggleClass("rotate");
+                    $("#mrequest-arrow").removeClass("rotate");
+                    $("#msetting-arrow").removeClass("rotate");
+                })
+
+                $('.msetting_btn').on('click', function(){
+                    $("#msetting-arrow").toggleClass("rotate");
+                    $("#mrequest-arrow").removeClass("rotate");
+                    $("#mreport-arrow").removeClass("rotate");
+                })
+
+                $(".nav-link:not(.mrequest_btn):not(.mreport_btn):not(.msetting_btn)").click(function() {
                     $("#mreport-arrow").removeClass("rotate");
                     $("#mrequest-arrow").removeClass("rotate");
+                    $("#msetting-arrow").removeClass("rotate");
                 });
             });
         },
@@ -140,7 +158,7 @@ $(document).ready(function(){
         }
     }
 
-    $.Mustache.load('templates/user.html').done(function(){
+    $.Mustache.load('templates/krono-user.html').done(function(){
         App.toggleSidebar();
         App.sidebarLink();
         App.deskArrow();
@@ -151,71 +169,11 @@ $(document).ready(function(){
         App.sideCanvas.html("").append($.Mustache.render("side-nav"));
         App.navCanvas.html("").append($.Mustache.render("admin-nav"));
 
-        
+        // DASHBOARD
         Path.map('#/dashboard/').to(function(){
-            App.canvas.html("").append($.Mustache.render("user-dash"));
+            App.canvas.html("").append($.Mustache.render("krono-user-dash"));
             
-            $('#table-announcement').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-        });
-        
-        Path.map('#/profile/').to(function(){
-            App.canvas.html("").append($.Mustache.render("user-profile"));
-            
-            $('#table-announcement').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-        });
-        
-        Path.map('#/dependents/').to(function(){
-            App.canvas.html("").append($.Mustache.render("user-dependents"));
-            
-            $('#table-dependents').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-        });
-        
-        Path.map('#/work-experience/').to(function(){
-            App.canvas.html("").append($.Mustache.render("user-work-experience"));
-            
-            $('#table-work-experience').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-        });
-        
-        Path.map('#/education/').to(function(){
-            App.canvas.html("").append($.Mustache.render("user-education"));
-            
-            $('#table-education').DataTable({
+            $('#table-krono-user-dash').DataTable({
                 "language": {
                     "paginate": {
                         "first": "Start",
@@ -227,6 +185,126 @@ $(document).ready(function(){
             });
         });
 
+        // PROFILE
+        Path.map('#/profile/').to(function(){
+            App.canvas.html("").append($.Mustache.render("krono-user-profile"));
+            
+            $('#table-krono-user-profile').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            }); 
+        });
+
+        // TIME SHEET
+        Path.map('#/timesheet/').to(function(){
+            App.canvas.html("").append($.Mustache.render("krono-user-time-sheet"));
+            
+            $('#table-krono-user-time-sheet').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+        });
+
+        // LEAVE / ABSENT
+        Path.map('#/leave-absent/').to(function(){
+            App.canvas.html("").append($.Mustache.render("krono-user-leave-absent"));
+            
+            $('#table-krono-user-leave-absent').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+        });
+
+        // OVERTIME
+        Path.map('#/overtime/').to(function(){
+            App.canvas.html("").append($.Mustache.render("krono-user-overtime"));
+            
+            $('#table-krono-user-overtime').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+        });
+
+        // HOLIDAY & RESTDAY
+        Path.map('#/holiday-restday/').to(function(){
+            App.canvas.html("").append($.Mustache.render("krono-user-holiday-restday"));
+            
+            $('#table-krono-user-holiday-restday').DataTable({
+
+                layout: {
+                    topStart: {
+                        buttons: ['copy', 'excel', 'pdf', 'colvis']
+                    }
+                }
+                
+                // "language": {
+                //     "paginate": {
+                //         "first": "Start",
+                //         "previous": "Previous",
+                //         "next": "Next",
+                //         "last": "Last"
+                //     }
+                // }
+            });
+        });
+
+        // PAYSLIP
+        Path.map('#/payslip/').to(function(){
+            App.canvas.html("").append($.Mustache.render("krono-user-payslip"));
+            
+            $('#table-krono-user-payslip').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+        });
+
+        // BILLING
+        Path.map('#/user-billing/').to(function(){
+            App.canvas.html("").append($.Mustache.render("krono-billing"));
+            
+            $('#table-krono-billing').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
+        });
+
+        
 
         Path.root();
         Path.listen();

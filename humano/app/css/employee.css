@@ -40,14 +40,18 @@
 
 /* TITLE */
 .employee-details a{
-    margin-top: 40px;
-    margin-bottom: 15px;
+    margin-top: 40px;;
     color: #107A71;
-    font-size: 30px;
+    margin-bottom: 15px
 }
 
 .employee-details a:hover{
     color: #1CCABB;
+}
+
+.employee-details i{
+    /* margin-bottom: -5px; */
+    font-size: 20px;
 }
 
 .employee-details a span{
@@ -153,6 +157,29 @@
     background-color: #1CCABB;
 }
 
+.input{
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    border-color: #d6d6d6;
+    font-size: 14px;
+}
+
+.input::placeholder {
+    color: #8b8b8b;
+}
+
+.form-select{
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Custom styles for the select */
+.custom-select {
+    color: #555555;
+    font-size: 14px;
+}
+
 @media (max-width: 768px) {
     .master-modal-back-main{
         padding-left: 20px; 
@@ -168,10 +195,17 @@
     }
 
     .employee-details a{
-        /* margin-top: -205px;
-        margin-bottom: 200px; */
-        color: #107A71;
-    }   
+        margin-bottom: 15px
+    }
+    
+    .employee-details a:hover{
+        color: #1CCABB;
+    }
+    
+    .employee-details i{
+        margin-bottom: -2px;
+        font-size: 20px;
+    }
     
     .employee-details a span{
         font-size: 15px;
@@ -237,6 +271,19 @@
     .tab-btn button{
         background-color: #107A71;
         color: white;
+        font-size: 13px;
+    }
+
+    .input{
+        padding-top: 7px; 
+        padding-bottom: 7px;
+        font-size: 13px;
+        color: #686868;
+    }
+
+    .form-select{
+        padding-top: 7px; 
+        padding-bottom: 7px;
         font-size: 13px;
     }
 }
