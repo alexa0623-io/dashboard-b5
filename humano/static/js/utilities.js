@@ -41,3 +41,31 @@ function commafy(num){
                   +s.charAt(i) +o }
   return (num<0?'-':'') + o + (parts[1] ? '.' + parts[1] : ''); 
 }
+
+function dateToReadableFormat(convertDate)
+{
+    const date = new Date(convertDate);
+    convertedDate = date.toDateString();
+    return convertedDate;
+}
+
+function dateToISOFormat(convertDate)
+{
+    const date = new Date(convertDate);
+    convertedDate = date.toLocaleDateString().split('T')[0];
+    return convertedDate;
+}
+
+function renderToDataTable(tableID)
+{
+    $(tableID).DataTable({
+        "language": {
+            "paginate": {
+                "first": "Start",
+                "previous": "Previous",
+                "next": "Next",
+                "last": "Last"
+            }
+        }
+    });
+}

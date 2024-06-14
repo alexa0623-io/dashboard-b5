@@ -22,50 +22,98 @@ use Base32\Base32;
 $app = new Slim();
 
 $app->get("/test",function(){
-    // $dateGranted = date("Y-m-d");
-    // first_monthly_amortization_date($dateGranted);
-    // echo $date;
+    $username = "0006";
+    $userId   = getUserId($username);
     
-    // $loanUid = "8991C8CD-3B43-6B9D-6FAE-6D6A7A1E15C5";
-    // $amortization = 1000;
-    // $terms = 6;
-    // $amount = 1000;
-    // $remarks ="N/A";
-    // $email = "edjohnpaulgallardo28@gmail.com";
-    // $loanAmount = 3000;
-    // $empName = "Ed John Paul Gallardo";
-    // mail_request_to_admin($email,$empName,$loanAmount);
-    // $refNumber = generateRefNum();
-    // $uid = xguid();
-    // echo $refNumber."<br>";
-    // echo $uid."<br>";
-    // echo generateApplyNo();
-    // create_cash_advance_loan_setup();
-    // $data = read_all_cash_advance_loans();
-    // echo jsonify($data);
-    // $requid = "CF96947A-7503-EDC9-D98D-B3EDF5D1CEB8";
-    // read_all_cash_advance_loan_request_active();
-    // $req_uid = xguid();
-    // $emp_uid = "25E50611-8B11-24E9-F10D-B2CB13F7CE66";
-    // $loan_uid = "DAF39A62-3BB6-854D-B7D6-076B39556D79";
-    // $empEmail = "edjohnpaulgallardo28@gmail.com";
-    // $loanAmount = 5000;
-    // $empName = "Jade Almoquera";
-    // $loanPeriod = 2.5;
-    // $amortization = "1000";
-    // $interest = "0.00";
-    // $payment = "15th/30th";
-    // update_cash_advance_loan_request_archived($emp_uid);
-    // create_cash_advance_loan_request($req_uid,$emp_uid,$loan_uid);
-    // create_cash_advance_loan_request_entry($req_uid,$emp_uid,$loan_uid,$empEmail,$loanAmount,$loanPeriod,$amortization,$interest,$payment);
-    // mail_request_to_admin($empEmail,$empName,$loanAmount);
-    // create_emp_loans_payments($emp_uid);
-    // read_emp_loans_new_uid_by_emp_uid($emp_uid);
-    // read_cash_advance_loan_requests($emp_uid);
-    $emp_uid = "25E50611-8B11-24E9-F10D-B2CB13F7CE66";
-    $noOfPayment = 3;  
-    create_emp_loans_payments($emp_uid,$noOfPayment);
-    echo "Payment created";
+    $secretKey = "6LfG2NoSAAAAAEfKzFVtrIJ8b_MuAQbRVGWrOmOG";
+    $GResponse = true;
+    $g_response_success = false;
+
+    $uxPassword = null;
+	if(!$userId){
+        $response = array(
+            "verified" => 0
+        );
+    }else{
+        $encryption = "AES-256-CBC";
+        //$uxPassword = sha1(Base32::decode($_POST["password"]));
+		$uxPassword = sha1(base64_decode($_POST["password"].salt()));
+		//$uxPassword = password_hash($_POST["password"], PASSWORD_DEFAULT);
+		
+
+        // $url = "https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$GResponse; //echo $url;
+        // $verify = file_get_contents($url);
+        // $result = json_decode($verify); //var_dump($result);
+        // if($result->success==true) {            
+        //     $g_response_success = true; //echo "Success!";
+        // }else {            
+        //     $g_response_success = false; //echo "You are a robot!";
+        // }        
+        $g_response_success = true; ### Edit this
+
+        if($g_response_success) {        
+            $secretKey  = sha1($username . $uxPassword);
+            $uniqueKey  = getUniqueKey($userId);
+            if ($uniqueKey == null) {
+                $ivSize    = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+                $uniqueKey = mcrypt_create_iv($ivSize, MCRYPT_RAND);
+            }
+            $password = openssl_encrypt($uxPassword, $encryption, $secretKey, 0, $uniqueKey);
+            $response = array(
+                "Uid"        => null,
+                "Token"      => null,
+                "UserId"     => null,
+                "EmployeeId" => null,
+                "Type"       => null,
+                "Username"   => null,
+                "location"   => null,
+                "verified"   => 0
+            );
+            // echo $_POST["password"]." = ". Base32::decode($_POST["password"]) ."<br/>";
+               
+    		if(validUserAccount($username, $uxPassword)) {
+    				//$response["Type"]       = getUserType($username);
+                    //$response["UserId"]     = $userId;
+                    //$response["EmployeeId"] = getUserByUid($userId)->emp_uid;            
+                    //$response["Uid"]        = xguid();
+                    //$response["Username"]   = getUserByUid($userId)->emp_uid;
+                    //$response["Token"]      = xguid();
+                    //$response["verified"]   = 1;
+                    //$response["location"]   = getCurrentIpAddress($userId);
+                    //logToken(xguid(), $response["Token"], $userId, date("Y-m-d H:i:s"), 1);
+                    //logTokenReferrer(xguid(), $response["Token"], $_SERVER['REMOTE_ADDR'], date("Y-m-d H:i:s"));
+    				
+    				$token = xguid();
+    				
+    				$response = array(
+    					"Type" => getUserType($username),
+    					"UserId" => $userId,
+    					"EmployeeId" =>  getUserByUid($userId)->emp_uid,
+    					"Uid" => xguid(),
+    					"Token" => $token,
+    					"verified" => 1,
+    					"location" => getCurrentIpAddress($userId),
+    					"Username" => getUserByUid($userId)->emp_uid //$userId
+    				);
+    				
+    				logToken(xguid(), $token, $userId, date("Y-m-d H:i:s"), 1);
+                    logTokenReferrer(xguid(), $token, $_SERVER['REMOTE_ADDR'], date("Y-m-d H:i:s"));
+            }
+    		else {
+                $response["verified"] = 2; //$uxPassword;
+            }
+        }else{
+            $response = array(
+                "verified" => 3,
+                "response" => $g_response_success,
+                "secretKey" => $secretKey,
+                "gresponse" => $result
+            );
+        }
+    }
+    
+    echo jsonify($response);
+    // echo $uxPassword;
 });
 
 $app->get("/get/old/timein", function() {
@@ -105,6 +153,19 @@ $app->get("/condition", function() {
     }else {
         echo " false";
     }
+});
+
+$app->get("/number/of/employees/per/dept/", function(){
+    $depts = get_departments();
+    foreach($depts as $dept)
+    {
+        $data[] = array(
+            "deptuid" => $dept->uid,
+            "deptname" => $dept->group,
+            "count" => count_per_department($dept->uid)
+        );
+    }
+    echo jsonify($data);
 });
 
 $app->get("/sample", function() {
@@ -3462,11 +3523,11 @@ $app->post("/update/costcenter/:uid", function($uid){
     $dateModified = date("Y-m-d H:i:s");
 
     updateCostCenter($uid, $name, $desc, $payperiod, $dateModified, $status);
-    // $response = array(
-    //     "prompt" => 0
-    // );
-    var_dump(updateCostCenter($uid, $name, $desc, $payperiod, $dateModified, $status));
-    // echo jsonify($response);
+    $response = array(
+        "prompt" => 0
+    );
+    // var_dump(updateCostCenter($uid, $name, $desc, $payperiod, $dateModified, $status));
+    echo jsonify($response);
 });
 
 # Set Emp Costcenter
@@ -10799,6 +10860,7 @@ $app->post("/department/new/:var", function($var) {
 $app->post("/department/edit/:var", function($var) {
 	$param = explode(".", $var);
 	$uid = $param[0];
+    $department = $_POST["department"];
 	$token = $param[1];
     $response = array();
 	$success = 0;
@@ -17635,7 +17697,7 @@ $app->post("/new/newsfeed/:var", function($var){
 
     if(count($param) === 1) {
         $annoucementUid       = xguid();
-        $user_uid    = $_POST['user_uid'];
+        $user_uid    = $_POST['useruid'];
         $content    = $_POST['content'];
         
         $dateCreated   = date("Y-m-d H:i:s");

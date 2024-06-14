@@ -250,7 +250,7 @@ $(document).ready(function() {
             });
         });
 
-        Path.root("/login/");
+        Path.root("#/login/");
         Path.listen();
     });
 });
