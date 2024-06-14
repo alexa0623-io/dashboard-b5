@@ -1981,38 +1981,169 @@ $(document).ready(function(){
             App.canvas.html("").append($.Mustache.render("memo",templateData));
             tableID = '#table-memo';
             renderToDataTable(tableID);
+
+            $("#newMemo").submit(function(){
+                var name = $("input[name=memoName]").val();
+                $.ajax({
+                    type: "POST",
+                    url: App.api + "/memo/type/" + App.token,
+                    dataType: "json",
+                    data: { 
+                        name: name
+                    }, 
+                    success: function( ){
+                        alert("Successfully Added!");
+                        window.location.reload();
+                    }
+                });
+            });
+
+            $("#table-memo tbody").off("click", "td .edit-btn").on("click", "td .edit-btn", function(e) {
+                e.preventDefault();
+                var memoUid = $(this).attr("data-uid");
+                console.log(memoUid);
+                // $("input[name=edit-uid").val(memoUid)
+                $.getJSON(App.api + "/memo/data/get/" +  memoUid + "." + App.token, function(data) {
+                    console.log(data);
+                    $.each(data, function(i, item){
+                        $("input[name=editMemo]").val(item.name);
+                    })                   
+                });
+
+                $("#memoEdit").submit(function(e){
+                    var name = $("input[name=editMemo]").val();
+                    $.ajax({
+                        type: "POST",
+                        url: App.api + "/memo/type/update/" + memoUid + "." + App.token,
+                        dataType: "json",
+                        data: {
+                            name: name
+                        },
+                        success: function(data){
+                            alert("Successfully Updated");
+                            window.location.reload();
+                        }
+                    });
+                });
+            });
+            $("#table-memo tbody").off("click", "td .delete-btn").on("click", "td .delete-btn", function(e) {
+                e.preventDefault();
+                var memoUid = $(this).attr("data-uid");
+                console.log(memoUid);
+                $(document).off("submit", "#deleteMemo").on("submit", "#deleteMemo", function(e){
+                    e.preventDefault();
+                    
+                    $.getJSON(App.api + "/delete/memo/type/" + memoUid, function(data){
+                        alert("Successfully Removed!");
+                        // $("#memoDelete").modal("toggle");
+                        window.location.reload();
+                    });
+                });
+            });
+
         });
 
         // Certificate
         Path.map('#/settings-certificate/').to(function(){
-            App.canvas.html("").append($.Mustache.render("certificate"));
-            
-            $('#table-certificate').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+            var number = 0;
+            var certificateList = [];
+            var certificates = getJSONDoc(App.api + "/get/certificate/type/" + App.token);
+            $.each(certificates,function(i,item){
+                number++;
+                var certificate = {
+                    number:number,
+                    certName:item.name,
+                    certUid:item.uid,
                 }
+                certificateList.push(certificate);
+            });
+            var templateData = {
+                certificateList:certificateList
+            }
+            App.canvas.html("").append($.Mustache.render("certificate",templateData));
+            tableID = '#table-certificate';
+            renderToDataTable(tableID);
+
+            $("#newCertificate").submit(function(){
+                var name = $("input[name=certName]").val();
+                $.ajax({
+                    type: "POST",
+                    url: App.api + "/certificate/type/" + App.token,
+                    dataType: "json",
+                    data: {
+                        name: name
+                    }, 
+                    success: function(data){
+                        alert("Successfully Added!");
+                        window.location.reload();
+                    }
+                });
+            });
+
+            $("#table-certificate tbody").off("click", "td .edit-btn").on("click", "td .edit-btn", function(e) {
+                e.preventDefault();
+                var certificateUid = $(this).attr("data-uid");
+                console.log(certificateUid);
+                $.getJSON(App.api + "/certificate/data/get/" +  certificateUid + "." + App.token, function(data) {
+                    $.each(data, function(i, item){
+                        $("input[name=editCert]").val(item.name);
+                    });                   
+                });
+
+                $("#certificateEdit").submit(function(){
+                    var name = $("input[name=editCert]").val();
+                    $.ajax({
+                        type: "POST",
+                        url: App.api + "/certificate/type/update/" + certificateUid + "." + App. token,
+                        dataType: "json",
+                        data: {
+                            name: name
+                        },
+                        success: function(data){
+                            alert("Successfully Updated!");
+                            if(parseInt(data.success) === 1){
+                                window.location.reload();
+                            }
+                        }
+                    })
+                });
+            });
+
+            $("#table-certificate tbody").off("click", "td .delete-btn").on("click", "td .delete-btn", function(e) {
+                e.preventDefault();
+                var certificateUid = $(this).attr("data-uid");
+
+                $(document).off("submit", "#deletecertificate").on("submit", "#deletecertificate", function(e){
+                    e.preventDefault();
+                    
+                    $.getJSON(App.api + "/delete/certificate/type/" + certificateUid, function(data){
+                        alert("Successfully Removed!");
+                        window.location.reload();
+                    });
+                });
             });
         });
 
         // Request
         Path.map('#/settings-request/').to(function(){
-            App.canvas.html("").append($.Mustache.render("request"));
-            
-            $('#table-request').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            // var number = 0;
+            // var requestsList = [];
+            // var requests = getJSONDoc(App.api + "/request/get/data/" + App.token);
+            // $.each(requests,function(i,item){
+            //     number++;
+            //     var request = {
+            //         number:number,
+            //         requestname:item.name,
+            //         requestUid:item.uid
+            //     }
+            //     requestsList.push(request);
+            // });
+            // var templateData = {
+            //     requestsList:requestsList
+            // }
+            App.canvas.html("").append($.Mustache.render("request",templateData));
+            tableID = '#table-request';
+            renderToDataTable(tableID);
         });
 
         Path.root('#/dashboard/');

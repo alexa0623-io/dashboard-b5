@@ -2719,11 +2719,11 @@
                         </div>
 
                         <div class="body-modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                            <form class="row my-1 needs-validation" id="newMemo" novalidate>
                                 <div class="modal-body-info">
                                     <div class="select_option">
                                         <label for="validationCustom01" class="form-label">Name</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="memoName" required>
                                         <div class="invalid-feedback">
                                             Please select a valid state.
                                         </div>
@@ -2762,7 +2762,7 @@
                                 <td>
                                     <div class="d-flex gap-2">
                                         <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{memoUid}}">Edit</button>       
-                                        <button class="action2 btn btn-outline-danger" data-uid="{{memoUid}}">delete</button>   
+                                        <button class="delete-btn btn btn-outline-danger" data-uid="{{memoUid}}" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#memo-delete">Delete</button>   
                                     </div>                                
                                 </td>   
                             </tr>
@@ -2784,7 +2784,7 @@
                                         <div class="modal-body-info">
                                             <div class="select_option">
                                                 <label for="validationCustom01" class="form-label">Name</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="editMemo" required>
                                                 <div class="invalid-feedback">
                                                     Please select a valid state.
                                                 </div>
@@ -2799,6 +2799,33 @@
                                             </div>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="memo-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" >
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
+                                    <p class="modal-title" id="exampleModalLabel">Delete Announcement</p>
+                                    <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                </div>
+        
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="deleteMemo" novalidate>
+                                        <div class="modal-body-info">
+                                            <div class="">
+                                                <h5 class="text-center">Are you sure you want to delete this memo?</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Button -->
+                                        <div class="button_modal">
+                                            <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                <button class="btn btn-danger bg-red" type="submit">Yes</button>
+                                            </div>
+                                        </div>
+                                    </form> 
                                 </div>
                             </div>
                         </div>
@@ -2828,11 +2855,11 @@
                         </div>
 
                         <div class="body-modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                            <form class="row my-1 needs-validation" id="newCertificate" novalidate>
                                 <div class="modal-body-info">
                                     <div class="select_option">
                                         <label for="validationCustom01" class="form-label">Name</label>
-                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <input type="text" class="form-control input" id="validationCustom01" name="certName" required>
                                         <div class="invalid-feedback">
                                             Please select a valid state.
                                         </div>
@@ -2864,16 +2891,18 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#certificateList}}
                             <tr>
-                                <td>1</td>
-                                <td>Completion</td>
+                                <td>{{number}}</td>
+                                <td>{{certName}}</td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal">Edit</button>       
-                                        <button class="action2 btn btn-outline-danger">delete</button>   
+                                        <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{certUid}}">Edit</button>       
+                                        <button class="delete-btn btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#certificate-delete" data-uid="{{certUid}}">Delete</button>   
                                     </div>                                
                                 </td>   
                             </tr>
+                            {{/certificateList}}
                         </tbody>
                     </table>    
                     
@@ -2887,11 +2916,11 @@
                                 </div>
         
                                 <div class="body-modal">
-                                    <form class="row my-1 needs-validation" novalidate>
+                                    <form class="row my-1 needs-validation" id="certificateEdit" novalidate>
                                         <div class="modal-body-info">
                                             <div class="select_option">
                                                 <label for="validationCustom01" class="form-label">Name</label>
-                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                <input type="text" class="form-control input" id="validationCustom01" name="editCert" required>
                                                 <div class="invalid-feedback">
                                                     Please select a valid state.
                                                 </div>
@@ -2906,6 +2935,34 @@
                                             </div>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="certificate-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" >
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
+                                    <p class="modal-title" id="exampleModalLabel">Delete Announcement</p>
+                                    <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                </div>
+        
+                                <div class="body-modal">
+                                    <form class="row my-1 needs-validation" id="deletecertificate" novalidate>
+                                        <div class="modal-body-info">
+                                            <div class="">
+                                                <h5 class="text-center">Are you sure you want to delete this Certificate?</h5>
+                                            </div>
+                                        </div>
+                                        <!-- Button -->
+                                        <div class="button_modal">
+                                            <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                <button class="btn btn-danger bg-red" type="submit">Yes</button>
+                                            </div>
+                                        </div>
+                                    </form> 
                                 </div>
                             </div>
                         </div>
@@ -2971,7 +3028,18 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
-                            
+                            {{#requestsList}}
+                            <tr>
+                                <td>{{number}}</td>
+                                <td>{{requestName}}</td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit_modal" data-uid="{{requestUid}}">Edit</button>       
+                                        <button class="delete-btn btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#certificate-delete" data-uid="{{requestUid}}">Delete</button>   
+                                    </div>
+                                </td>
+                            </tr>
+                            {{/requestsList}}
                         </tbody>
                     </table>    
                 </div>
