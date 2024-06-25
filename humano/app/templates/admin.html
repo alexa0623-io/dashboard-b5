@@ -575,7 +575,7 @@
                                     <button class="action1 btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-employee">
                                         <i class="fa-solid fa-hashtag"></i>
                                     </button> 
-                                    <a href="#/master-file-modal-name/" class="action1 btn btn-outline-success">
+                                    <a href="#/master/file/modal/name/{{empUid}}" class="action1 btn btn-outline-success">
                                         <i class="fa-solid fa-address-card"></i>
                                     </a> 
                                     <button class="action1 btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-access">
@@ -671,7 +671,6 @@
         </div>
     </div>
 </script>
-
 
 <!-- MASTER MODAL CARD ICON  -->
 <script type="text/html" id="master-file-modal-name">
@@ -808,18 +807,18 @@
                         <div class="w-100" style="height: 70vh;">
                             <label class="tab-personal w-100 rounded-top fw-medium p-3 px-md-4 px-3">Personal Information</label>
                             <div class="bg-white">
-                                <form class="g-md-4 g-3">
+                                <form class="g-md-4 g-3" id="updateEmployee">
                                     <!-- 1st row -->
                                     <div class="row pt-md-4 pt-2 px-md-4 px-3 mb-md-4 mb-0">
                                         <div class="col-md-4 mt-md-0 mt-3">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" class="input form-control" placeholder="first name">
+                                            <input type="text" class="input form-control" placeholder="first name" name="firstname">
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" class="mid-last input form-control" placeholder="middle name">
+                                            <input type="text" class="mid-last input form-control" placeholder="middle name" name="middlename">
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" class="mid-last input form-control" placeholder="last name">
+                                            <input type="text" class="mid-last input form-control" placeholder="last name" name="lastname">
                                         </div>
                                     </div>
                                     
@@ -829,15 +828,15 @@
                                     <div class="row px-md-4 px-3 mb-md-4 mb-0">
                                         <div class="col-md-4 mt-md-0 mt-3">
                                             <label class="form-label">Nickname</label>
-                                            <input type="text" class="input form-control">
+                                            <input type="text" class="input form-control" name="nickname">
                                         </div>  
                                         <div class="col-md-4 mt-md-0 mt-3">
                                             <label class="form-label">Birthday</label>
-                                            <input type="date" class="input form-control">
+                                            <input type="date" class="input form-control" name="bday">
                                         </div>
                                         <div class="col-md-4 mt-md-0 mt-3">
                                             <label class="form-label">Email</label>
-                                            <input type="email" class="input form-control">
+                                            <input type="email" class="input form-control" name="email">
                                         </div>
                                     </div>
                                     
@@ -847,7 +846,7 @@
                                     <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Gender</label>
-                                            <select class="form-select" id="validationCustom01" required>
+                                            <select class="form-select" id="validationCustom01" name="gender" required>
                                                 <option selected disabled value="">--Select--</option>
                                                 <option value="1">Male</option>
                                                 <option value="2">Female</option>
@@ -858,7 +857,8 @@
                                         </div>
                                         <div class="col-md-6 mt-md-0 mt-3">
                                             <label for="validationCustom01" class="form-label">Marital</label>
-                                            <select class="form-select" id="validationCustom01" required>
+                                            <select class="form-select" id="validationCustom01" name="marital"
+                                             required>
                                                 <option selected disabled value="">--Select--</option>
                                                 <option value="1">Married</option>
                                                 <option value="2">Single</option>
@@ -877,78 +877,11 @@
                                     <div class="row px-md-4 px-3 mb-md-4 mb-0">
                                         <div class="col-md-6 mt-md-0 mt-3">
                                             <label for="validationCustom01" class="form-label">Nationality</label>
-                                            <select class="form-select" id="validationCustom01" required>
+                                            <select class="form-select" id="validationCustom01" name="nationality" required>
                                                 <option selected disabled value="">--Select--</option>
-                                                <option value="1">Afghan</option>
-                                                <option value="2">American</option>
-                                                <option value="3">Argentine</option>
-                                                <option value="4">Australian</option>
-                                                <option value="5">Belgian</option>
-                                                <option value="6">Bolivian</option>
-                                                <option value="7">British</option>
-                                                <option value="8">Cambodia</option>
-                                                <option value="9">Cameroonian</option>
-                                                <option value="10">Canadian</option>
-                                                <option value="11">Chilean</option>
-                                                <option value="12">Chinese</option>
-                                                <option value="13">Calombia</option>
-                                                <option value="14">Costa Rican</option>
-                                                <option value="15">Cuban</option>
-                                                <option value="16">Danish</option>
-                                                <option value="17">Dominican</option>
-                                                <option value="18">Dutch</option>
-                                                <option value="19">Ecuadorian</option>
-                                                <option value="20">Egyptian</option>
-                                                <option value="21">Estonian</option>
-                                                <option value="22">Ethiopian</option>
-                                                <option value="23">Finnish</option>
-                                                <option value="24">French</option>
-                                                <option value="25">German</option>
-                                                <option value="26">Ghanaian</option>
-                                                <option value="27">Greek</option>
-                                                <option value="28">Guatemalan</option>
-                                                <option value="29">Haitian</option>
-                                                <option value="30">Honduran</option>
-                                                <option value="31">Indonesian</option>
-                                                <option value="32">Iranian</option>
-                                                <option value="33">Irish</option>
-                                                <option value="34">Italian</option>
-                                                <option value="35">Japanese</option>
-                                                <option value="36">Jordanian</option>
-                                                <option value="37">Kenyan</option>
-                                                <option value="38">Korean</option>
-                                                <option value="39">Laotian</option>
-                                                <option value="40">Latvian</option>
-                                                <option value="41">Lithuanian</option>
-                                                <option value="42">Malaysian</option>
-                                                <option value="43">Mexican</option>
-                                                <option value="44">Moroccan</option>
-                                                <option value="45">New Zealander</option>
-                                                <option value="46">Nicaraguan</option>
-                                                <option value="47">Norwegian</option>
-                                                <option value="48">Panamanian</option>
-                                                <option value="49">Paraguayan</option>
-                                                <option value="50">Peruvian</option>
-                                                <option value="51">Polish</option>
-                                                <option value="52">Portuguese</option>
-                                                <option value="53">Puerto Rican</option>
-                                                <option value="54">Romanian</option>
-                                                <option value="56">Russian</option>
-                                                <option value="57">Salvadorian</option>
-                                                <option value="58">Saudi</option>
-                                                <option value="59">Scottish</option>
-                                                <option value="60">Spanish</option>
-                                                <option value="61">Swedish</option>
-                                                <option value="62">Swiss</option>
-                                                <option value="63">Taiwanese</option>
-                                                <option value="64">Tajik</option>
-                                                <option value="65">Thai</option>
-                                                <option value="66">Turkish</option>
-                                                <option value="67">Ukrainian</option>
-                                                <option value="68">Uruguayan</option>
-                                                <option value="69">Venezuelan</option>
-                                                <option value="70">Vietnamese</option>
-                                                <option value="71">Welsh</option>
+                                                {{#nationalList}}
+                                                <option value="{{name}}">{{name}}</option>
+                                                {{/nationalList}}
                                             </select>
                                             <div class="invalid-feedback">
                                                 Please select a valid state.
@@ -966,16 +899,16 @@
                                     <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
                                         <div class="col-md-3">
                                             <label class="form-label">House Info</label>
-                                            <input type="text" class="input form-control" placeholder="House No./Street">
+                                            <input type="text" class="input form-control" placeholder="House No./Street" name="housenumber">
                                         </div>  
                                         <div class="col-md-3">
-                                            <input type="text" class="mid-last input form-control" placeholder="Barangay">
+                                            <input type="text" class="mid-last input form-control" placeholder="Barangay" name="barangay">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="mid-last input form-control" placeholder="City">
+                                            <input type="text" class="mid-last input form-control" placeholder="City" name="city">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="mid-last input form-control" placeholder="Region">
+                                            <input type="text" class="mid-last input form-control" placeholder="Region" name="region">
                                         </div>
                                     </div>
     
@@ -985,15 +918,15 @@
                                     <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
                                         <div class="col-md-4">
                                             <label class="form-label">Height</label>
-                                            <input type="text" class="input form-control">
+                                            <input type="text" name="height" class="input form-control">
                                         </div>
                                         <div class="col-md-4 mt-md-0 mt-3">
                                             <label class="form-label">Weight</label>
-                                            <input type="text" class="input form-control">
+                                            <input type="text" class="input form-control" name="weight">
                                         </div>
                                         <div class="col-md-4 mt-md-0 mt-3">
                                             <label class="form-label">Blood Type</label>
-                                            <input type="text" class="input form-control">
+                                            <input type="text" class="input form-control" name="bloodtype">
                                         </div>
                                     </div>
                                     
@@ -1003,11 +936,11 @@
                                     <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
                                         <div class="col-md-6">
                                             <label class="form-label">Driver License</label>
-                                            <input type="text" class="input form-control">
+                                            <input type="text" name="driverLicense" class="input form-control">
                                         </div>
                                         <div class="col-md-6 mt-md-0 mt-3">
                                             <label class="form-label">License Expired</label>
-                                            <input type="text" class="input form-control">
+                                            <input type="text" class="input form-control" name="expiryLicense">
                                         </div>
                                     </div>
     
@@ -1017,19 +950,19 @@
                                     <div class="row px-md-4 px-3 mb-md-4 mb-0">
                                         <div class="col-md-3 mt-md-0 mt-3">
                                             <label class="form-label">SSS</label>
-                                            <input type="text" class="input form-control" placeholder="SSS">
+                                            <input type="text" class="input form-control" placeholder="SSS" name="sssNo">
                                         </div>  
                                         <div class="col-md-3 mt-md-0 mt-3">
                                             <label class="form-label">BIR</label>
-                                            <input type="text" class="input form-control" placeholder="BIR">
+                                            <input type="text" class="input form-control" name="taxNo" placeholder="BIR">
                                         </div>  
                                         <div class="col-md-3 mt-md-0 mt-3">
                                             <label class="form-label">Philhealth No.</label>
-                                            <input type="text" class="input form-control" placeholder="Philhealth No.">
+                                            <input type="text" class="input form-control" placeholder="Philhealth No." name="philhealthNo">
                                         </div>  
                                         <div class="col-md-3 mt-md-0 mt-3">
                                             <label class="form-label">Pag-ibig No.</label>
-                                            <input type="text" class="input form-control" placeholder="Pag-ibig No.">
+                                            <input type="text" class="input form-control" placeholder="Pag-ibig No." name="pagibigNo">
                                         </div>  
                                     </div>
                                     
@@ -1039,13 +972,11 @@
                                     <div class="row px-md-4 px-3 mb-md-4 mb-3">
                                         <div class="col-md-6 mt-md-0 mt-3">
                                             <label for="validationCustom01" class="form-label">Tax Status</label>
-                                            <select class="form-select" id="validationCustom01" required>
+                                            <select class="form-select" id="validationCustom01" name="tax-status" required>
                                                 <option selected disabled value="">--Select--</option>
-                                                <option value="1">Z</option>
-                                                <option value="2">S/ME</option>
-                                                <option value="1">ME1/S2</option>
-                                                <option value="2">ME2/S2</option>
-                                                <option value="2">ME3/S3</option>
+                                                {{#taxStatusList}}
+                                                <option value="{{uid}}">{{taxStatus}}</option>
+                                                {{/taxStatusList}}
                                             </select>
                                             <div class="invalid-feedback">
                                                 Please select a valid state.
@@ -1053,7 +984,7 @@
                                         </div>
                                         <div class="col-md-6 mt-md-0 mt-3">
                                             <label for="validationCustom01" class="form-label">Status</label>
-                                            <select class="form-select" id="validationCustom01" required>
+                                            <select class="form-select" id="validationCustom01" name="status" required>
                                                 <option selected disabled value="">--Select--</option>
                                                 <option value="1">Active</option>
                                                 <option value="2">Inactive</option>
@@ -1064,8 +995,16 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="tab-btn px-md-4 px-3 pb-md-5 pb-4">
-                                        <button class="ok rounded border-0 w-100 py-md-3 py-2">Update</button>
+                                    <div class="tab-btn px-md-4 px-3 pb-md-5 pb-4" id="update-cont">
+                                        <button class="update rounded border-0 w-100 py-md-3 py-2" id="update-btn" type="button">Update</button>
+                                    </div>
+                                    <div class="row px-md-4 px-3 pb-md-5 pb-4" id="submit-cont" hidden>
+                                        <div class="col-md-6 ">
+                                            <button class="submit btn btn-primary rounded border-0 w-100 py-md-3 py-2 mt-2" type="Submit">Submit</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-danger rounded border-0 w-100 py-md-3 py-2 mt-2" id="cancel-btn" type="button">Cancel</button>
+                                        </div>
                                     </div>  
                                 </form> 
                             </div>
@@ -1107,15 +1046,17 @@
                                             </tr>
                                         </thead>
                                         <tbody class="align-middle">
+                                            {{#employeeStatusList}}
                                             <tr>
-                                                <td>Regular</td>
-                                                <td>June 30, 1998</td>
-                                                <td>Nov 30, 2001</td>
-                                                <td>0000-00-00</td>
+                                                <td id="td-type">{{type}}</td>
+                                                <td id="td-datehired">{{dateHired}}</td>
+                                                <td id="td-datestarted">{{dateStarted}}</td>
+                                                <td id="td-dateresigned">{{dateResigned}}</td>
                                                 <td>
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal">Edit</button>  
+                                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-uid="{{empStatusUid}}" data-bs-target="#edit-modal">Edit</button> 
                                                 </td>   
                                             </tr>
+                                            {{/employeeStatusList}}
                                         </tbody>
                                     </table>    
                                     
@@ -1129,16 +1070,15 @@
                                                 </div>
                 
                                                 <div class="body-modal">
-                                                    <form class="row my-1 needs-validation" novalidate>
+                                                    <form class="row my-1 needs-validation" id="editEmpStatusForm" novalidate>
                                                         <div class="modal-body-info">
                                                             <div class="">
                                                                 <label for="validationCustom01" class="form-label">Type</label>
-                                                                <select class="form-select" id="validationCustom01" required>
+                                                                <select class="form-select" id="validationCustom01" name="employeeStatusEdit" required>
                                                                     <option selected disabled value="">--Select--</option>
-                                                                    <option value="1">Regular</option>
-                                                                    <option value="2">Contractual</option>
-                                                                    <option value="3">Trainee</option>
-                                                                    <option value="3">Consultant</option>
+                                                                    {{#statusOptList}}
+                                                                    <option value={{statusUid}}>{{statusName}}</option>
+                                                                    {{/statusOptList}}
                                                                 </select>
                                                                 <div class="invalid-feedback">
                                                                     Please select a valid state.
@@ -1146,34 +1086,34 @@
                                                             </div>
                                                             <div class="mt-3">
                                                                 <label for="validationCustom01" class="form-label">Date Hired</label>
-                                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                                <input type="date" class="form-control input" name="employeeStatusDateHiredEdit" id="validationCustom01" required>
                                                                 <div class="invalid-feedback">
                                                                     Please fill this up.
                                                                 </div>
                                                             </div>
                                                             <div class="mt-3">
                                                                 <label for="validationCustom01" class="form-label">Date Started</label>
-                                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                                <input type="date" class="form-control input" id="validationCustom01" name="employeeStatusDateStartedEdit" required>
                                                                 <div class="invalid-feedback">
                                                                     Please fill this up.
                                                                 </div>
                                                             </div>
                                                             <div class="mt-3">
                                                                 <label for="validationCustom01" class="form-label">Date Resigned</label>
-                                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                                <input type="date" class="form-control input" id="validationCustom01" name="employeeStatusDateResignedEdit" required>
                                                                 <div class="invalid-feedback">
                                                                     Please fill this up.
                                                                 </div>
                                                             </div>
                                                             <div class="d-flex gap-5 mt-4">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Enable">
                                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                                         Enable
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Disable">
                                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                                         Disable
                                                                     </label>
@@ -1229,12 +1169,14 @@
                                             </tr>
                                         </thead>
                                         <tbody class="align-middle">
+                                            {{#departmentList}}
                                             <tr>
-                                                <td>Executive</td>
+                                                <td id="td-deptname">{{name}}</td>
                                                 <td class="text-md-start text-end">
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-department">Edit</button>  
+                                                    <button class="edit-department btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-department" data-uid="{{uid}}" data-dept="{{dept}}" data-post="{{post}}" id="editBtn">Edit</button>  
                                                 </td>   
                                             </tr>
+                                            {{/departmentList}}
                                         </tbody>
                                     </table>    
                                     
@@ -1248,18 +1190,15 @@
                                                 </div>
                 
                                                 <div class="body-modal">
-                                                    <form class="row my-1 needs-validation" novalidate>
+                                                    <form class="row my-1 needs-validation" id="form-editDepartment" novalidate>
                                                         <div class="modal-body-info">
                                                             <div class="">
                                                                 <label for="validationCustom01" class="form-label">Department</label>
-                                                                <select class="form-select" id="validationCustom01" required>
+                                                                <select class="form-select" id="validationCustom01" name="edit-department" required>
                                                                     <option selected disabled value="">--Select--</option>
-                                                                    <option value="1">Accounting</option>
-                                                                    <option value="2">Executive</option>
-                                                                    <option value="3">Human Resource</option>
-                                                                    <option value="3">Sales and Marketing</option>
-                                                                    <option value="3">Software Development</option>
-                                                                    <option value="3">Technical Services</option>
+                                                                    {{#deptOptList}}
+                                                                    <option value="{{deptUid}}">{{department}}</option>
+                                                                    {{/deptOptList}}
                                                                 </select>
                                                                 <div class="invalid-feedback">
                                                                     Please select a valid state.
@@ -1267,7 +1206,7 @@
                                                             </div>
                                                             <div class="mt-3">
                                                                 <label for="validationCustom01" class="form-label">Designation</label>
-                                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                                <input type="text" class="form-control input" id="validationCustom01" name="edit-position" required>
                                                                 <div class="invalid-feedback">
                                                                     Please fill this up.
                                                                 </div>
@@ -1374,13 +1313,15 @@
                                             </tr>
                                         </thead>
                                         <tbody class="align-middle">
+                                            {{#salaryList}}
                                             <tr>
-                                                <td>00000</td>
-                                                <td>Monthly</td>
+                                                <td>{{baseSalary}}</td>
+                                                <td>{{payPeriodUid}}</td>
                                                 <td class="text-md-start text-end">
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-salary">Edit</button>  
+                                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-salary" data-salary-uid="{{uid}}.{{salaryUid}}">Edit</button>  
                                                 </td>   
                                             </tr>
+                                            {{/salaryList}}
                                         </tbody>
                                     </table>    
                                     
@@ -1398,7 +1339,7 @@
                                                         <div class="modal-body-info">
                                                             <div class="mt-2">
                                                                 <label for="validationCustom01" class="form-label">Basic Salary</label>
-                                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                                <input type="text" class="form-control input" id="validationCustom01" required name="employeeSalaryBaseSalaryEdit" >
                                                                 <div class="invalid-feedback">
                                                                     Please fill this up.
                                                                 </div>
@@ -1418,7 +1359,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="mt-4">
-                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name='status' checked>
                                                                 <label class="form-check-label" for="flexCheckChecked">Status</label>
                                                             </div>
                                                         </div>
@@ -1471,12 +1412,14 @@
                                             </tr>
                                         </thead>
                                         <tbody class="align-middle">
+                                            {{#empRulesList}}
                                             <tr>
-                                                <td>9:00 AM - 6:00 PM (with Grace Period)</td>
+                                                <td>{{ruleName}}</td>
                                                 <td class="text-md-start text-end">
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-rules">Edit</button>  
+                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-rules" data-uid="{{ruleUid}}">Edit</button>  
                                                 </td>   
                                             </tr>
+                                            {{/empRulesList}}
                                         </tbody>
                                     </table>    
                                     
@@ -1575,13 +1518,15 @@
                                             </tr>
                                         </thead>
                                         <tbody class="align-middle">
+                                            {{#empCostCenterList}}
                                             <tr>
-                                                <td>Avasia Information System, Inc. - Execitive</td>
-                                                <td>Execitive Department</td>
+                                                <td>{{ccname}}</td>
+                                                <td>{{ccdesc}}</td>
                                                 <td class="text-md-start text-end">
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-cost-center">Edit</button>  
+                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-cost-center" data-uid="{{empcostUid}}">Edit</button>  
                                                 </td>   
                                             </tr>
+                                            {{/empCostCenterList}}
                                         </tbody>
                                     </table>    
                                     
@@ -1744,21 +1689,21 @@
                                                 <th>Name</th>
                                                 <th>Phone Number</th>
                                                 <th>Relationship</th>
-                                                <th>Birthday</th>
                                                 <th class="text-md-start text-end">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="align-middle">
+                                            {{#dependentsList}}
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{depctr}}</td>
+                                                <td>{{name}}</td>
+                                                <td>{{number}}</td>
+                                                <td>{{relationship}}</td>
                                                 <td class="text-md-start text-end">
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-Dependent">Edit</button>  
+                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-Dependent" data-uid="{{uid}}">Edit</button>  
                                                 </td>   
                                             </tr>
+                                            {{/dependentsList}}
                                         </tbody>
                                     </table>    
                                     
@@ -1922,20 +1867,26 @@
                                                 <th>School</th>
                                                 <th>Year</th>
                                                 <th>Course</th>
+                                                <th>Start</th>
+                                                <th>End</th>
                                                 <th class="text-md-start text-end">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="align-middle">
+                                            {{#educbackgroundList}}
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{number}}</td>
+                                                <td>{{level}}</td>
+                                                <td>{{school}}</td>
+                                                <td>{{year}}</td>
+                                                <td>{{major}}</td>
+                                                <td>{{start_date}}</td>
+                                                <td>{{end_date}}</td>
                                                 <td class="text-md-start text-end">
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-Education">Edit</button>  
+                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-Education" data-uid="{{emp_uid}}">Edit</button>  
                                                 </td>   
                                             </tr>
+                                            {{/educbackgroundList}}
                                         </tbody>
                                     </table>    
                                     
@@ -2098,11 +2049,11 @@
                                         </thead>
                                         <tbody class="align-middle">
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{number}}</td>
+                                                <td>{{employer}}</td>
+                                                <td>{{position}}</td>
+                                                <td>{{start_date}} {{end_date}}</td>
+                                                <td>{{status}}</td>
                                                 <td class="text-md-start text-end">
                                                     <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
                                                 </td>   

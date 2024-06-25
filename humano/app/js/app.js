@@ -9,6 +9,38 @@ $(document).ready(function(){
         token   : localStorage.getItem("Token"),
         username: localStorage.getItem("Username"),
 		userType: localStorage.getItem("userType"),
+        authenticate: function() {
+            if (App.token === 0 || App.token === null && App.username === 0 || App.username === null) {
+                window.location.href = "../auth/#/login/";
+            }else{
+                $.ajax({
+                    type: "POST",
+                    url: App.api + "/system/tokens/verify",
+                    dataType: "json",
+                    data: {
+                        token: App.token,
+						userid: App.username
+                    },
+                    success: function(data) {
+						App.userType = data.type;
+                        if (parseInt(data.verified) === 0) {
+                            window.location.href = "../auth/#/login/";
+                        }
+                    }
+                });
+            }
+        },
+        initialize: function() {
+            App.authenticate();
+            $("input[name=user]").val(localStorage.getItem("UserId"));
+            $("#username").text(localStorage.getItem("Username"));
+            // setInterval(function() {
+            //     App.authenticate();
+            // }, 60000);
+			
+			var empUid = App.username;
+        },
+
         toggleSidebar : function(){
             $(document).ready(function(){
                 $('#toggle-sidebar').on('click', function(){
@@ -24,7 +56,6 @@ $(document).ready(function(){
                     }
                 });
             });
-                        
         },
         
     
@@ -64,7 +95,7 @@ $(document).ready(function(){
         //             $(".sidebar-link.request .fa-solid").removeClass("rotate");
         //             $("#request-arrow").toggleClass("rotate");
         //         });
-        //     });
+        //     });s
         // },
 
         // Desktop view arrow
@@ -93,17 +124,17 @@ $(document).ready(function(){
         // Desktop view arrow
         deskArrow: function() {
             $(document).ready(() => {
-               $('#request_btn').on('click', function(){
+               $('#request-btn').on('click', function(){
                     $("#request-arrow").toggleClass("rotate");
                     $("#report-arrow").removeClass("rotate");
                })
 
-               $('#report_btn').on('click', function(){
+               $('#report-btn').on('click', function(){
                     $("#report-arrow").toggleClass("rotate");
                     $("#request-arrow").removeClass("rotate");
                 })
 
-                $(".sidebar-link:not(#request_btn):not(#report_btn)").click(function() {
+                $(".sidebar-link:not(#request-btn):not(#report-btn)").click(function() {
                     $("#report-arrow").removeClass("rotate");
                     $("#request-arrow").removeClass("rotate");
                 });
@@ -114,17 +145,17 @@ $(document).ready(function(){
         // Mobile view arrow
         mobileArrow: function() {
             $(document).ready(() => {
-               $('.mrequest_btn').on('click', function(){
+               $('.mrequest-btn').on('click', function(){
                     $("#mrequest-arrow").toggleClass("rotate");
                     $("#mreport-arrow").removeClass("rotate");
                })
 
-               $('.mreport_btn').on('click', function(){
+               $('.mreport-btn').on('click', function(){
                     $("#mreport-arrow").toggleClass("rotate");
                     $("#mrequest-arrow").removeClass("rotate");
                 })
 
-                $(".nav-link:not(.mrequest_btn):not(.mreport_btn)").click(function() {
+                $(".nav-link:not(.mrequest-btn):not(.mreport-btn)").click(function() {
                     $("#mreport-arrow").removeClass("rotate");
                     $("#mrequest-arrow").removeClass("rotate");
                 });
@@ -145,58 +176,6 @@ $(document).ready(function(){
             });
         },
 
-
-        // calendarDash: function(){
-        //         $(document).ready(function() {
-        //         var calendarEl = document.getElementById('calendar');
-        //         var calendar = new FullCalendar.Calendar(calendarEl, {
-        //             // initialView: 'dayGridMonth',
-        //             headerToolbar: {
-        //                 left: 'title',
-        //                 right: 'customPrev customNext'
-        //             },
-        //             customButtons: {
-        //                 customPrev: {
-        //                     text: '<',
-        //                     click: function() {
-        //                         calendar.prev();
-        //                     }
-        //                 },
-        //                 customNext: {
-        //                     text: '>',
-        //                     click: function() {
-        //                         calendar.next();
-        //                     }
-        //                 }
-        //             },
-        //             dayHeaderContent: function(info) {
-        //                 var dayIndex = info.date.getDay();
-        //                 var dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-        //                 return dayLabels[dayIndex];
-        //             },
-        //             nowIndicator: false
-        //         });
-            
-        //         calendar.render();
-            
-        //         // Customize title font size and color
-        //         var titleElement = document.querySelector('.fc-toolbar-title');
-        //         if (titleElement) {
-        //             titleElement.style.fontSize = '20px'; // Adjust font size as needed
-        //             titleElement.style.color = 'black'; // Adjust color as needed
-        //         }
-        //     });
-        // }
-
-        // activePills: function() {
-        //     $(document).ready(function(){
-        //         $('.nav-btn').click(function(){
-        //             $('.nav-btn').removeClass('active');
-        //             $(this).addClass('active');
-        //         });
-        //     });
-        // }
-
         uploadImage: function() {
             $(document).ready(function () {
                 $('#tab_input_file').on('change', function (e) {
@@ -212,9 +191,54 @@ $(document).ready(function(){
                 });
         
             });
-
-        }
+        },
     }
+
+    function getEmployeeDetails(){
+        var results = getJSONDoc(App.api + "/get/tax/status/" + App.token);
+            var resultList = [];
+            var number = 0;			
+            $.each(results, function(i,item){
+                number ++;					
+				var result = {
+                    number,
+                    uid: item.uid,
+					taxStatus: item.type
+                }
+                resultList.push(result);
+            });
+			
+			var nationality = getJSONDoc(App.api + "/json/nationality.json");
+            var nationalList = [];			
+			$.each(nationality, function(i, item){
+				number ++;
+				var nation = {
+					number,
+					name: item.name 
+				}
+				nationalList.push(nation);
+			});
+
+            // var uid = this.params["id"];
+
+            var templateData = {
+                response: resultList,
+				national: nationalList,
+                // uid: uid
+            }
+            console.log(templateData);
+    }
+    getEmployeeDetails();
+    App.initialize();
+
+    var temp = "";
+	
+	// if(App.userType == "Administrator") {
+	// 	temp = "admin.html";
+	// }else if(App.userType == "Employee") {
+	// 	temp = "user.html";
+	// 	//temp = "app.html";
+	// }
 
     $.Mustache.load('templates/admin.html').done(function(){
         App.toggleSidebar();
@@ -362,7 +386,7 @@ $(document).ready(function(){
 				}
 				employeesList.push(employeeData);
 			});
-            // console.log(employeesList);
+            console.log(employeesList);
             var templateData = {
                 employeesList:employeesList
             }
@@ -562,13 +586,6 @@ $(document).ready(function(){
                             alert(firstname + " " + middlename + " " + lastname + " has been added");
                             $("#newEmployee").modal("toggle");
                             $("form")[0].reset();
-                            // $("input[name=firstname]").val("");
-                            // $("input[name=middlename]").val("");
-                            // $("input[name=lastname]").val("");
-                            // $("select[name=marital]").val("");
-                            // $("select[name=usertype]").val("");
-                            // $("input[name=username]").val("");
-                            enable();
                             $("#employeeTextboxHidden").hide();
                             getEmployeesPages();
                         }
@@ -578,97 +595,553 @@ $(document).ready(function(){
 
         });
 
-        // Master modal link
-        Path.map('#/master-file-modal-name/').to(function(){
-            App.canvas.html("").append($.Mustache.render("master-file-modal-name"));
-            $('#table-employee-status').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+        Path.map('#/master/file/modal/name/:empUid').to(function(){
+            empUid = this.params["empUid"];
+            
+            var taxStatus = getJSONDoc(App.api + "/get/tax/status/" + App.token);
+            var taxStatusList = [];
+            var taxnum = 0;			
+            $.each(taxStatus, function(i,item){
+                taxnum ++;					
+				var result = {
+                    taxnum,
+                    uid: item.uid,
+					taxStatus: item.type
                 }
+                taxStatusList.push(result);
+            });
+			
+			var nationality = getJSONDoc(App.api + "/json/nationality.json");
+            var nationalList = [];
+            var natnum = 0;			
+			$.each(nationality, function(i, item){
+				natnum ++;
+				var nation = {
+					natnum,
+					name: item.name 
+				}
+				nationalList.push(nation);
+			});
+
+            var employeeStatus = getJSONDoc(App.api + "/get/emp/employment/status/" + empUid);
+			var employeeStatusList = [];
+			var empnum = 0;
+			$.each(employeeStatus, function(i, item){
+				empnum++;
+				var employee = {
+					no: empnum,
+					type: item.type,
+					dateHired: item.dateHired,
+                    dateStarted: item.dateStarted,
+					dateResigned: item.dateResigned,
+					empStatusUid: item.empStatusUid
+				}
+				employeeStatusList.push(employee);
+			});
+
+            var departments = getJSONDoc(App.api + "/employee/departments/view/" + empUid + "." + App.token).list;
+			var departmentList = [];
+			var deptctr = 0;
+			var kick = null;
+			$.each(departments, function(i, item){
+				deptctr++;
+				var department = {
+					no: deptctr,
+					uid: item.uid,
+					dept:item.dept,
+					name: item.department,
+                    post:item.position,
+					status: item.status
+				}
+				kick = item.status;
+				departmentList.push(department);
+			});
+
+            var salaries = getJSONDoc(App.api + "/employee/salary/get/" + empUid + "." + App.token);
+			var salaryList = [];
+			var salctr = 0;
+			
+			$.each(salaries, function(i, item){
+				salctr++;
+				var salary = {
+					no: salctr,
+					uid: empUid,
+					baseSalary:item.baseSalary,
+					payPeriodUid: item.payPeriodUid,
+					salaryUid: item.salaryUid
+				}
+				salaryList.push(salary);
+			});
+
+            var empRules = getJSONDoc(App.api + "/emp/rules/data/" + empUid);
+            var empRulesList = [];
+            var rulectr = 0;
+            $.each(empRules,function(i,item){
+                rulectr++
+                var empRule = {
+                    rulectr,
+                    ruleName:item.ruleName,
+                    ruleUid:empUid+"."+item.ruleUid
+                }
+                empRulesList.push(empRule);
             });
 
-            $('#table-department').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+            var empCostCenters = getJSONDoc(App.api + "/employee/costcenter/data/" + empUid);
+            var empCostCenterList = [];
+            var costctr = 0;
+            $.each(empCostCenters,function(i,item){
+                costctr++;
+                var empCostCenter = {
+                    ccname:item.ccName,
+                    ccdesc:item.ccDesc,
+                    empCostUid:item.empCostUid
                 }
+                empCostCenterList.push(empCostCenter)
             });
 
-            $('#table-salary').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+            var dependents = getJSONDoc(App.api + "/employee/dependent/pages/get/" + empUid + "." + App.token);
+            var dependentsList = [];
+            var depctr = 0;
+            $.each(dependents,function(i,item){
+                depctr++;
+                var dependent = {
+                    depctr,
+                    name:item.name,
+                    number:item.number,
+                    relationship:item.relationship,
+                    uid:item.employeeDependentUid
                 }
+                dependentsList.push(dependent);
             });
 
-            $('#table-rules').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+            var educbackgrounds = getJSONDoc(App.api + "/educational/background/" + empUid + "." + App.token);
+            var educbackgroundList = [];
+            var educctr = 0;
+
+            $.each(educbackgrounds, function(i,item){
+                educctr ++;   
+                var result = {
+                    number: educctr,
+                    emp_uid: item.emp_uid,
+                    level: item.level,
+                    school: item.school,
+                    major: item.major,
+                    year: item.year,
+                    start_date: item.start_date,
+                    end_date: item.end_date,
+                    status: item.status
                 }
+                educbackgroundList.push(result);
             });
 
-            $('#table-cost-center').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+            var workExperiences = getJSONDoc(App.api + "/get/employee/workexperience/" + empUid + "." + App.token);
+            var workExperienceList = [];
+            var workctr = 0;
+
+            $.each(workExperiences, function(i,item){
+                workctr ++;   
+                var result = {
+                    number: workctr,
+                    emp_uid: item.emp_uid,
+                    employer: item.employer,
+                    position: item.position,
+                    start_date: item.start_date,
+                    end_date: item.end_date,
+                    status: item.status
                 }
+                workExperienceList.push(result);
             });
 
-            $('#table-dependents').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
+            var statusOptions = getJSONDoc(App.api + "/employment/status/get/" + App.token);
+            var statusOptList = [];
+            $.each(statusOptions,function(i,item){
+                var statusOption = {
+                    statusUid:item.employmentStatusUid,
+                    statusName:item.name
                 }
+                statusOptList.push(statusOption);
+            });
+            
+            var deptOptions = getJSONDoc(App.api + "/departments/view/" + App.token);
+            var deptOptList = [];
+            $.each(deptOptions,function(i,item){
+                var deptOption = {
+                    deptUid:item.uid,
+                    department:item.department
+                }
+                deptOptList.push(deptOption);
             });
 
-            $('#table-education').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
+            var templateData = {
+                taxStatusList:taxStatusList,
+                nationalList:nationalList,
+                employeeStatusList:employeeStatusList,
+                departmentList:departmentList,
+                salaryList:salaryList,
+                empRulesList:empRulesList,
+                empCostCenterList:empCostCenterList,
+                dependentsList:dependentsList,
+                educbackgroundList:educbackgroundList,
+                workExperienceList:workExperienceList,
+                statusOptList:statusOptList,
+                deptOptList:deptOptList
+            }
+
+            console.log(templateData);
+
+            App.canvas.html("").append($.Mustache.render("master-file-modal-name",templateData));
+            var employeeDetails = getJSONDoc(App.api + "/hris/employee/data/get/" + empUid + "." + App.token)
+            console.log(employeeDetails);
+
+            var selectors = ["input[name=firstname]","input[name=middlename]","input[name=lastname]","select[name=gender]","select[name=marital]","select[name=status]","input[name=bday]","input[name=email]","input[name=nickname]","input[name=driverLicense]","input[name=expiryLicense]","input[name=sssNo]","input[name=taxNo]","input[name=philhealthNo]","input[name=pagibigNo]","select[name=nationality]","select[name=tax-status]","input[name='housenumber']","input[name='barangay']","input[name='city']","input[name='region']","input[name='height']","input[name='weight']","input[name='bloodtype']"];
+
+            function disableFields(){
+                $.each(selectors,function(i,selector){
+                    $(selector).attr("disabled", "disabled");
+                })
+            }
+            disableFields();
+            function enableFields(){
+                $.each(selectors,function(i,selector){
+                    $(selector).removeAttr('disabled');
+                })
+            }
+            function employeePersonalDetails(){
+                disableFields();
+                $.getJSON(App.api + "/hris/employee/data/get/" + empUid + "." + App.token, function(data) {
+                    if (data.status == 1) {
+                        var status = "Active";
+                    } else {
+                        var status = "Inactive";
                     }
-                }
+                    $("input[name=firstname]").val(data.firstname);
+                    $("input[name=middlename]").val(data.middlename);
+                    $("input[name=lastname]").val(data.lastname);
+                    if (data.gender != "") {
+                        $("select[name=gender] option[value='" + data.gender + "']").remove();
+                        $("select[name=gender]").prepend("<option value='" + data.gender + "' selected>" + data.gender + "</option>");
+                    } else {
+                        $("select[name=gender]").prepend("<option value='' selected></option>");
+                    }
+
+                    if (data.marital != "") {
+                        $("select[name=marital] option[value='" + data.marital + "']").remove();
+                        $("select[name=marital]").prepend("<option value='" + data.marital + "' selected>" + data.marital + "</option>");
+                    } else {
+                        $("select[name=marital]").prepend("<option value='' selected></option>");
+                    }
+
+                    $("select[name=status] option[value='" + data.status + "']").remove();
+                    $("select[name=status]").prepend("<option value='" + data.status + "' selected>" + status + "</option>");
+                    $("input[name=bday]").val(data.bday);
+                    $("input[name=email]").val(data.email);
+                    $("input[name=nickname]").val(data.nickname);
+                    $("input[name=driverLicense]").val(data.driverLicense);
+                    $("input[name=expiryLicense]").val(data.expiryLicense);
+                    $("input[name=sssNo]").val(data.sssNo);
+                    $("input[name=taxNo]").val(data.taxNo);
+                    $("input[name=philhealthNo]").val(data.philhealthNo);
+                    $("input[name=pagibigNo]").val(data.pagibigNo);
+                    //$("input[name=nationality]").val(data.nationality);
+                    //localStorage.setItem("nationality", data.nationality);
+                    
+                    $("select[name=nationality] option[value='" + data.nationality + "']").remove();
+                    $("select[name=nationality]").prepend("<option value='" + data.nationality + "' selected>" + data.nationality + "</option>");
+                    
+                    $("select[name=tax-status] option[value='" + data.taxStatusUid + "']").remove();
+                    $("select[name=tax-status]").prepend("<option value='" + data.taxStatusUid + "' selected>" + data.taxStatus + "</option>");
+            
+                    $("input[name='housenumber']").val(data.housenumber);
+                    $("input[name='barangay']").val(data.barangay);
+                    $("input[name='city']").val(data.city);
+                    $("input[name='region']").val(data.region);
+                    $("input[name='height']").val(data.height);
+                    $("input[name='weight']").val(data.weight);
+                    $("input[name='bloodtype']").val(data.bloodtype);
+                });
+            }
+            employeePersonalDetails();
+
+            $("#update-btn").on("click",function(e){
+                e.preventDefault();
+                enableFields();
+                $("#update-cont").prop("hidden",true);
+                $("#submit-cont").prop("hidden",false);
+            });
+            $("#cancel-btn").on("click",function(){
+                disableFields();
+                $("#update-cont").prop("hidden",false);
+                $("#submit-cont").prop("hidden",true);
+            });
+            $(document).off("submit", "#updateEmployee").on("submit", "#updateEmployee", function(e) {
+                    e.preventDefault();
+                    var firstname     = $("input[name=firstname]").val();
+                    var middlename    = $("input[name=middlename]").val();
+                    var lastname      = $("input[name=lastname]").val();
+                    var gender        = $("select[name=gender]").val();
+                    var marital       = $("select[name=marital]").val();
+                    var nationality   = $("select[name=nationality]").val();
+                    var bday          = $("input[name=bday]").val();
+                    var email         = $("input[name=email]").val();
+                    var nickname      = $("input[name=nickname]").val();
+                    var driverLicense = $("input[name=driverLicense]").val();
+                    var expiryLicense = $("input[name=expiryLicense]").val();
+                    var sssNo         = $("input[name=sssNo]").val();
+                    var taxNo         = $("input[name=taxNo]").val();
+                    var philhealthNo  = $("input[name=philhealthNo]").val();
+                    var pagibigNo     = $("input[name=pagibigNo]").val();
+                    var status        = $("select[name=status]").val();
+                    var taxStatus     = $("select[name=tax-status]").val();
+                    var housenumber = $("input[name='housenumber']").val();
+                    var barangay = $("input[name='barangay']").val();
+                    var city = $("input[name='city']").val();
+                    var region = $("input[name='region']").val();
+                    var height = $("input[name='height']").val();
+                    var weight = $("input[name='weight']").val();
+                    var bloodtype = $("input[name='bloodtype']").val();
+    
+                    if(!firstname || !lastname){
+                        alert("Should Not be Empty!");
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url : App.api + "/hris/employee/update/" + empUid + "." + App.token,
+                            data: {
+                                firstname    : firstname,
+                                middlename   : middlename,
+                                lastname     : lastname,
+                                gender       : gender,
+                                marital      : marital,
+                                nationality  : nationality,
+                                bday         : bday,
+                                email        : email,
+                                nickname     : nickname,
+                                driverLicense: driverLicense,
+                                expiryLicense: expiryLicense,
+                                sssNo        : sssNo,
+                                taxNo        : taxNo,
+                                philhealthNo : philhealthNo,
+                                pagibigNo    : pagibigNo,
+                                status       : status,
+                                taxStatus	 : taxStatus,
+                                housenumber  : housenumber,
+                                barangay     : barangay,
+                                city: city,
+                                region: region,
+                                height: height,
+                                weight: weight,
+                                bloodtype: bloodtype
+                            },
+                            success: function() {
+                                $("#update-cont").prop("hidden",false);
+                                $("#submit-cont").prop("hidden",true);
+                                alert("Data Updated");
+                                employeePersonalDetails();
+                                disableFields();
+                            }
+                        });
+                    }
+                });
+
+            var tableID = ['#table-employee-status','#table-department','#table-salary','#table-rules','#table-cost-center','#table-dependents','#table-education','#table-work-experience',];
+            $.each(tableID,function(i,item){
+                renderToDataTable(item);
             });
 
-            $('#table-work-experience').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
+            //Employment status start
+            $("#table-employee-status tbody").on("click", "td .edit-btn", function(e) {
+                e.preventDefault();
+                var uid = $(this).attr("data-uid");
+
+                $.getJSON(App.api + "/get/single/emp/employment/status/" + uid, function(data){
+                    console.log(data);
+                    if (data.status == 1) {
+                        $("input[value=Enable]").prop("checked", true);
+                    } else {
+                        $("input[value=Disable]").prop("checked", true);
                     }
+                    $("input[name=employeeStatusDateHiredEdit]").val(data.dateHired);
+                    $("input[name=employeeStatusDateStartedEdit]").val(data.dateStarted);
+                    $("input[name=employeeStatusDateResignedEdit]").val(data.dateResigned);
+                    $("select[name=employeeStatusEdit]").val(data.statusUid);
+                });
+
+                function getEmploymentStatusPages(uid){
+                    $.getJSON(App.api + "/get/emp/employment/status/" + uid, function(data){
+                        $.each(data, function(i, item){
+                            $("#td-type").text(item.type);
+                            $("#td-datehired").text(item.dateHired);
+                            $("#td-datestarted").text(item.dateResigned);
+                            $("#td-dateresigned").text(item.dateResigned);
+                        });
+                        console.log(data);
+                    });
                 }
+
+                $(document).off("submit", "#editEmpStatusForm").on("submit", "#editEmpStatusForm", function(e){
+                    e.preventDefault();
+                    var employeeStatus = $("select[name=employeeStatusEdit]").val();
+                    var dateHired = $("input[name=employeeStatusDateHiredEdit]").val();
+                    var dateStarted = $("input[name=employeeStatusDateStartedEdit]").val();
+                    var dateResigned = $("input[name=employeeStatusDateResignedEdit]").val();
+                    var status = 0;
+                    if ($("input[name='status']").val()==="Enable"){
+                        status = 1;
+                    }
+
+                    if(!employeeStatus || !dateHired){
+                        alert("Please Fill the required Fields!");
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: App.api + "/update/emp/employment/status/" + uid,
+                            data: {
+                                employeeStatus : employeeStatus,
+                                dateHired : dateHired,
+                                dateStarted: dateStarted,
+                                dateResigned : dateResigned,
+                                status : status
+                            },
+                            success: function(){
+                                alert("Success!");
+                                $("#edit-modal").modal("toggle");
+                                $("#editEmpStatusForm")[0].reset();
+                                getEmploymentStatusPages(empUid);
+                            }
+                        });
+                    }
+                });
+            });
+            //Employment status end
+
+            //Department start
+            $(document).off("click", ".edit-department").on("click", ".edit-department", function(e){
+                e.preventDefault();
+				var uid = $(this).attr("data-uid");
+				var dept = $(this).attr("data-dept");
+                var post = $(this).attr("data-post");
+				
+                $("select[name=edit-department]").val(dept);
+                $("input[name=edit-position]").val(post);
+
+                $("#form-editDepartment").on('submit',function(e){
+                    e.preventDefault();
+                    var department = $("select[name=edit-department]").val();
+                    var position = $("input[name=edit-position]").val();
+                   
+                    $.ajax({
+                        type: "POST",
+                        url: App.api + "/employee/department/edit/" + uid + "." + App.token,
+                        dataType: "json",
+                        data: {
+                            uid: uid,
+                            department: department,
+                            position: position
+                        },
+                        success: function(data){
+                            if(parseInt(data.success) === 1){
+                                $("#edit-department").modal("toggle");
+                                $("#form-editDepartment")[0].reset();
+                                getDepartmentDetails(empUid);
+                            }
+                        }
+                    });
+                });
+			});
+
+            function getDepartmentDetails(empUid){
+                $.getJSON(App.api + "/employee/departments/view/" + empUid + "." + App.token,function(data){
+                    console.log(data);
+                    $.each(data.list,function(i,item){
+                        $("#td-deptname").text(item.department);
+                        $("#editBtn").attr('data-uid',item.uid);
+                        $("#editBtn").attr('data-dept',item.dept);
+                        $("#editBtn").attr('data-post',item.position);
+                    });
+                });
+            }
+            //Department End
+
+            $("#table-salary tbody").off("click",".edit-btn").on("click", ".edit-btn", function(e) {
+                e.preventDefault();
+
+                // validationForEdit();
+
+                var data = $(this).attr("data-salary-uid");
+                var dataIndex = data.split(".");
+
+                var uid = dataIndex[0];
+                var salaryUid = dataIndex[1];
+
+                // $.getJSON(App.api + "/salary/details/get/" + salaryUid + "." + App.token, function(data) {
+                //     console.log(data);
+                //     if (data.status == 1) {
+                //         $("input[name='status']").prop("checked", true);
+                //     } else {
+                //         $("input[name='status']").prop("checked", false);
+                //     }
+
+                //     $("input[name=employeeSalaryBaseSalaryEdit]").val(data.baseSalary);
+                //     localStorage.setItem("frequencyUid", data.frequencyUid);
+                // });
+
+                // function getFrequency() {
+                //     $("#employeeSalaryFrequencyEdit").find("option").remove();
+                //     $.getJSON(App.api + "/employee/salary/frequency/get/", function(data) {
+                //         var frequencyUid1 = localStorage.getItem("frequencyUid");
+                //         $.each(data, function(i, item) {
+                //             if (item.frequencyUid == frequencyUid1) {
+                //                 $("#employeeSalaryFrequencyEdit").append("<option value=" + item.frequencyUid + " selected>" + item.frequencyName + "</option>");
+                //             } else {
+                //                 $("#employeeSalaryFrequencyEdit").append("<option value=" + item.frequencyUid + " >" + item.frequencyName + "</option>");
+                //             }
+                //         });
+                //     })
+                // }
+                // getFrequency();
+
+                // $(document).off("submit", "#editSalaryForm").on("submit", "#editSalaryForm", function(e) {
+                //     e.preventDefault();
+                //     localStorage.removeItem("frequencyUid");
+                //     // var payGradeUid = $("select[name=employeeSalaryPayGrade]").val();
+                //     // var currencyUid = $("select[name=employeeSalaryCurrency]").val();
+                //     var baseSalary = $("input[name=employeeSalaryBaseSalaryEdit]").val();
+                //     var payPeriodUid = $("select[name=employeeSalaryFrequencyEdit]").val();
+                //     var status = 0;
+                //     if ($("[name='status']").is(":checked")) {
+                //         status = 1;
+                //     }
+
+                //     if(!baseSalary || !payPeriodUid){
+                //         alert("Please Fill All The Fields!");
+                //     }else{
+                //         $.ajax({
+                //             type: "POST",
+                //             url: App.api + "/employee/salary/update/" + salaryUid + "." + App.token,
+                //             data: {
+                //                 uid: uid,
+                //                 baseSalary: baseSalary,
+                //                 payPeriodUid: payPeriodUid,
+                //                 status: status
+                //             },
+                //             beforeSend: function(){
+                //                 $(".pLoading").show();      
+                //             },
+                //             success: function(data) {
+                //                 $(".pLoading").hide();      
+                //                 alert("Successfully Updated!");
+                //                 $("#salaryEdit").modal("toggle");
+                //                 //getEmployeeSalaryPages();
+                //             }
+                //         });
+                //     }
+                // });
             });
         });
+
+        Path.map('#/trial/employment/status/:empUid').to(function(){
+            console.log("Hello " + this.params["empUid"]);
+        })
 
         // RESUME
         Path.map('#/resume-application/').to(function(){
@@ -2250,21 +2723,21 @@ $(document).ready(function(){
 
         // Request
         Path.map('#/settings-request/').to(function(){
-            // var number = 0;
-            // var requestsList = [];
-            // var requests = getJSONDoc(App.api + "/request/get/data/" + App.token);
-            // $.each(requests,function(i,item){
-            //     number++;
-            //     var request = {
-            //         number:number,
-            //         requestname:item.name,
-            //         requestUid:item.uid
-            //     }
-            //     requestsList.push(request);
-            // });
-            // var templateData = {
-            //     requestsList:requestsList
-            // }
+            var number = 0;
+            var requestsList = [];
+            var requests = getJSONDoc(App.api + "/request/get/data/" + App.token);
+            $.each(requests,function(i,item){
+                number++;
+                var request = {
+                    number:number,
+                    requestname:item.name,
+                    requestUid:item.uid
+                }
+                requestsList.push(request);
+            });
+            var templateData = {
+                requestsList:requestsList
+            }
             App.canvas.html("").append($.Mustache.render("request",templateData));
             tableID = '#table-request';
             renderToDataTable(tableID);
