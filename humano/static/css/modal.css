@@ -95,6 +95,14 @@
     border-radius: 5px;
 }
 
+#m-table .edit-btn{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
 /* MASTER BTN ID MODAL  */
 /* name */
 .update-employee-info .btn-name{
@@ -158,6 +166,32 @@
 
     .body-modal option{
         font-size: 11px;
+    }
+
+    /* table action */
+    #m-table .action1{
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 12px;
+    }
+    
+    #m-table .action1 i{
+        font-size: 12px;
+    }
+    
+    #m-table .action2{
+        padding: 5px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 12px;
+    }
+
+    #m-table .edit-btn{
+        padding: 5px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 12px;
     }
 
 }

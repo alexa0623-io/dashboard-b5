@@ -44,6 +44,12 @@
     gap: 30px;
 }
 
+.legend-row-sheet{
+    color: #2c2c2c;
+    font-size: 16px;
+    gap: 30px;
+}
+
 /* .legend-row{
     gap: 30px
 }
@@ -63,6 +69,12 @@
 }
 
 .legend-row-leave .custom-box{
+    width: 1rem; 
+    height: 1rem;
+    border: 1px solid rgba(28, 100, 52, 0.3);
+}
+
+.legend-row-sheet .custom-box{
     width: 1rem; 
     height: 1rem;
     border: 1px solid rgba(28, 100, 52, 0.3);
@@ -96,6 +108,9 @@
     background-color:#ffbfbf;
 }
 
+.legend-row-leave .custom-text{
+    margin: 0;
+}
 
 
 /* RESPONSIVENESS */
@@ -116,6 +131,12 @@
         margin-top: -42px;
         margin-bottom: 3px;
     }
+
+    .legend-row-sheet{
+        display: flex;
+        margin-top: -42px;
+        margin-bottom: 3px;
+    }
 }
 
 @media (min-width: 990px) and (max-width: 1138px) {
@@ -125,6 +146,14 @@
     }
 
     .legend-row-leave {
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: 1.2rem;
+        margin-top: -35px;
+        font-size: 14px;
+    }
+
+    .legend-row-sheet {
         flex-wrap: wrap;
         justify-content: center; 
         gap: 1.2rem;
@@ -145,6 +174,14 @@
         justify-content: center; 
         gap: 1.2rem;
         margin-top: -15px;
+        font-size: 14px;
+    }
+
+    .legend-row-sheet {
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: 1.2rem;
+        margin-top: 10px;
         font-size: 14px;
     }
 
@@ -182,6 +219,32 @@
         font-size: 14px;
     }
 
+    .legend-row-sheet {
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: 1.2rem;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .legend-row-leave .custom-text{
+        margin: 6px;
+    }
+
+}
+
+@media (max-width: 437px) {
+
+
+    .legend-row-leave {
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: .6rem;
+        margin-top: 6px;
+        font-size: 13px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 @media (max-width: 430px) {
@@ -194,9 +257,6 @@
         font-size: 14px;
     }
 
-    /* .leave-count span{
-        font-size: 14px;
-    } */
 
     .request .form-label{
         font-size: 14px;
@@ -224,12 +284,59 @@
         font-size: 14px;
     }
 
-    .legend-row-leave {
+
+    .legend-row-sheet {
         flex-wrap: wrap;
         justify-content: center; 
         gap: 1.2rem;
         margin-top: 10px;
-        font-size: 14px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 414px) {
+
+    .legend-row-leave {
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: 1rem;
+        margin-top: 2px;
+        font-size: 13px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+@media (max-width: 390px) {
+
+    .legend-row-leave {
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: .5rem;
+        margin-top: 2px;
+        font-size: 13px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 
+    .legend-row-leave .custom-text{
+        margin: 6px;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .legend-row-leave {
+        flex-wrap: wrap;
+        justify-content: center; 
+        gap: .3rem;
+        margin-top: 2px;
+        font-size: 13px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .legend-row-leave .custom-text{
+        margin: 6px;
+    }
 }

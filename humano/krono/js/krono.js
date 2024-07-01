@@ -53,25 +53,25 @@ $(document).ready(function(){
         // Desktop view arrow
         deskArrow: function() {
             $(document).ready(() => {
-                $('#request_btn').on('click', function(){
+                $('#request-btn').on('click', function(){
                         $("#request-arrow").toggleClass("rotate");
                         $("#report-arrow").removeClass("rotate");
                         $("#setting-arrow").removeClass("rotate");
                 })
 
-                $('#report_btn').on('click', function(){
+                $('#report-btn').on('click', function(){
                     $("#report-arrow").toggleClass("rotate");
                     $("#request-arrow").removeClass("rotate");
                     $("#setting-arrow").removeClass("rotate");
                 })
 
-                $('#setting_btn').on('click', function(){
+                $('#setting-btn').on('click', function(){
                     $("#setting-arrow").toggleClass("rotate");
                     $("#report-arrow").removeClass("rotate");
                     $("#request-arrow").removeClass("rotate");
                  })
 
-                $(".sidebar-link:not(#request_btn):not(#report_btn):not(#setting_btn)").click(function() {
+                $(".sidebar-link:not(#request-btn):not(#report-btn):not(#setting-btn)").click(function() {
                     $("#report-arrow").removeClass("rotate");
                     $("#request-arrow").removeClass("rotate");
                     $("#setting-arrow").removeClass("rotate");
@@ -83,25 +83,25 @@ $(document).ready(function(){
         // Mobile view arrow
         mobileArrow: function() {
             $(document).ready(() => {
-                $('.mrequest_btn').on('click', function(){
+                $('.mrequest-btn').on('click', function(){
                         $("#mrequest-arrow").toggleClass("rotate");
                         $("#mreport-arrow").removeClass("rotate");
                         $("#msetting-arrow").removeClass("rotate");
                 })
 
-                $('.mreport_btn').on('click', function(){
+                $('.mreport-btn').on('click', function(){
                     $("#mreport-arrow").toggleClass("rotate");
                     $("#mrequest-arrow").removeClass("rotate");
                     $("#msetting-arrow").removeClass("rotate");
                 })
 
-                $('.msetting_btn').on('click', function(){
+                $('.msetting-btn').on('click', function(){
                     $("#msetting-arrow").toggleClass("rotate");
                     $("#mrequest-arrow").removeClass("rotate");
                     $("#mreport-arrow").removeClass("rotate");
                 })
 
-                $(".nav-link:not(.mrequest_btn):not(.mreport_btn):not(.msetting_btn)").click(function() {
+                $(".nav-link:not(.mrequest-btn):not(.mreport-btn):not(.msetting-btn)").click(function() {
                     $("#mreport-arrow").removeClass("rotate");
                     $("#mrequest-arrow").removeClass("rotate");
                     $("#msetting-arrow").removeClass("rotate");
@@ -126,7 +126,7 @@ $(document).ready(function(){
         uploadImage: function() {
             $(document).ready(function() {
                 $('#savePhoto').on('click', function() {
-                    const input = $('#tab_input_file')[0];
+                    const input = $('#tab-input-file')[0];
                     const file = input.files[0];
                     if (file) {
                         const reader = new FileReader();
@@ -155,6 +155,85 @@ $(document).ready(function(){
                     }
                 });
             });
+        },
+        
+        uploadFile: function() {
+            $(document).ready(function() {
+                // Function to handle file input change
+                $(document).on('change', '.file-input', function() {
+                    var files = $(this)[0].files;
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        var reader = new FileReader();
+                        
+                        reader.onload = (function(file) {
+                            return function(e) {
+                                var removeButton = $('<button>', {
+                                    text: 'Remove',
+                                    class: 'btn btn-danger btn-sm mt-2 remove-btn',
+                                    click: function() {
+                                        $(this).closest('.file-preview').remove();
+                                    }
+                                });
+                                
+                                var img = $('<img>', {
+                                    src: e.target.result,
+                                    class: 'img-fluid rounded-2 mb-2',
+                                    css: {
+                                        'width': '20%',
+                                        'height': '150px'
+                                    }
+                                });
+                                
+                                var preview = $('<div>', {
+                                    class: 'file-preview mb-3',
+                                }).append(img).append(removeButton);
+                                
+                                $('#file-upload-container').append(preview);
+                            };
+                        })(file);
+                        
+                        reader.readAsDataURL(file);
+                    }
+                });
+                
+                // Trigger file input click when upload button is clicked
+                $('#upload-button').click(function() {
+                    $('.file-input').click();
+                });
+            });
+        },
+
+        
+        removeDrag: function() { 
+            // REMOVE
+            $(document).ready(function() {
+                Dropzone.options.myGreatDropzone = {
+                    addRemoveLinks: true,
+                    dictRemoveFile: 'Remove File',
+                    init: function() {
+                        this.on("success", function(file, response) {
+                            // Success event handling
+                        });
+            
+                        this.on("removedfile", function(file) {
+                            // Removed file event handling
+                        });
+                    }
+                };
+            
+                $("#dropZone button").on("click", function() {
+                    $("#my-great-dropzone").click();
+                });
+            });    
+            
+            $(document).ready(function() {
+                var myDropzone = new Dropzone("#my-great-dropzone", {
+                    url: "/file-upload", 
+                });
+            });
+         
+                
         }
     }
 
@@ -165,373 +244,119 @@ $(document).ready(function(){
         App.mobileArrow();
         App.navbarLinkDropdown();
         App.uploadImage();
+        App.uploadFile();
         App.formValidation();
+        App.removeDrag();
         App.sideCanvas.html("").append($.Mustache.render("side-nav"));
         App.navCanvas.html("").append($.Mustache.render("admin-nav"));
 
         // DASHBOARD
         Path.map('#/dashboard/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-dash"));
-            
-            $('#table-krono-dash').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = ['#table-birthday-celebration','#table-new-employee',];
+            $.each(tableID,function(i,item){
+                renderToDataTableDashboard(item);
+            })
         });
 
         // MASTER FILE
         Path.map('#/master-file/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-master-file"));
-            
-            $('#table-master-file').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-master-file';
+            renderToDataTablePrint(tableID);
         });
 
         // MASTER FILE / MODAL 
         Path.map('#/master-file-modal/').to(function(){
-            App.canvas.html("").append($.Mustache.render("krono-master-file-modal"));
             
-            $('#table-master-file-modal').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-employee-status').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-department').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-salary').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-rules').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-cost-center').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-dependents').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-allowance').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-loans').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-krono-documents').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            App.canvas.html("").append($.Mustache.render("krono-master-file-modal"));
+            var tableID = ['#table-master-file-modal','#table-krono-employee-status','#table-krono-department','#table-krono-salary','#table-krono-rules','#table-krono-cost-center','#table-krono-dependents','#table-krono-allowance','#table-krono-loans','#table-krono-documents',];
+            $.each(tableID,function(i,item){
+                renderToDataTable(item);
+            })
+            
         });
 
         // SCHEDULING
         Path.map('#/scheduling/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-scheduling"));
+            var tableID = ['#table-scheduling-listing','#table-scheduling-employee','#table-scheduling-group'];
+            $.each(tableID,function(i,item){
+                renderToDataTablePrint(item);
+            })
             
-            $('#table-scheduling-listing').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-scheduling-employee').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-scheduling-group').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
         });
 
         // REQUEST
         Path.map('#/timesheet/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-timesheet"));
-            
-            $('#table-timesheet-all').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
-
-            $('#table-timesheet-employee').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = ['#table-timesheet-all','#table-timesheet-employee'];
+            $.each(tableID,function(i,item){
+                renderToDataTablePrint(item);
+            })
         });
 
         Path.map('#/leave-absent/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-leave-absent"));
-            
-            $('#table-leave-absent').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-leave-absent';
+            renderToDataTablePrint(tableID);
         });
 
         Path.map('#/overtime/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-overtime"));
-            
-            $('#table-overtime').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-overtime';
+            renderToDataTablePrint(tableID);
         });
 
         Path.map('#/holiday-restday/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-holiday-restday"));
-            
-            $('#table-holiday-restday').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-holiday-restday';
+            renderToDataTablePrint(tableID);
         });
 
         Path.map('#/adjustment/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-adjustment"));
-            
-            $('#table-adjustment').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-adjustment';
+            renderToDataTablePrint(tableID);
         });
 
         // REPORT
         Path.map('#/import-dtr/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-import-dtr"));
-            
-            $('#table-import-dtr').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-import-dtr';
+            renderToDataTablePrint(tableID);
         });
 
         Path.map('#/time-summary/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-time-summary"));
-            
-            $('#table-time-summary').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-time-summary';
+            renderToDataTablePrint(tableID);
         });
 
         Path.map('#/time-logs/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-time-logs"));
-            
-            $('#table-time-logs').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-time-logs';
+            renderToDataTablePrint(tableID);
         });
 
         Path.map('#/time-logs-view/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-time-logs-view"));
-            
-            $('#table-time-logs-view').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-time-logs-view';
+            renderToDataTablePrint(tableID);
         });
 
         Path.map('#/event-logs/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-event-logs"));
-            
-            $('#table-event-logs').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-event-logs';
+            renderToDataTablePrint(tableID);
         });
 
         // SETTINGS
         Path.map('#/location/').to(function(){
             App.canvas.html("").append($.Mustache.render("krono-location"));
-            
-            $('#table-location').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                },
-                
-            });
+            var tableID = '#table-location';
+            renderToDataTablePrint(tableID);
+
         });
 
         // LOADING

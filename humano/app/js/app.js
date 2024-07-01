@@ -178,13 +178,13 @@ $(document).ready(function(){
 
         uploadImage: function() {
             $(document).ready(function () {
-                $('#tab_input_file').on('change', function (e) {
+                $('#tab-input-file').on('change', function (e) {
                     var file = e.target.files[0];
                     if (file) {
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             $('#preview_image').attr('src', e.target.result);
-                            $('#tab_img_view p').hide(); // Hide the "Image not available" text
+                            $('#tab-img-view p').hide(); // Hide the "Image not available" text
                         }
                         reader.readAsDataURL(file);
                     }
@@ -334,36 +334,12 @@ $(document).ready(function(){
                 totalemp : total
 			}			
             console.log(templateData);
-            App.canvas.html("").append($.Mustache.render("dash-container",templateData));
-            $('#table-birthday-celebration').DataTable({
-                "order": [[0, 'desc']],
-                "pageLength": 5,
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                },
-                "searching": false,
-                "lengthChange": false,
-            });
 
-            $('#table-new-employee').DataTable({
-                "order": [[0, 'desc']],
-                "pageLength": 5,
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                },
-                "searching": false,
-                "lengthChange": false,
-            });
+            App.canvas.html("").append($.Mustache.render("dash-container",templateData));
+            var tableID = ['#table-birthday-celebration','#table-new-employee',];
+            $.each(tableID,function(i,item){
+                renderToDataTableDashboard(item);
+            })
         });
 
         // MASTER FILE
@@ -393,7 +369,7 @@ $(document).ready(function(){
             
             App.canvas.html("").append($.Mustache.render("master",templateData));
             var tableID = '#table-master-file';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
             
 
             $("#table-master-file tbody").off("click", ".update-empnum-btn").on("click", ".update-empnum-btn",function(){
@@ -1154,16 +1130,8 @@ $(document).ready(function(){
         // RESUME
         Path.map('#/resume-application/').to(function(){
             App.canvas.html("").append($.Mustache.render("resume"));
-            $('#table-resume-aplication').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-resume-aplication';
+            renderToDataTablePrint(tableID);
         });
 
         // RESUME NEW BTN
@@ -1204,7 +1172,7 @@ $(document).ready(function(){
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("company-setup",templateData));
             var tableID = '#table-company-setup';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
             
 
             $("#new-settings-form").submit(function(e) {
@@ -1313,7 +1281,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("announcements",templateData));
             var tableID = '#table-announcement';
-            renderToDataTable(tableID); 
+            renderToDataTablePrint(tableID); 
             
             $("#addAnnouncement").submit(function(e){
                 e.preventDefault();
@@ -1418,7 +1386,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("cost-center",templateData));
             var tableID = '#table-cost-center';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $(document).off("submit", "#addCostCenter").on("submit", "#addCostCenter", function(e){
                 e.preventDefault();
@@ -1538,7 +1506,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("department",templateData));
             var tableID = '#table-department';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $("#new-department").submit(function(e){
                 e.preventDefault();
@@ -1635,7 +1603,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("education-level",templateData));
             var tableID ='#table-education-level';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $("#new-educ-level-form").submit(function(e) {
                 e.preventDefault();
@@ -1697,7 +1665,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("employment-status",templateData));
             var tableID = '#table-employment-status';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $("#new-empstatus-form").on("submit", function(e){
                 e.preventDefault();
@@ -1788,7 +1756,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("holiday",templateData));
             var tableID = '#table-holiday';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $(document).off("submit", "#new-holiday-form").on("submit", "#new-holiday-form",function(e){
                 e.preventDefault();
@@ -1904,7 +1872,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("leave-counts",templateData));
             tableID = '#table-leave-counts';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $(document).off("submit", "#new-leaveCount-form").on("submit", "#new-leaveCount-form", function(e){
                 e.preventDefault();
@@ -2043,7 +2011,7 @@ $(document).ready(function(){
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("location",templateData));
             tableID = '#table-location';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $(document).off("submit", "#location-form").on("submit", "#location-form",function(e){
                 e.preventDefault();
@@ -2153,7 +2121,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("overtime-type",templateData));
             tableID = "#table-overtime-type";
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $(document).off("submit", "#overtimeTypeForm").on("submit", "#overtimeTypeForm", function(e){
                 e.preventDefault();
@@ -2273,7 +2241,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("rest-day",templateData));
             var tableID = "#table-rest-day";
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $(document).off("submit", "#new-rest-form").on("submit", "#new-rest-form", function(e) {
                 e.preventDefault();
@@ -2381,7 +2349,7 @@ $(document).ready(function(){
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("rules",templateData));
             tableID = '#table-rules';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
             
             $(document).off("change",".selRule").on("change",".selRule",function(e){
                 e.preventDefault();
@@ -2483,7 +2451,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("shift",templateData));
             tableID = "#table-shift";
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $(document).off("submit", "#new-shift-form").on("submit", "#new-shift-form", function(e) {
                 e.preventDefault();
@@ -2585,7 +2553,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("memo",templateData));
             tableID = '#table-memo';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $("#newMemo").submit(function(){
                 var name = $("input[name=memoName]").val();
@@ -2667,7 +2635,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("certificate",templateData));
             tableID = '#table-certificate';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
 
             $("#newCertificate").submit(function(){
                 var name = $("input[name=certName]").val();
@@ -2748,7 +2716,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("request",templateData));
             tableID = '#table-request';
-            renderToDataTable(tableID);
+            renderToDataTablePrint(tableID);
         });
 
         Path.map('#/billing/').to(function(){
@@ -2756,6 +2724,11 @@ $(document).ready(function(){
             // App.canvas.html("").append($.Mustache.render("billings-list"));
             
             $('#table-unpaid-billing').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf', 'print'
+                ],
                 "language": {
                     "paginate": {
                         "first": "Start",
@@ -2767,6 +2740,11 @@ $(document).ready(function(){
             });
 
             $('#table-paid-billing').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf', 'print'
+                ],
                 "language": {
                     "paginate": {
                         "first": "Start",
@@ -2778,6 +2756,11 @@ $(document).ready(function(){
             });
 
             $('#table-billing-list').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf', 'print'
+                ],
                 "language": {
                     "paginate": {
                         "first": "Start",

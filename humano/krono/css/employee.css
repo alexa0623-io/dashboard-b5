@@ -101,6 +101,7 @@
 /* MASTER TAB USER */
 .tab-user{
     width: 40%;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 1px 4px;
 }
 
 .tab-user #tab-drop{
@@ -125,6 +126,10 @@
 .tab-user p{
     color: #898989;
     margin-top: 10px;
+}
+
+.tab-white{
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 1px 4px;    
 }
 
 /* GREEN BG PERSONAL DETAILS / INFO */
@@ -178,6 +183,12 @@
 .custom-select {
     color: #555555;
     font-size: 14px;
+}
+
+@media (max-width: 991px) {
+    .tab-user{
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {

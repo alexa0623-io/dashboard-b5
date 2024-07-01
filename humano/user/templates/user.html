@@ -36,26 +36,29 @@
                             <a class="nav-link px-2 py-2.5" aria-current="page" href="#/profile/">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/master-file/">Work Experience</a>
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/dependents/">Dependents</a>
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/work-experience/">Work Experience</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/master-file/">Education</a>
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/education/">Education</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link mrequest-btn d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link mconstruction-btn d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="flex items-center">
                                     <span class="group-hover:text-white">Under Construction</span>
                                 </div>
                                 <div>
-                                    <i id="mrequest-arrow" class="fa-solid fa-angle-down"></i>
+                                    <i id="mconstruction-arrow" class="fa-solid fa-angle-down"></i>
                                 </div>
                             </a>
                             <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Training & Development</a></li>
-                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Loans</a></li>
-                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Certificate</a></li>
-                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Memo</a></li>
-                                <li><a class="dropdown-item nav-drop py-2" href="#">○ Knowledge Based</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/timesheet/">○ Training & Development</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/leave-absent/">○ Loans</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/overtime/">○ Certificate</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/holiday-restday/">○ Memo</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/adjustment/">○ Knowledge Based</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -125,14 +128,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a id="request-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#request" aria-expanded="false" aria-control="request">
+                            <a id="construction-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#construction" aria-expanded="false" aria-control="construction">
                                 <div class="d-flex align-items-center">
                                     <i id="icon" class="fa-solid fa-gift"></i>
                                     <span class="">Under Construction</span>
                                 </div>
-                                <i id="request-arrow" class="fa-solid fa-angle-down"></i>
+                                <i id="construction-arrow" class="fa-solid fa-angle-down"></i>
                             </a>
-                            <ul id="request" class="sidebar-dropdown collapse rounded" data-bs-parent="#sidebar">
+                            <ul id="construction" class="sidebar-dropdown collapse rounded" data-bs-parent="#sidebar">
                                 <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Training & Development</a></li>
                                 <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Loans</a></li>
                                 <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Certificate</a></li>
@@ -194,43 +197,50 @@
             </div>
 
             <div id="d-table" class="row text-white fw-light">
-                <div class="col-lg-8 col-md-6 col-sm-12 mb-md-4 mb-3">
-                    <div class="h-100 w-100 bg-white rounded border">
+                <div class="col-xl-8 col-12 mb-md-4 mb-3">
+                    <div class="h-100 w-100 bg-white mb-md-4 mb-4 rounded border">
                         <div class="bg1 card-header rounded-top">
                             <p class="h-100 d-flex align-items-center mx-3">Birthday Celebrants</p>
                         </div>
-                        <div id="dash-table" class="mx-3 mt-md-2 mt-0 table-responsive">
-                            <table class="table w-full" id="table-birthday-celebration" style="width: 100%;">
-                                <thead class="table-light border-b border-black">
+
+                        <div id="dash-table" class="mx-3 mt-md-1 mt-0 pt-3">
+                            <table class="table w-100" id="table-birthday-celebration">
+                                <thead class="table-light border-b border-black align-middle text-nowrap">
                                     <tr>
-                                        <th scope="col" class="px-3">Birthday</th>
-                                        <th scope="col" class="px-3 text-nowrap">Employee #</th>
-                                        <th scope="col" class="px-3">Name</th>
-                                        <th scope="col" class="px-3">Department</th>
-                                        <th scope="col" class="px-3">Age</th>
+                                        <th scope="col">Birthday</th>
+                                        <th scope="col">Employee #</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Age</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-nowrap">
                                     <tr class="border-b">
-                                        <td class="px-3 text-nowrap"></td>
-                                        <td class="px-3 text-nowrap"></td>
-                                        <td class="px-3 text-nowrap"></td>
-                                        <td class="px-3 text-nowrap"></td>
-                                        <td class="px-3 text-nowrap"></td>
-                                    </tr>   
+                                        <td class=""></td>
+                                        <td class=""></td>
+                                        <td class=""></td>
+                                        <td class=""></td>
+                                        <td class=""></td>
+                                    </tr>
                                 </tbody>
                             </table>
-                        </div>  
-                    </div>
+                        </div>
+                    </div>  
                 </div>
 
                 <!-- CALENDAR -->
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-4 mb-3">
+                <div class="col-xl-4 col-12 mb-md-4 mb-3">
                     <div class="border rounded bg-white md:h-100 h-auto">
                         <div class="bg1 card-header rounded-top ">
                             <p class="h-100 d-flex align-items-center px-3 fw-medium">Calendar</p>
                         </div>  
 
+                        
+                        <!-- <div class="">
+                            <div id="calendar" class="custom-day-header">
+
+                            </div>
+                        </div> -->
                         <div id="cal" class="w-full mt-1">
                             <div>
                                 <div id="month" class="d-flex align-items-center justify-content-between text-black">
@@ -238,7 +248,7 @@
                                     <span>March 2024</span>    
                                     <i class="fa-solid fa-chevron-right text-[#107A71] text-sm"></i>
                                 </div>
-                                <div class="w-full flex justify-center text-center px-1">
+                                <div class="w-full flex justify-center text-center px-1 text-nowrap">
                                     <table class="w-100">
                                         <thead>
                                             <tr>
@@ -317,36 +327,37 @@
 
             <!-- New Employee -->
             <div id="d-table" class="row text-white fw-light">
-                <div class="col-lg-8 col-md-6 col-sm-12 mb-md-4 mb-3">
-                    <div class="h-100 w-100 bg-white rounded border">
+                <div class="col-xl-8 col-12 mb-md-4 mb-3">
+                    <div class="h-100 w-100 bg-white mb-md-4 mb-4 rounded border">
                         <div class="bg1 card-header rounded-top">
                             <p class="h-100 d-flex align-items-center mx-3">New Employee</p>
                         </div>
-                        <div id="dash-table" class="mx-3 mt-md-2 mt-0 table-responsive">
-                            <table class="table w-full" id="table-new-employee" style="width: 100%;">
-                                <thead class="table-light border-b border-black">
+
+                        <div id="dash-table" class="mx-3 mt-md-1 mt-0 pt-3">
+                            <table class="table w-100" id="table-new-employee">
+                                <thead class="table-light border-b border-black align-middle text-nowrap">
                                     <tr>
-                                        <th scope="col" class="px-4">#</th>
-                                        <th scope="col" class="px-4 text-nowrap">Employee #</th>
-                                        <th scope="col" class="px-5">Name</th>
-                                        <th scope="col" class="px-4">Date Hired</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Employee #</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Date Hired</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-nowrap">
                                     <tr class="border-b">
-                                        <td class="px-4 text-nowrap"></td>
-                                        <td class="px-4 text-nowrap"></td>
-                                        <td class="px-5 text-nowrap"></td>
-                                        <td class="px-4 text-nowrap"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>  
+                        </div>
                     </div>  
                 </div>
 
                 <!-- Department -->
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-4 mb-2">
+                <div class="col-xl-4 col-12 mb-md-4 mb-3">
                     <div class="border rounded bg-white md:h-100 h-auto">
                         <div class="bg3 card-header rounded-top ">
                             <p class="h-100 d-flex align-items-center px-3 fw-medium">Department</p>
@@ -386,7 +397,7 @@
                                         <td class="px-1 md:px-0 py-2 fs-6">TOTAL :</td>
                                         <td class="px-1 md:px-0 py-2 text-center fs-4" style="color: #107A71;">60</td>
                                     </tr>
-                                </table>
+                                </table>    
                             </div>
                         </div>
                     </div>
@@ -862,13 +873,13 @@
                                 </thead>
                                 <tbody class="align-middle">
                                     <tr>
-                                        <td></td>
+                                        <td class="text-nowrap"></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td class="text-md-start text-end">
-                                            <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
+                                            <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
                                         </td>   
                                     </tr>
                                 </tbody>
@@ -1043,13 +1054,13 @@
                                 </thead>
                                 <tbody class="align-middle">
                                     <tr>
-                                        <td></td>
+                                        <td class="text-nowrap"></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td class="text-md-start text-end">
-                                            <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
+                                            <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
                                         </td>   
                                     </tr>
                                 </tbody>
@@ -1218,13 +1229,13 @@
                                 </thead>
                                 <tbody class="align-middle">
                                     <tr>
-                                        <td></td>
+                                        <td class="text-nowrap"></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td class="text-md-start text-end">
-                                            <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
+                                            <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
                                         </td>   
                                     </tr>
                                 </tbody>
