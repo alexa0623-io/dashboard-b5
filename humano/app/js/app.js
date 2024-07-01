@@ -772,6 +772,16 @@ $(document).ready(function(){
                 deptOptList.push(deptOption);
             });
 
+            var frequencyOptions = getJSONDoc(App.api + "/employee/salary/frequency/get/");
+                var frequencyList = [];
+                $.each(frequencyOptions,function(i,item){
+                    var frequency = {
+                        frequencyUid:item.frequencyUid,
+                        frequencyName:item.frequencyName
+                    }
+                    frequencyList.push(frequency);
+                });
+
             var templateData = {
                 taxStatusList:taxStatusList,
                 nationalList:nationalList,
@@ -784,7 +794,8 @@ $(document).ready(function(){
                 educbackgroundList:educbackgroundList,
                 workExperienceList:workExperienceList,
                 statusOptList:statusOptList,
-                deptOptList:deptOptList
+                deptOptList:deptOptList,
+                frequencyList:frequencyList
             }
 
             console.log(templateData);
@@ -1073,70 +1084,67 @@ $(document).ready(function(){
                 var uid = dataIndex[0];
                 var salaryUid = dataIndex[1];
 
-                // $.getJSON(App.api + "/salary/details/get/" + salaryUid + "." + App.token, function(data) {
-                //     console.log(data);
-                //     if (data.status == 1) {
-                //         $("input[name='status']").prop("checked", true);
-                //     } else {
-                //         $("input[name='status']").prop("checked", false);
-                //     }
+                $.getJSON(App.api + "/salary/details/get/" + salaryUid + "." + App.token, function(data) {
+                    console.log(data);
+                    if (data.status == 1) {
+                        $("input[name='status']").prop("checked", true);
+                    } else {
+                        $("input[name='status']").prop("checked", false);
+                    }
 
-                //     $("input[name=employeeSalaryBaseSalaryEdit]").val(data.baseSalary);
-                //     localStorage.setItem("frequencyUid", data.frequencyUid);
-                // });
+                    $("input[name=employee-salary-base-salary-edit]").val(data.baseSalary);
+                    $("select[name=pay-period-edit]").val(data.frequencyUid);
+                });
 
-                // function getFrequency() {
-                //     $("#employeeSalaryFrequencyEdit").find("option").remove();
-                //     $.getJSON(App.api + "/employee/salary/frequency/get/", function(data) {
-                //         var frequencyUid1 = localStorage.getItem("frequencyUid");
-                //         $.each(data, function(i, item) {
-                //             if (item.frequencyUid == frequencyUid1) {
-                //                 $("#employeeSalaryFrequencyEdit").append("<option value=" + item.frequencyUid + " selected>" + item.frequencyName + "</option>");
-                //             } else {
-                //                 $("#employeeSalaryFrequencyEdit").append("<option value=" + item.frequencyUid + " >" + item.frequencyName + "</option>");
-                //             }
-                //         });
-                //     })
-                // }
-                // getFrequency();
-
-                // $(document).off("submit", "#editSalaryForm").on("submit", "#editSalaryForm", function(e) {
-                //     e.preventDefault();
-                //     localStorage.removeItem("frequencyUid");
-                //     // var payGradeUid = $("select[name=employeeSalaryPayGrade]").val();
-                //     // var currencyUid = $("select[name=employeeSalaryCurrency]").val();
-                //     var baseSalary = $("input[name=employeeSalaryBaseSalaryEdit]").val();
-                //     var payPeriodUid = $("select[name=employeeSalaryFrequencyEdit]").val();
-                //     var status = 0;
-                //     if ($("[name='status']").is(":checked")) {
-                //         status = 1;
-                //     }
-
-                //     if(!baseSalary || !payPeriodUid){
-                //         alert("Please Fill All The Fields!");
-                //     }else{
-                //         $.ajax({
-                //             type: "POST",
-                //             url: App.api + "/employee/salary/update/" + salaryUid + "." + App.token,
-                //             data: {
-                //                 uid: uid,
-                //                 baseSalary: baseSalary,
-                //                 payPeriodUid: payPeriodUid,
-                //                 status: status
-                //             },
-                //             beforeSend: function(){
-                //                 $(".pLoading").show();      
-                //             },
-                //             success: function(data) {
-                //                 $(".pLoading").hide();      
-                //                 alert("Successfully Updated!");
-                //                 $("#salaryEdit").modal("toggle");
-                //                 //getEmployeeSalaryPages();
-                //             }
-                //         });
-                //     }
-                // });
+                $(document).off("submit", "#editSalaryForm").on("submit", "#editSalaryForm", function(e) {
+                    e.preventDefault();
+                    var baseSalary = $("input[name=employee-salary-base-salary-edit]").val();
+                    var payPeriodUid = $("select[name=pay-period-edit]").val();
+                    var status = 0;
+                    if ($("[name='status']").is(":checked")) {
+                        status = 1;
+                    }
+                    console.log(baseSalary+" "+payPeriodUid+" "+status);
+                    if(!baseSalary || !payPeriodUid){
+                        alert("Please Fill All The Fields!");
+                    }
+                    else{
+                        $.ajax({
+                            type: "POST",
+                            url: App.api + "/employee/salary/update/" + salaryUid + "." + App.token,
+                            data: {
+                                uid: uid,
+                                baseSalary: baseSalary,
+                                payPeriodUid: payPeriodUid,
+                                status: status
+                            },
+                            success: function(data) {  
+                                alert("Successfully Updated!");
+                                $("#edit-salary").modal("toggle");
+                                employeeSalary(empUid)
+                            }
+                        });
+                    }
+                });
             });
+            function employeeSalary(empUid){
+                $.getJSON(App.api + "/employee/salary/get/" + empUid + "." + App.token, function(data){
+                    $.each(data,function(i,item){
+                        $("#td-baseSalary").text(item.baseSalary);
+                        $("#td-payPeriodUid").text(item.payPeriodUid);
+                        $("#editSalbtn").attr('data-salary-uid',empUid+"."+item.salaryUid);
+                    });
+                });
+            }
+            //Salary End
+
+            //Rule Assignment Start
+            $("#table-rules tbody").on("click","td .edit-btn",function(e){
+                e.preventDefault();
+                var uid = $(this).attr("data-uid");
+                console.log(uid);
+            });
+            //Rule Assignment End
         });
 
         Path.map('#/trial/employment/status/:empUid').to(function(){
@@ -2786,5 +2794,6 @@ $(document).ready(function(){
         Path.listen();
     });
 });
+
 
 
