@@ -261,40 +261,41 @@
             </div>
 
             <div id="d-table" class="row text-white fw-light">
-                <div class="col-lg-8 col-md-6 col-sm-12 mb-md-4 mb-3">
-                    <div class="h-100 w-100 bg-white rounded border">
+                <div class="col-xl-8 col-12 mb-md-4 mb-3">
+                    <div class="h-100 w-100 bg-white mb-md-4 mb-4 rounded border">
                         <div class="bg1 card-header rounded-top">
                             <p class="h-100 d-flex align-items-center mx-3">Birthday Celebrants</p>
                         </div>
-                        <div id="dash-table" class="mx-3 mt-md-2 mt-0 table-responsive">
-                            <table class="table w-full" id="table-birthday-celebration" style="width: 100%;">
-                                <thead class="table-light border-b border-black">
+
+                        <div id="dash-table" class="mx-3 mt-md-1 mt-0 pt-3">
+                            <table class="table w-100" id="table-birthday-celebration">
+                                <thead class="table-light border-b border-black align-middle text-nowrap">
                                     <tr>
-                                        <th scope="col" class="px-3">Birthday</th>
-                                        <th scope="col" class="px-3 text-nowrap">Employee #</th>
-                                        <th scope="col" class="px-3">Name</th>
-                                        <th scope="col" class="px-3">Department</th>
-                                        <th scope="col" class="px-3">Age</th>
+                                        <th scope="col">Birthday</th>
+                                        <th scope="col">Employee #</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Age</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-nowrap">
                                     {{#birthday}}
                                     <tr class="border-b">
-                                        <td class="px-3 text-nowrap">{{birthday}}</td>
-                                        <td class="px-3 text-nowrap">{{empNo}}</td>
-                                        <td class="px-3 text-nowrap">{{name}}</td>
-                                        <td class="px-3 text-nowrap">{{department}}</td>
-                                        <td class="px-3 text-nowrap">{{age}}</td>
+                                        <td class="">{{birthday}}</td>
+                                        <td class="">{{empNo}}</td>
+                                        <td class="">{{name}}</td>
+                                        <td class="">{{department}}</td>
+                                        <td class="">{{age}}</td>
                                     </tr>
                                     {{/birthday}}
                                 </tbody>
                             </table>
-                        </div>  
-                    </div>
+                        </div>
+                    </div>  
                 </div>
 
                 <!-- CALENDAR -->
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-4 mb-3">
+                <div class="col-xl-4 col-12 mb-md-4 mb-3">
                     <div class="border rounded bg-white md:h-100 h-auto">
                         <div class="bg1 card-header rounded-top ">
                             <p class="h-100 d-flex align-items-center px-3 fw-medium">Calendar</p>
@@ -313,7 +314,7 @@
                                     <span>March 2024</span>    
                                     <i class="fa-solid fa-chevron-right text-[#107A71] text-sm"></i>
                                 </div>
-                                <div class="w-full flex justify-center text-center px-1">
+                                <div class="w-full flex justify-center text-center px-1 text-nowrap">
                                     <table class="w-100">
                                         <thead>
                                             <tr>
@@ -392,38 +393,39 @@
 
             <!-- New Employee -->
             <div id="d-table" class="row text-white fw-light">
-                <div class="col-lg-8 col-md-6 col-sm-12 mb-md-4 mb-3">
-                    <div class="h-100 w-100 bg-white rounded border">
+                <div class="col-xl-8 col-12 mb-md-4 mb-3">
+                    <div class="h-100 w-100 bg-white mb-md-4 mb-4 rounded border">
                         <div class="bg1 card-header rounded-top">
                             <p class="h-100 d-flex align-items-center mx-3">New Employee</p>
                         </div>
-                        <div id="dash-table" class="mx-3 mt-md-2 mt-0 table-responsive">
-                            <table class="table w-full" id="table-new-employee" style="width: 100%;">
-                                <thead class="table-light border-b border-black">
+
+                        <div id="dash-table" class="mx-3 mt-md-1 mt-0 pt-3">
+                            <table class="table w-100" id="table-new-employee">
+                                <thead class="table-light border-b border-black align-middle text-nowrap">
                                     <tr>
-                                        <th scope="col" class="px-4">#</th>
-                                        <th scope="col" class="px-4 text-nowrap">Employee #</th>
-                                        <th scope="col" class="px-5">Name</th>
-                                        <th scope="col" class="px-4">Date Hired</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Employee #</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Date Hired</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-nowrap">
                                     {{#newemployee}}
-                                        <tr class="border-b">
-                                            <td class="px-4 text-nowrap">{{count}}</td>
-                                            <td class="px-4 text-nowrap">{{empNo}}</td>
-                                            <td class="px-5 text-nowrap">{{name}}</td>
-                                            <td class="px-4 text-nowrap">{{datehired}}</td>
-                                        </tr>
+                                    <tr class="border-b">
+                                        <td>{{count}}</td>
+                                        <td>{{empNo}}</td>
+                                        <td>{{name}}</td>
+                                        <td>{{datehired}}</td>
+                                    </tr>
                                     {{/newemployee}}
                                 </tbody>
                             </table>
-                        </div>  
+                        </div>
                     </div>  
                 </div>
 
                 <!-- Department -->
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-4 mb-2">
+                <div class="col-xl-4 col-12 mb-md-4 mb-3">
                     <div class="border rounded bg-white md:h-100 h-auto">
                         <div class="bg3 card-header rounded-top ">
                             <p class="h-100 d-flex align-items-center px-3 fw-medium">Department</p>
@@ -439,7 +441,7 @@
                                     {{/empcount}}
                                     <tr class="text-end fw-medium">
                                         <td class="px-1 md:px-0 py-2 fs-6">TOTAL :</td>
-                                        <td class="px-1 md:px-0 py-2 text-center fs-4" style="color: #107A71;">{{totalemp}}</td>
+                                        <td class="px-md:px-0 py-2 text-center fs-4" style="color: #107A71;">{{totalemp}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -447,7 +449,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </script>
@@ -550,7 +551,7 @@
             <!-- TABLE -->
             <div class="px-md-4 px-3 py-5">
                 <div id="m-table" class="table-responsive">
-                    <table class="table mt-2" id="table-master-file" style="width: 100%;">
+                    <table class="table w-100 mt-2" id="table-master-file">
                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
                             <tr>
                                 <th>#</th>
@@ -565,20 +566,20 @@
                         <tbody class="align-middle">
                             {{#employeesList}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{empNo}}</td>
                                 <td>{{empName}}</td>
                                 <td>{{costcenter}}</td>
                                 <td>{{access}}</td>
                                 <td>{{rule}}</td>
                                 <td class="text-nowrap"> 
-                                    <button class="action1 btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-employee">
+                                    <button class="edit-btn btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-employee">
                                         <i class="fa-solid fa-hashtag"></i>
                                     </button> 
                                     <a href="#/master-file-modal-name/" class="action1 btn btn-outline-success">
                                         <i class="fa-solid fa-address-card"></i>
                                     </a> 
-                                    <button class="action1 btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-access">
+                                    <button class="edit-btn btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-access">
                                         <i class="fa-solid fa-shield"></i>
                                     </button> 
                                 </td>
@@ -672,18 +673,11 @@
     </div>
 </script>
 
-
 <!-- MASTER MODAL CARD ICON  -->
 <script type="text/html" id="master-file-modal-name">
     <div class="back-main h-100 pt-2">
-        <!-- <div class="employee-details fw-medium">
-            <a href="#/master-file/" class="d-flex align-items-center gap-3">
-                <i class="fa-solid fa-angles-left resu-new-btn"></i>
-                <span>EMPLOYEE / PERSONAL DETAILS</span>
-            </a>        
-        </div> -->
-
         <div class="master-modal-back-main">
+            
             <!-- Nav Pills -->
             <!-- <div class="master-nav d-flex gap-3  rounded-2 mb-3 align-items-center"> -->
                 <ul class="master-nav nav nav-pills w-100 gap-3 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
@@ -741,26 +735,43 @@
                         </a>        
                     </div>
                     <div class="d-flex flex-lg-row flex-column gap-3">
-                        <div class="tab-user h-25 d-flex flex-column justify-content-center rounded bg-white px-3 py-md-4 py-3">
-                            <!-- <form action="/upload" method="post" class="mb-3">
-                                <label for="tab_input_file" id="tab_drop" class="w-100 rounded-2 d-flex align-items-center justify-content-center">
-                                    <input type="file" accept="image/*" id="tab_input_file" name="image" hidden>
-                                    <div id="tab_img_view" class="d-flex flex-column justify-content-center align-items-center text-center">
-                                        <img id="preview_image" src="/static/img/user-solid.png" alt="">
-                                        <p>Image not available</p>
-                                    </div>
-                                </label>
-                            </form> -->
+                        <div class="tab-user h-25 d-flex flex-column justify-content-center rounded bg-white p-3">
                             <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2 mb-3">
-                                <i class="fa-solid fa-user"></i>
-                                <p>Image not available</p>
+                                <i id="tab-icon" class="fa-solid fa-user"></i>
+                                <p id="tab-text">Image not available</p>
                             </div>
-                            
-                            <button class="change-pro mb-2 rounded">Change Profile</button>
+            
+                            <!-- BUTTON -->
+                            <button type="button" class="change-pro mb-2 rounded" data-bs-toggle="modal" data-bs-target="#changeProfile">
+                                Change Profile
+                            </button>
                             <!-- <button class="change-pass py-md-3 py-2 rounded">Change Password</button> -->
-                            <button type="button" class="change-pass rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="change-pass rounded" data-bs-toggle="modal" data-bs-target="#changePassword">
                                 Change Password
                             </button>
+                        </div>
+            
+                        <!-- MODAL -->
+                        <!-- Change Profile Modal -->
+                        <div class="modal fade" id="changeProfile" tabindex="-1" aria-labelledby="changeProfile" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                        <p class="modal-title" id="changeProfile">Upload Profile Picture</p>
+                                        <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                    </div>
+                                    <div class="body-modal p-3 py-4">
+                                        <input type="file" id="tab-input-file" accept="image/*" class="form-control">
+                                    </div>
+                                    
+                                    <!-- BUTTON -->
+                                    <div class="">
+                                        <div class="w-100 d-flex justify-content-end gap-2 border-top px-3 py-2">
+                                            <button class="btn btn-success w-25" type="submit" id="savePhoto">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
     
                         <!-- Modal -->
@@ -805,7 +816,7 @@
                         </div>
     
                         <!-- </div> -->
-                        <div class="w-100" style="height: 70vh;">
+                        <div class="tab-white w-100" style="height: 70vh;">
                             <label class="tab-personal w-100 rounded-top fw-medium p-3 px-md-4 px-3">Personal Information</label>
                             <div class="bg-white">
                                 <form class="g-md-4 g-3">
@@ -2184,39 +2195,24 @@
                 <span class="fw-medium">Resume and Applicants</span>
                 <a href="#/resume-button/" class="new-resume rounded border-0 text-white">New</a>
             </div> 
-            
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
-                                <p class="modal-title" id="exampleModalLabel">New Employee</p>
-                                <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
-                            </div>
-    
-                            <div class="body-modal">
-                                <form class="row my-1 needs-validation" novalidate>
-                                    <div class="modal-body-info">
-                                        <div class="">
-                                            <label for="validationCustom01" class="form-label">Firstname</label>
-                                            <input type="text" class="form-control input" id="validationCustom01" required>
-                                            <div class="invalid-feedback">
-                                                Please fill this up.
-                                            </div>
-                                        </div>
-                                        <div class="mt-3">
-                                            <label for="validationCustom01" class="form-label">Middlename</label>
-                                            <input type="text" class="form-control input" id="validationCustom01" required>
-                                            <div class="invalid-feedback">
-                                                Please fill this up.
-                                            </div>
-                                        </div>
-                                        <div class="mt-3">
-                                            <label for="validationCustom01" class="form-label">Lastname</label>
-                                            <input type="text" class="form-control input" id="validationCustom01" required>
-                                            <div class="invalid-feedback">
-                                                Please fill this up.
-                                            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="header_modal d-flex justify-content-between align-items-center border-bottom">
+                            <p class="modal-title" id="exampleModalLabel">New Employee</p>
+                            <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                        </div>
+
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" novalidate>
+                                <div class="modal-body-info">
+                                    <div class="">
+                                        <label for="validationCustom01" class="form-label">Firstname</label>
+                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                        <div class="invalid-feedback">
+                                            Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
@@ -2234,16 +2230,30 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                Button
-                                <div class="button-modal">
-                                    <div class="w-100 d-flex justify-content-end gap-2 border-top">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button class="btn btn-success bg-blue" type="submit">Save</button>
+                                <div class="mt-3">
+                                    <label for="validationCustom01" class="form-label">Middlename</label>
+                                    <input type="text" class="form-control input" id="validationCustom01" required>
+                                    <div class="invalid-feedback">
+                                        Please fill this up.
                                     </div>
                                 </div>
-                            </form> 
-                        </div>
+                                <div class="mt-3">
+                                    <label for="validationCustom01" class="form-label">Lastname</label>
+                                    <input type="text" class="form-control input" id="validationCustom01" required>
+                                    <div class="invalid-feedback">
+                                        Please fill this up.
+                                    </div>
+                                </div>
+                            </div>
+
+                            Button
+                            <div class="button-modal">
+                                <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-success bg-blue" type="submit">Save</button>
+                                </div>
+                            </div>
+                        </form> 
                     </div>
                 </div>
             </div>
@@ -2251,7 +2261,7 @@
             <!-- TABLE -->
             <div class="px-md-4 px-3 py-5">
                 <div id="m-table" class="table-responsive">
-                    <table class="table mt-2" id="table-resume-aplication" style="width: 100%;">
+                    <table class="table w-100 mt-2" id="table-resume-aplication">
                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
                             <tr>
                                 <th>#</th>
@@ -2266,24 +2276,25 @@
                         </thead>
                         <tbody class="align-middle">
                             <tr>
-                                <td>1</td>
+                                <td class="text-nowrap">1</td>
                                 <td>John Doe</td>
                                 <td>BSIT</td>
                                 <td>ABC University</td>
-                                <td>Employee</td>
+                                <td>Employee</td> 
                                 <td>Accepted</td>
                                 <td>2024-05-16</td>
                                 <td> 
-                                    <a href="#/resume-button/" class="action1 btn btn-outline-success"><i class="fa-solid fa-wrench"></i></a>
+                                    <a href="#/resume-button/" class="edit-btn btn btn-outline-success"><i class="fa-solid fa-wrench"></i></a>
                                 </td>  
                             </tr>
                         </tbody>
-                    </table>    
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </script>
+
 
 <!-- RESUME NEW BTN -->
 <script type="text/html" id="resume-btn">
@@ -2411,12 +2422,12 @@
                         <tbody class="align-middle">
                             {{#companySetup}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{items}}</td>
                                 <td>{{content}}</td>
                                 <td>{{status}}</td>
                                 <td> 
-                                    <button class="edit-settings btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#editSettings" data-id="{{uid}}">Edit</button>   
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#editSettings" data-id="{{uid}}">Edit</button>   
                                 </td>  
                             </tr>
                             {{/companySetup}}
@@ -2542,15 +2553,19 @@
                         <tbody class="align-middle">
                             {{#announcements}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{content}}</td>
                                 <td>{{date}}</td>
-                                <td class="action">
+                                <!-- <td class="action">
                                     <div class="d-flex gap-2">
                                         <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-index="{{announceuid}}">Edit</button>       
-                                        <button class="delete-btn btn btn-outline-danger" data-index="{{announceuid}}" data-bs-target="#announcement-delete" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close">Delete</button>   
+                                        <button class="edit-btn btn btn-outline-danger" data-index="{{announceuid}}" data-bs-target="#announcement-delete" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close">Delete</button>   
                                     </div>
-                                </td>   
+                                </td>    -->
+                                <td class="text-nowrap"> 
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-index="{{announceuid}}">Edit</button>       
+                                    <button class="edit-btn btn btn-outline-danger" data-index="{{announceuid}}" data-bs-target="#announcement-delete" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close">Delete</button>
+                                </td>
                             </tr>
                             {{/announcements}}
                         </tbody>
@@ -2702,7 +2717,7 @@
                         <tbody class="align-middle">
                             {{#costCenterList}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{costcentername}}</td>
                                 <td>{{costcenterdesc}}</td>
                                 <td>{{payperiod}}</td>
@@ -2771,8 +2786,8 @@
                                         <!-- Button -->
                                         <div class="button-modal">
                                             <div class="w-100 d-flex justify-content-end gap-2 border-top">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button class="btn btn-success bg-blue" type="submit">Update</button>
+                                                <button type="button" class="edit-btn btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <button class="edit-btn btn btn-success bg-blue" type="submit">Update</button>
                                             </div>
                                         </div>
                                     </form> 
@@ -2844,11 +2859,11 @@
                         <tbody class="align-middle">
                             {{#departments}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{deptname}}</td>
                                 <td>{{status}}</td>
                                 <td>
-                                    <button class="edit-btn-department btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-index="{{deptuid}}">Edit</button> 
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-index="{{deptuid}}">Edit</button> 
                                 </td>   
                             </tr>
                             {{/departments}}
@@ -2957,11 +2972,11 @@
                         <tbody class="align-middle">
                             {{#levelTable}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{level}}</td>
                                 <td>{{status}}</td>
                                 <td>
-                                    <button class="edit-btn-level btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-uid="{{leveluid}}">Edit</button>   
+                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-uid="{{leveluid}}">Edit</button>   
                                 </td>   
                             </tr>
                             {{/levelTable}}
@@ -3065,7 +3080,7 @@
                         <tbody class="align-middle">
                             {{#empstatusList}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{statusname}}</td>
                                 <td>
                                     <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-uid="{{statusuid}}">Edit</button>   
@@ -3206,7 +3221,7 @@
                         <tbody class="align-middle">
                             {{#holidayLists}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{holidayName}}</td>
                                 <td>{{holidayDate}}</td>
                                 <td>
@@ -3401,7 +3416,7 @@
                         <tbody class="align-middle">
                             {{#leaveCountsList}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{empNo}}</td>
                                 <td>{{empName}}</td>
                                 <td>{{SL}}</td>
@@ -3583,7 +3598,7 @@
                         <tbody class="align-middle">
                             {{#locationsList}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{name}}</td>
                                 <td>{{fingerprint}}</td>
                                 <td>
@@ -3749,7 +3764,7 @@
                         <tbody class="align-middle">
                             {{#overtimeTypeLists}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{name}}</td>
                                 <td>{{kind}}</td>
                                 <td>{{code}}</td>
@@ -4014,7 +4029,7 @@
                         <tbody class="align-middle">
                             {{#rulesById}}
                             <tr>
-                                <td>{{day}}</td>
+                                <td class="text-nowrap">{{day}}</td>
                                 <td>{{shift}}</td>
                                 <td>
                                     <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-uid="{{ruleUid}}" aria-label="Close" data-bs-target="#edit-modal">Edit</button>  
@@ -4178,7 +4193,7 @@
                         <tbody class="align-middle">
                             {{#shiftsList}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{shiftName}}</td>
                                 <td>{{shiftFrom}}</td>
                                 <td>{{shiftTo}}</td>
@@ -4332,12 +4347,12 @@
                         <tbody class="align-middle">
                             {{#memosList}}
                             <tr>
-                                <td>{{number}}</td>
+                                <td class="text-nowrap">{{number}}</td>
                                 <td>{{memoName}}</td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-uid="{{memoUid}}">Edit</button>       
-                                        <button class="delete-btn btn btn-outline-danger" data-uid="{{memoUid}}" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#memo-delete">Delete</button>   
+                                        <button class="edit-btn btn btn-outline-danger" data-uid="{{memoUid}}" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#memo-delete">Delete</button>   
                                     </div>                                
                                 </td>   
                             </tr>
@@ -4460,20 +4475,20 @@
                     <table class="table mt-2" id="table-certificate" style="width: 100%;">
                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
                             <tr class="">
-                                <th class="px-5">#</th>
-                                <th class="px-5">Name</th>
+                                <th>#</th>
+                                <th>Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
                             {{#certificateList}}
                             <tr>
-                                <td class="px-5">{{number}}</td>
-                                <td class="px-5">{{certName}}</td>
+                                <td class="text-nowrap">{{number}}</td>
+                                <td>{{certName}}</td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal" data-uid="{{certUid}}">Edit</button>       
-                                        <button class="delete-btn btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#certificate-delete" data-uid="{{certUid}}">Delete</button>   
+                                        <button class="edit-btn btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#certificate-delete" data-uid="{{certUid}}">Delete</button>   
                                     </div>                                
                                 </td>   
                             </tr>

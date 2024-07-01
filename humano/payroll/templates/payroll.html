@@ -1,0 +1,490 @@
+
+<script type="text/template" id="admin-nav">
+    <!-- HEADER -->
+    <div class="w-100">
+        <div class="d-none d-md-block ">    
+            <div id="head" class="d-flex justify-content-between align-items-center text-white p-4">
+                <div id="toggle-sidebar" style="cursor: pointer;">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div style="cursor: pointer;">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile View -->
+    <div class="d-block d-md-none w-100 sticky-top">
+        <nav id="logo-nav" class="navbar navbar-expand-xl navbar-light">
+            <div class="w-100">
+                <div id="logo-toggle" class="h-100 d-flex justify-content-between align-items-center">
+                    <div class="logo">
+                        <img src="/static/img/logo.png" style="height: 7vh;">
+                    </div>
+                    <button class="navbar-toggler border px-3 py-2 rounded text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul id="mobile-btn"  class="navbar-nav me-auto mb-2 mb-lg-0 mt-3">
+                        <li class="nav-item">
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/dashboard/">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/master-file/">Master file</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/scheduling/">Scheduling</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link mrequest-btn d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="flex items-center">
+                                    <span class="group-hover:text-white">Request</span>
+                                </div>
+                                <div>
+                                    <i id="mrequest-arrow" class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item nav-drop py-2" href="#/timesheet/">○ Timesheet</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/leave-absent/">○ Leave / Absent</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/overtime/">○ Overtime</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/holiday-restday/">○ Holiday & Restday</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/adjustment/">○ Adjustment</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link mreport-btn d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="flex items-center">
+                                    <span class="group-hover:text-white">Report</span>
+                                </div>
+                                <div>
+                                    <i id="mreport-arrow" class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item nav-drop py-2" href="#/import-dtr/">○ Import DTR</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/time-summary/">○ Timekeeping Summary</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/time-logs/">○ Timekeeping Logs</a></li>
+                                <li><a class="dropdown-item nav-drop py-2" href="#/event-logs/">○ Event Logs</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link msetting-btn d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="flex items-center">
+                                    <span class="group-hover:text-white">Settings</span>
+                                </div>
+                                <div>
+                                    <i id="msetting-arrow" class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item nav-drop py-2" href="#/location/">○ Location</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <hr class="my-3">
+                    <button class="logout d-flex align-items-center gap-2 mb-2 mx-2" type="button">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <div class="align-self-center">Logout</div>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</script>
+
+<!-- Desktop View (SIDEBAR)-->
+<script type="text/html" id="side-nav" class="">
+    <div class="d-none d-md-block">
+        <div id="side-header" class="d-flex justify-content-center align-items-center"> 
+            <img src="/static/img/logo.png">
+        </div>
+
+        <!-- Sidebar Content -->
+        <div class="side-scroll">
+            <div id="side-btn">
+                <!-- Sidebar user -->
+                <div id="side-user">
+                    <div class="d-flex flex-column align-items-center">
+                        <div id="side-circle" class="d-flex align-items-center justify-content-center rounded-circle">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <p class="mt-2">John Doe</p>
+                    </div>
+                    <hr class="mx-3">
+                </div>
+
+                <!-- Sidebar menu --> 
+                <div class="h-full">
+                    <ul id="side-menu" class="navbar-nav me-auto mb-2 px-2">
+                        <li>
+                            <a href="#/dashboard/" class="sidebar-link d-flex align-items-center">
+                                <i id="icon" class="fa-solid fa-house"></i>
+                                <span class="" style="margin-left: -4px;">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/master-file/" class="sidebar-link d-flex align-items-center">
+                                <i id="icon" class="fas fa-user"></i>
+                                <spa class="align-middle">Master File</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/scheduling/" class="sidebar-link d-flex align-items-center">
+                                <!-- <i id="icon" class="fas fa-user"></i> -->
+                                <i id="icon" class="fa-solid fa-calendar-days"></i>
+                                <spa class="align-middle">Scheduling</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="request-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#request" aria-expanded="false" aria-control="request">
+                                <div class="d-flex align-items-center">
+                                    <i id="icon" class="fa-solid fa-note-sticky"></i>
+                                    <span class="">Request</span>
+                                </div>
+                                <i id="request-arrow" class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <ul id="request" class="sidebar-dropdown collapse rounded" data-bs-parent="#sidebar">
+                                <li class="sidebar-item w-100"><a href="#/timesheet/" class="sidebar-drop">○ Timesheet</a></li>
+                                <li class="sidebar-item w-100"><a href="#/leave-absent/" class="sidebar-drop">○ Leave / Absent</a></li>
+                                <li class="sidebar-item w-100"><a href="#/overtime/" class="sidebar-drop">○ Overtime</a></li>
+                                <li class="sidebar-item w-100"><a href="#/holiday-restday/" class="sidebar-drop">○ Holiday & Restday</a></li>
+                                <li class="sidebar-item w-100"><a href="#/adjustment/" class="sidebar-drop">○ Adjustment</a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="report-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#report" aria-expanded="false" aria-control="report">
+                                <div class="d-flex align-items-center">
+                                    <i id="icon" class="fa-regular fa-newspaper"></i>
+                                    <span class="">Report</span>
+                                </div>
+                                <i id="report-arrow" class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <ul id="report" class="sidebar-dropdown collapse rounded" data-bs-parent="#sidebar">
+                                <li class="sidebar-item w-100"><a href="#/import-dtr/" class="sidebar-drop">○ Import DTR</a></li>
+                                <li class="sidebar-item w-100"><a href="#/time-summary/" class="sidebar-drop">○ Timekeeping Summaru</a></li>
+                                <li class="sidebar-item w-100"><a href="#/time-logs/" class="sidebar-drop">○ Timekeeping Logs</a></li>
+                                <li class="sidebar-item w-100"><a href="#/event-logs/" class="sidebar-drop">○ Event Logs</a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="setting-btn" class="sidebar-link collapsed d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#setting" aria-expanded="false" aria-control="setting">
+                                <div class="d-flex align-items-center">
+                                    <i id="icon" class="fa-solid fa-gear"></i>
+                                    <span class="">Settings</span>
+                                </div>
+                                <i id="setting-arrow" class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <ul id="setting" class="sidebar-dropdown collapse rounded" data-bs-parent="#sidebar">
+                                <li class="sidebar-item w-100"><a href="#/location/" class="sidebar-drop">○ Location</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#/loading/" class="sidebar-link d-flex align-items-center">
+                                <spa class="align-middle">Loading</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!-- DASHBOARD -->
+<script type="text/template" id="payroll-dash">
+    <div class="dash-container">
+        <div id="main">
+            <div class="row text-white fw-light">
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-md-4 mb-2">
+                    <div id="cards" class="bg1 border rounded d-flex align-items-center justify-content-between p-3">
+                        <div>
+                            <h3 class="card-title fw-normal">20</h3>
+                            <p class="card-text">LEAVE</p>
+                        </div>
+                        <img id="leave" src="../static/img/leave.png" class="">  
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-md-4 mb-2">
+                    <div id="cards" class="bg2 border rounded d-flex align-items-center justify-content-between p-3">
+                        <div>
+                            <h3 class="card-title fw-normal">30</h3>
+                            <p class="card-text">OVERTIME</p>
+                        </div>
+                        <img src="../static/img/overtime.png"> 
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-md-4 mb-2">
+                    <div id="cards" class="bg3 border rounded d-flex align-items-center justify-content-between p-3">
+                        <div>
+                            <h2 class="card-title fw-normal">45</h2>
+                            <p class="card-text">HOLIDAY & RESTDAY</p>
+                        </div>
+                        <img src="../static/img/holiday.png">   
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-md-4 mb-3">
+                    <div id="cards" class="bg4 border rounded d-flex align-items-center justify-content-between p-3">
+                        <div class="">
+                            <h3 class="card-title fw-normal">13</h3>
+                            <div class="d-flex align-items-center gap-2">
+                                <p class="card-text">NEW EMPLOYEE</p>
+                            </div>
+                        </div>
+                        <img src="../static/img/new.png">   
+                    </div>
+                </div>
+            </div>
+
+            <div id="d-table" class="row text-white fw-light">
+                <div class="col-lg-8 col-md-6 col-sm-12 mb-md-4 mb-3">
+                    <div class="h-100 w-100 bg-white rounded border">
+                        <div class="bg1 card-header rounded-top">
+                            <p class="h-100 d-flex align-items-center mx-3">Birthday Celebrants</p>
+                        </div>
+                        <div id="dash-table" class="mx-3 mt-md-2 mt-0 table-responsive">
+                            <table class="table w-full" id="table-birthday-celebration" style="width: 100%;">
+                                <thead class="table-light border-b border-black">
+                                    <tr>
+                                        <th scope="col" class="px-3">Birthday</th>
+                                        <th scope="col" class="px-3 text-nowrap">Employee #</th>
+                                        <th scope="col" class="px-3">Name</th>
+                                        <th scope="col" class="px-3">Department</th>
+                                        <th scope="col" class="px-3">Age</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="px-3 text-nowrap"></td>
+                                        <td class="px-3 text-nowrap"></td>
+                                        <td class="px-3 text-nowrap"></td>
+                                        <td class="px-3 text-nowrap"></td>
+                                        <td class="px-3 text-nowrap"></td>
+                                    </tr>   
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>
+                </div>
+
+                <!-- CALENDAR -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-4 mb-3">
+                    <div class="border rounded bg-white md:h-100 h-auto">
+                        <div class="bg1 card-header rounded-top ">
+                            <p class="h-100 d-flex align-items-center px-3 fw-medium">Calendar</p>
+                        </div>  
+
+                        <div id="cal" class="w-full mt-1">
+                            <div>
+                                <div id="month" class="d-flex align-items-center justify-content-between text-black">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                    <span>March 2024</span>    
+                                    <i class="fa-solid fa-chevron-right text-[#107A71] text-sm"></i>
+                                </div>
+                                <div class="w-full flex justify-center text-center px-1">
+                                    <table class="w-100">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" >S</th>
+                                                <th scope="col" >M</th>
+                                                <th scope="col" >T</th>
+                                                <th scope="col" >W</th>
+                                                <th scope="col" >T</th>
+                                                <th scope="col" >F</th>
+                                                <th scope="col" >S</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="col" id="light">25</td>
+                                                <td scope="col" id="light">26</td>
+                                                <td scope="col" id="light">27</th>
+                                                <td scope="col" id="light">28</th>
+                                                <td scope="col" id="light">29</th>
+                                                <td scope="col">1</th>
+                                                <td scope="col">2</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">3</td>
+                                                <td scope="col">4</td>
+                                                <td scope="col">5</th>
+                                                <td scope="col">6</th>
+                                                <td scope="col">7</th>
+                                                <td scope="col">8</th>
+                                                <td scope="col">9</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">10</td>
+                                                <td scope="col">11</td>
+                                                <td scope="col">12</th>
+                                                <td scope="col">13</th>
+                                                <td scope="col">14</th>
+                                                <td scope="col">15</th>
+                                                <td scope="col">16</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">17</td>
+                                                <td scope="col">18</td>
+                                                <td scope="col">19</th>
+                                                <td scope="col">20</th>
+                                                <td scope="col">21</th>
+                                                <td scope="col">22</th>
+                                                <td scope="col">23</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">24</td>
+                                                <td scope="col">25</td>
+                                                <td scope="col">26</th>
+                                                <td scope="col">27</th>
+                                                <td scope="col">28</th>
+                                                <td scope="col">29</th>
+                                                <td scope="col">30</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col">31</td>
+                                                <td scope="col" id="light">1</td>
+                                                <td scope="col" id="light">2</th>
+                                                <td scope="col" id="light">3</th>
+                                                <td scope="col" id="light">4</th>
+                                                <td scope="col" id="light">5</th>
+                                                <td scope="col" id="light">6</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Employee -->
+            <div id="d-table" class="row text-white fw-light">
+                <div class="col-lg-8 col-md-6 col-sm-12 mb-md-4 mb-3">
+                    <div class="h-100 w-100 bg-white rounded border">
+                        <div class="bg1 card-header rounded-top">
+                            <p class="h-100 d-flex align-items-center mx-3">New Employee</p>
+                        </div>
+                        <div id="dash-table" class="mx-3 mt-md-2 mt-0 table-responsive">
+                            <table class="table w-full" id="table-new-employee" style="width: 100%;">
+                                <thead class="table-light border-b border-black">
+                                    <tr>
+                                        <th scope="col" class="px-4">#</th>
+                                        <th scope="col" class="px-4 text-nowrap">Employee #</th>
+                                        <th scope="col" class="px-5">Name</th>
+                                        <th scope="col" class="px-4">Date Hired</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="px-4 text-nowrap"></td>
+                                        <td class="px-4 text-nowrap"></td>
+                                        <td class="px-5 text-nowrap"></td>
+                                        <td class="px-4 text-nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>  
+                </div>
+
+                <!-- Department -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-4 mb-2">
+                    <div class="border rounded bg-white md:h-100 h-auto">
+                        <div class="bg3 card-header rounded-top ">
+                            <p class="h-100 d-flex align-items-center px-3 fw-medium">Department</p>
+                        </div>  
+                        <div id="dep" class="px-1 my-md-4 my-3">
+                            <div class="overflow-x-auto">
+                                <table class="w-100">
+                                    <tr>
+                                        <td class="px-3 py-2">ADMIN</td>
+                                        <td class="px-3 py-2 text-center">5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">SALES</td>
+                                        <td class="px-3 py-2 text-center">20</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">HR</td>
+                                        <td class="px-3 py-2 text-center">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">TECHNICAL SERVICES</td>
+                                        <td class="px-3 py-2 text-center">10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">IT SALES</td>
+                                        <td class="px-3 py-2 text-center">10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">IT SERVICES</td>
+                                        <td class="px-3 py-2 text-center">10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-2">IT SOLUTION</td>
+                                        <td class="px-3 py-2 text-center">3</td>
+                                    </tr>
+                                    <tr class="text-end fw-medium">
+                                        <td class="px-1 md:px-0 py-2 fs-6">TOTAL :</td>
+                                        <td class="px-1 md:px-0 py-2 text-center fs-4" style="color: #107A71;">60</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<!-- EVENT LOGS -->
+<script type="text/template" id="payroll-master-file"> 
+    <div class="back-main bg-white h-100 mx-md-4 mx-3">
+        <div class="bg-white"> 
+            <div id="text-btn" class="px-md-4 px-3 fw-medium">
+                <span class="fw-medium">Event Log</span>
+            </div>
+
+            <!-- TABLE -->
+            <div class="px-md-4 px-3 py-5">
+                <div class="table">
+                    <table class="table mt-2" id="table-master-file" style="width: 100%;">
+                        <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
+                            <tr>
+                                <th>#</th>
+                                <th>Employee #</th>
+                                <th>Employee</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Log</th>
+                                <th>Code</th>
+                                <th>Device</th>
+                                <th>IP Address</th>
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle">
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</script>

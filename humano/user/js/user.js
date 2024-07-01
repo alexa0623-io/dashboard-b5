@@ -53,19 +53,12 @@ $(document).ready(function(){
         // Desktop view arrow
         deskArrow: function() {
             $(document).ready(() => {
-               $('#request_btn').on('click', function(){
-                    $("#request-arrow").toggleClass("rotate");
-                    $("#report-arrow").removeClass("rotate");
+               $('#construction-btn').on('click', function(){
+                    $("#construction-arrow").toggleClass("rotate");
                })
 
-               $('#report_btn').on('click', function(){
-                    $("#report-arrow").toggleClass("rotate");
-                    $("#request-arrow").removeClass("rotate");
-                })
-
-                $(".sidebar-link:not(#request_btn):not(#report_btn)").click(function() {
-                    $("#report-arrow").removeClass("rotate");
-                    $("#request-arrow").removeClass("rotate");
+                $(".sidebar-link:not(#construction-btn)").click(function() {
+                    $("#construction-arrow").removeClass("rotate");
                 });
             });
         },
@@ -74,19 +67,12 @@ $(document).ready(function(){
         // Mobile view arrow
         mobileArrow: function() {
             $(document).ready(() => {
-               $('.mrequest_btn').on('click', function(){
-                    $("#mrequest-arrow").toggleClass("rotate");
-                    $("#mreport-arrow").removeClass("rotate");
+               $('.mconstruction-btn').on('click', function(){
+                    $("#mconstruction-arrow").toggleClass("rotate");
                })
 
-               $('.mreport_btn').on('click', function(){
-                    $("#mreport-arrow").toggleClass("rotate");
-                    $("#mrequest-arrow").removeClass("rotate");
-                })
-
-                $(".nav-link:not(.mrequest_btn):not(.mreport_btn)").click(function() {
-                    $("#mreport-arrow").removeClass("rotate");
-                    $("#mrequest-arrow").removeClass("rotate");
+                $(".nav-link:not(.mconstruction-btn)").click(function() {
+                    $("#mconstruction-arrow").removeClass("rotate");
                 });
             });
         },
@@ -154,77 +140,33 @@ $(document).ready(function(){
         
         Path.map('#/dashboard/').to(function(){
             App.canvas.html("").append($.Mustache.render("user-dash"));
-            
-            $('#table-announcement').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = ['#table-birthday-celebration','#table-new-employee',];
+            $.each(tableID,function(i,item){
+                renderToDataTableDashboard(item);
+            })
         });
         
         Path.map('#/profile/').to(function(){
             App.canvas.html("").append($.Mustache.render("user-profile"));
-            
-            $('#table-announcement').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+
         });
         
         Path.map('#/dependents/').to(function(){
             App.canvas.html("").append($.Mustache.render("user-dependents"));
-            
-            $('#table-dependents').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-dependents';
+            renderToDataTablePrint(tableID);
         });
         
         Path.map('#/work-experience/').to(function(){
             App.canvas.html("").append($.Mustache.render("user-work-experience"));
-            
-            $('#table-work-experience').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-work-experience';
+            renderToDataTablePrint(tableID);
         });
         
         Path.map('#/education/').to(function(){
             App.canvas.html("").append($.Mustache.render("user-education"));
-            
-            $('#table-education').DataTable({
-                "language": {
-                    "paginate": {
-                        "first": "Start",
-                        "previous": "Previous",
-                        "next": "Next",
-                        "last": "Last"
-                    }
-                }
-            });
+            var tableID = '#table-education';
+            renderToDataTablePrint(tableID);
         });
 
 

@@ -56,16 +56,25 @@ function dateToISOFormat(convertDate)
     return convertedDate;
 }
 
-function renderToDataTable(tableID)
+function renderToDataTableDashboard(tableID)
 {
     $(tableID).DataTable({
-        "language": {
-            "paginate": {
-                "first": "Start",
-                "previous": "Previous",
-                "next": "Next",
-                "last": "Last"
-            }
-        }
+        "order": [[0, 'desc']],
+        "pageLength": 5,
+        responsive: true,
+        "searching": false,
+        "lengthChange": false,
+        "info": false
+    });
+}
+
+function renderToDataTablePrint(tableID)
+{
+    $(tableID).DataTable({
+        responsive: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf', 'print'
+        ],
     });
 }

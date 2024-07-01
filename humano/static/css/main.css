@@ -73,7 +73,7 @@ body{
 #logo-nav{
     background-color: #107A71;
     border-radius: 5px;
-    box-shadow: rgba(118, 118, 118, 0.2) 0px 8px 24px;
+    box-shadow: rgba(65, 65, 65, 0.2) 0px 8px 24px;
 }
 
 #logo-toggle{
@@ -125,7 +125,7 @@ body{
 }
 
 hr{
-    border-color: #23847C;
+    border-color: #219e93;
 }
 
 .logout {
