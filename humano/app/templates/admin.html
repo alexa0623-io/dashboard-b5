@@ -680,7 +680,7 @@
             
             <!-- Nav Pills -->
             <!-- <div class="master-nav d-flex gap-3  rounded-2 mb-3 align-items-center"> -->
-                <ul class="master-nav nav nav-pills w-100 gap-3 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
+                <!-- <ul class="master-nav nav nav-pills w-100 gap-3 rounded d-flex align-items-center bg-white px-2 py-2" id="pills-tab" role="tablist">
                     <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link active" id="pills-personal-details" data-bs-toggle="pill" data-bs-target="#personal-details" type="button" role="tab" aria-controls="personal-details" aria-selected="true">Personal Details</button>
                         <i class="fa-solid fa-chevron-right"></i>
@@ -720,8 +720,69 @@
                     <li class="nav-item d-flex align-items-center gap-3" role="presentation">
                         <button class="nav-link" id="pills-others" data-bs-toggle="pill" data-bs-target="#others" type="button" role="tab" aria-controls="others" aria-selected="false">Others</button>
                     </li>
-                </ul>
-            <!-- </div> -->
+                </ul> -->
+
+            <ul class="master-nav nav nav-pills w-100" id="pills-tab" role="tablist">
+                <div class="w-100 d-flex align-items-center flex-md-wrap flex-nowrap gap-md-3 gap-3 p-2 bg-white rounded">
+                    <li class="" role="presentation">
+                        <button class="nav-link active per" id="pills-personal-details" data-bs-toggle="pill" data-bs-target="#personal-details" type="button" role="tab" aria-controls="personal-details" aria-selected="true">Personal Details</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+                    
+                    <li class="" role="presentation">
+                        <button class="nav-link emp" id="pills-employment-status" data-bs-toggle="pill" data-bs-target="#employment-status" type="button" role="tab" aria-controls="employment-status" aria-selected="false">Employment Status</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+
+                    <li class="" role="presentation">
+                        <button class="nav-link" id="pills-department" data-bs-toggle="pill" data-bs-target="#department" type="button" role="tab" aria-controls="department" aria-selected="false">Department</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+
+                    <li class="" role="presentation">
+                        <button class="nav-link" id="pills-salary" data-bs-toggle="pill" data-bs-target="#salary" type="button" role="tab" aria-controls="salary" aria-selected="false">Salary</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+
+                    <li class="" role="presentation">
+                        <button class="nav-link" id="pills-rules" data-bs-toggle="pill" data-bs-target="#rules" type="button" role="tab" aria-controls="rules" aria-selected="false">Rules</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+
+                    <li class="" role="presentation">
+                        <button class="nav-link cost" id="pills-cost-center" data-bs-toggle="pill" data-bs-target="#cost-center" type="button" role="tab" aria-controls="cost-center" aria-selected="false">Cost Center</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+
+                    <li class="" role="presentation">
+                        <button class="nav-link" id="pills-dependents" data-bs-toggle="pill" data-bs-target="#dependents" type="button" role="tab" aria-controls="dependents" aria-selected="false">Dependents</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+
+                    <li class="" role="presentation">
+                        <button class="nav-link" id="pills-education" data-bs-toggle="pill" data-bs-target="#education" type="button" role="tab" aria-controls="education" aria-selected="false">Education</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+
+                    <li class="" role="presentation">
+                        <button class="nav-link per" id="pills-work-experience" data-bs-toggle="pill" data-bs-target="#work-experience" type="button" role="tab" aria-controls="work-experience" aria-selected="false">Work Experience</button>
+                    </li>
+                    
+                    <i class="fa-solid fa-chevron-right d-flex align-items-center"></i>
+
+                    <li class="" role="presentation">
+                        <button class="nav-link" id="pills-others" data-bs-toggle="pill" data-bs-target="#others" type="button" role="tab" aria-controls="others" aria-selected="false">Others</button>
+                    </li>
+                </div>
+            </ul>
 
             <!-- NAV PILLS CONTENT -->
             <div class="master-tab-content tab-content" id="pills-tabContent">
@@ -1045,9 +1106,9 @@
                         <div class="w-100 bg-white rounded" style="height: 70vh;"> 
                 
                             <!-- TABLE -->
-                            <div class="p-3">
+                            <div class="px-3 pt-4">
                                 <div id="m-table" class="table-responsive">
-                                    <table class="table mt-2" id="table-employee-status" style="width: 100%;">
+                                    <table class="table mt-2 w-100" id="table-employee-status">
                                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
                                             <tr>
                                                 <th>Type</th>
@@ -1171,7 +1232,7 @@
                         <div class="w-100 bg-white rounded" style="height: 70vh;"> 
                 
                             <!-- TABLE -->
-                            <div class="p-3">
+                            <div class="p-3 pt-4">
                                 <div id="m-table" class="table-responsive">
                                     <table class="table mt-2" id="table-department" style="width: 100%;">
                                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">
@@ -1410,7 +1471,7 @@
                         <div class="w-100 bg-white rounded" style="height: 70vh;"> 
                 
                             <!-- TABLE -->
-                            <div class="p-3">
+                            <div class="p-3 pt-4">
                                 <div id="m-table" class="table-responsive">
                                     <table class="table mt-2" id="table-rules" style="width: 100%;">
                                         <thead class="table-light border-b border-black bg-white align-middle text-nowrap">

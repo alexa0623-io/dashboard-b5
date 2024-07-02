@@ -14,29 +14,23 @@
 .master-nav button{
     background-color: white;
     border: none !important;
-    font-size: 15px;
+    font-size: 16px;
     color: rgb(154, 154, 154);
 }
 
 .master-nav button:hover,
 .master-nav button.active {
-    /* background-color: #107A71 !important; */
     background-color: #3d918a15 !important;
     color: #107A71 !important;
     font-weight: 500;
-    /* color: #107A71 !important; */
     text-decoration-line: underline; 
     text-transform:uppercase ;
 }
 
 .master-nav i {
     color: #107A71;
-    font-size: 10px;
+    font-size: 16px;
 }
-
-
-    /* color: #107A71 !important; */
-    /* background-color: white !important; */
 
 /* TITLE */
 .employee-details a{

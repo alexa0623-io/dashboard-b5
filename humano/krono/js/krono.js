@@ -231,9 +231,17 @@ $(document).ready(function(){
                 var myDropzone = new Dropzone("#my-great-dropzone", {
                     url: "/file-upload", 
                 });
+            });      
+        },
+
+        sliderNavpills: function() {
+            $(document).ready(function () {
+                // Enable smooth scrolling
+                $(".master-nav .bg-white").on('click', 'button', function () {
+                    var slideTo = $(this).parent().index();
+                    $(".master-nav .bg-white").scrollLeft($(".master-nav .bg-white").scrollLeft() + $(`.master-nav li:eq(${slideTo})`).position().left);
+                });
             });
-         
-                
         }
     }
 
@@ -247,6 +255,7 @@ $(document).ready(function(){
         App.uploadFile();
         App.formValidation();
         App.removeDrag();
+        App.sliderNavpills();
         App.sideCanvas.html("").append($.Mustache.render("side-nav"));
         App.navCanvas.html("").append($.Mustache.render("admin-nav"));
 

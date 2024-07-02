@@ -78,3 +78,11 @@ function renderToDataTablePrint(tableID)
         ],
     });
 }
+
+function renderToDataTable(tableID)
+{
+    $(tableID).DataTable({
+        responsive: true
+    });
+}
+

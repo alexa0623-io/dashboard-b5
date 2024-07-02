@@ -192,6 +192,25 @@ $(document).ready(function(){
         
             });
         },
+
+        sliderNavpills: function() {
+            $(document).ready(function() {
+                $('.master-nav').on('touchstart', function(e) {
+                    let startX = e.originalEvent.touches[0].pageX;
+                    $(this).on('touchmove', function(e) {
+                        let x = e.originalEvent.touches[0].pageX;
+                        let walk = (x - startX) * 2; //scroll-fast
+                        $(this).scrollLeft($(this).scrollLeft() - walk);
+                        startX = x;
+                    });
+                });
+            
+                $('.master-nav').on('touchend touchcancel', function() {
+                    $(this).off('touchmove');
+                });
+            });
+            
+        },
     }
 
     function getEmployeeDetails(){
@@ -250,6 +269,7 @@ $(document).ready(function(){
         // App.activePills();
         // App.dataTable();
         App.formValidation();
+        App.sliderNavpills();
         // App.calendarDash();
         // App.calendarDash();
         App.sideCanvas.html("").append($.Mustache.render("side-nav"));
