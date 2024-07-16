@@ -798,7 +798,7 @@ $app->get("/employee/dependent/view/:var" , function($var){
 # Employee Dependent Update
 $app->post("/employee/dependent/update/:var" , function($var){
     $param = explode(".", $var);
-    $type = $param[2];
+    $token = $param[2];
     $depUid = $param[1];
     $empUid = $param[0];
     $response = array();
@@ -808,11 +808,10 @@ $app->post("/employee/dependent/update/:var" , function($var){
         $dependentRelationship = $_POST['dependentRelationship'];
         $dependentBday = $_POST['dependentBday'];
         $dependentNumber = $_POST['dependentNumber'];
-        if($type=="edit") {
-
-        }else if($type=="delete") {
-
-        }
+        $status = $_POST['status'];
+        $dateModified = date('Y-m-d H:i:s');
+        updateEmployeeDependentStatusById($depUid , $dependentName , $dependentRelationship ,  $dependentBday , $dependentNumber ,  $dateModified , $status);
+        $verified = 1;
     }
     $response = array(
         "success" => $verified
@@ -2708,21 +2707,24 @@ $app->get("/education/details/get/:var" , function($var){
     $educationUid = $param[0];
     $token        = $param[1];
     $response     = array();
-    $education    = getEducationByEducationUid($educationUid);
-    if($education){
-        $response = array(
-            "educationUid"      => $education->education_uid,
-            "educationLevelUid" => $education->level_name,
-            "year"              => $education->year,
-            "score"             => $education->score,
-            "school"            => $education->school,
-            "major"             => $education->major,
-            "startDate"         => $education->start_date,
-            "endDate"           => $education->end_date,
-            "status"            => $education->status
-        );
+    $educations    = getEducationByEducationUid($educationUid);
+    if($educations){
+        foreach ($educations as $education)
+        {
+            $response = array(
+                "educationUid"      => $education->education_uid,
+                "educationLevelUid" => $education->education_level_uid,
+                "levelName"         => $education->level_name,
+                "year"              => $education->year,
+                "score"             => $education->score,
+                "school"            => $education->school,
+                "major"             => $education->major,
+                "startDate"         => $education->start_date,
+                "endDate"           => $education->end_date,
+                "status"            => $education->status
+            );
+        }
     }
-    
     echo jsonify($response);
 });
 

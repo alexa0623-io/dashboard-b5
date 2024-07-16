@@ -155,7 +155,7 @@ $(document).ready(function() {
 								}  
 								else if (data.Type === "Employee") {
 									if(humano_module === "HRIS") {
-										window.location.href = "../app/#/profile/" + data.EmployeeId;
+										window.location.href = "../user/#/profile/" + data.EmployeeId;
                                       	//localStorage.clear();
 										//alert("This page is underconstruction!");
                                       	//window.location.reload();

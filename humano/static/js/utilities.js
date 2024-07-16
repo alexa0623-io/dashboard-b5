@@ -78,3 +78,17 @@ function renderToDataTablePrint(tableID)
         ],
     });
 }
+
+function renderToDataTable(tableID)
+{
+    $(tableID).DataTable({
+        "language": {
+            "paginate": {
+                "first": "Start",
+                "previous": "Previous",
+                "next": "Next",
+                "last": "Last"
+            }
+        }
+    });
+}

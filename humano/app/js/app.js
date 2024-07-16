@@ -178,13 +178,13 @@ $(document).ready(function(){
 
         uploadImage: function() {
             $(document).ready(function () {
-                $('#tab-input-file').on('change', function (e) {
+                $('#tab_input_file').on('change', function (e) {
                     var file = e.target.files[0];
                     if (file) {
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             $('#preview_image').attr('src', e.target.result);
-                            $('#tab-img-view p').hide(); // Hide the "Image not available" text
+                            $('#tab_img_view p').hide(); // Hide the "Image not available" text
                         }
                         reader.readAsDataURL(file);
                     }
@@ -192,6 +192,10 @@ $(document).ready(function(){
         
             });
         },
+    }
+
+    function clearPanel() {
+        App.canvas.hide().fadeIn(200);
     }
 
     function getEmployeeDetails(){
@@ -334,12 +338,36 @@ $(document).ready(function(){
                 totalemp : total
 			}			
             console.log(templateData);
-
             App.canvas.html("").append($.Mustache.render("dash-container",templateData));
-            var tableID = ['#table-birthday-celebration','#table-new-employee',];
-            $.each(tableID,function(i,item){
-                renderToDataTableDashboard(item);
-            })
+            $('#table-birthday-celebration').DataTable({
+                "order": [[0, 'desc']],
+                "pageLength": 5,
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                },
+                "searching": false,
+                "lengthChange": false,
+            });
+
+            $('#table-new-employee').DataTable({
+                "order": [[0, 'desc']],
+                "pageLength": 5,
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                },
+                "searching": false,
+                "lengthChange": false,
+            });
         });
 
         // MASTER FILE
@@ -369,7 +397,7 @@ $(document).ready(function(){
             
             App.canvas.html("").append($.Mustache.render("master",templateData));
             var tableID = '#table-master-file';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
             
 
             $("#table-master-file tbody").off("click", ".update-empnum-btn").on("click", ".update-empnum-btn",function(){
@@ -757,6 +785,36 @@ $(document).ready(function(){
                     }
                     frequencyList.push(frequency);
                 });
+            var rulesOptions = getJSONDoc(App.api + "/get/rules/number/");
+            var rulesList = [];
+            $.each(rulesOptions,function(i,item){
+                var rule = {
+                    ruleUid:item.ruleUid,
+                    ruleName:item.ruleName
+                }
+                rulesList.push(rule)
+            });
+
+            var costCeneterOptions = getJSONDoc(App.api + "/get/costcenter/");
+            var ccOptionList = []
+            $.each(costCeneterOptions,function(i,item){
+                ccOpts = {
+                    costCenterUid:item.uid,
+                    costCenterName:item.name,
+                    costCenterDesc:item.description
+                }
+                ccOptionList.push(ccOpts);
+            });
+
+            var educationLevels = getJSONDoc(App.api + "/get/education/level/" + App.token);
+            var educationLevelList = [];
+            $.each(educationLevels,function(i,item){
+                var educationLevel = {
+                    educLevelUid:item.uid,
+                    level:item.level
+                }
+                educationLevelList.push(educationLevel)
+            });
 
             var templateData = {
                 taxStatusList:taxStatusList,
@@ -771,7 +829,10 @@ $(document).ready(function(){
                 workExperienceList:workExperienceList,
                 statusOptList:statusOptList,
                 deptOptList:deptOptList,
-                frequencyList:frequencyList
+                frequencyList:frequencyList,
+                rulesList:rulesList,
+                ccOptionList:ccOptionList,
+                educationLevelList:educationLevelList
             }
 
             console.log(templateData);
@@ -1039,11 +1100,19 @@ $(document).ready(function(){
             function getDepartmentDetails(empUid){
                 $.getJSON(App.api + "/employee/departments/view/" + empUid + "." + App.token,function(data){
                     console.log(data);
-                    $.each(data.list,function(i,item){
-                        $("#td-deptname").text(item.department);
-                        $("#editBtn").attr('data-uid',item.uid);
-                        $("#editBtn").attr('data-dept',item.dept);
-                        $("#editBtn").attr('data-post',item.position);
+                    $("#table-dependents").DataTable().fnDestroy();
+                    $.each(data, function(i, item) {
+                        number++;
+                        var html = "<tr>";
+                        html += "<td>" + number + "</td>";
+                        html += "<td>" + item.name + "</td>";
+                        html += "<td>" + item.number + "</td>";
+                        html += "<td>" + item.relationship + "</td>";
+                        html += "<td>" + item.bday + "</td>";
+                        html += "<td class='text-md-start text-end'><button class='edit-btn btn btn-outline-success' data-bs-dismiss='modal' data-bs-toggle='modal' aria-label='Close' data-bs-target='#edit-Dependent' data-uid='"+ item.employeeDependentUid +"'data-toggle='modal'>Edit</button></td>";
+                        html += "</tr>";
+
+                        $("#table-dependents tbody").append(html);
                     });
                 });
             }
@@ -1115,12 +1184,289 @@ $(document).ready(function(){
             //Salary End
 
             //Rule Assignment Start
+            function getEmpRulesDetails(empuid){
+                $.getJSON(App.api + "/emp/rules/data/" + empuid, function(data){
+                    console.log(data)
+                    $.each(data,function(i,item){
+                        $("#td-ruleName").text(item.ruleName);
+                        $(".edit-btn").attr("data-uid",empUid+"."+item.ruleUid);
+                    });
+                });
+            }
+
             $("#table-rules tbody").on("click","td .edit-btn",function(e){
                 e.preventDefault();
-                var uid = $(this).attr("data-uid");
-                console.log(uid);
+                var datauid = $(this).attr("data-uid");
+                var dataUids = datauid.split(".");
+                var empuid = dataUids[0];
+                var ruleUid = dataUids[1];
+
+                $.getJSON(App.api + "/employee/rules/data/" + ruleUid, function(data){
+                    console.log(data.status);
+                    if (data.status = 1) {
+                        $("input[value=Enable]").prop("checked", true);
+                    } else {
+                        $("input[value=Disable]").prop("checked", true);
+                    }
+                    $("select[name=employeeRulesEdit]").val(data.ruleUid);
+                });
+
+                $(document).off("submit", "#edit-rule-form").on("submit", "#edit-rule-form", function(e){
+                    e.preventDefault();
+
+                    var rule = $("select[name=employeeRulesEdit]").val();
+                    var status = 0;
+                    if($("input[name=status]")==="Enable"){
+                        status = 1;
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: App.api + "/employee/rules/update/" + ruleUid,
+                        data: {
+                            rule: rule,
+                            status: status
+                        },
+                        beforeSend: function(){
+                            $(".pLoading").show();                      
+                        },
+                        success: function(){
+                            $(".pLoading").hide();
+                            getEmpRulesDetails(empuid);                   
+                            alert("Successfully Updated!");
+                            $("#edit-rules").modal("toggle");
+                        }
+                    });
+                });
             });
             //Rule Assignment End
+            //Cost Center Start
+            $("#table-cost-center tbody").on("click",".edit-btn", function(){
+                var datauid = $(this).attr("data-uid");
+                console.log(datauid);
+                $.getJSON(App.api + "/employee/costcenter/single/data/" + datauid, function(data){
+                    if (data.status = 1) {
+                        $("input[value=Enable]").prop("checked", true);
+                    } else {
+                        $("input[value=Disable]").prop("checked", true);
+                    }
+                    $("select[name=edit-cost-center]").val(data.costUid);
+                });
+
+                $(document).off("submit", "#edit-costcenter-form").on("submit", "#edit-costcenter-form", function(e){
+                    e.preventDefault();
+                    var costcenter = $("select[name=edit-cost-center]").val();
+                    var status = 0;
+                    if($("input[name=status]").val()==="Enable"){
+                        status = 1;
+                    }
+
+                    if(!costcenter){
+                        alert("Please Fill all the fields!");
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: App.api + "/employee/update/costcenter/" + datauid,
+                            data: {
+                                costcenter : costcenter,
+                                status     : status
+                            },
+                            beforeSend: function(){
+                                $(".empLoading").show();
+                            },
+                            success: function(){
+                                alert("Successfully Updated!");
+                                $("#edit-cost-center").modal("toggle");
+                                getEmpCostCenter(empUid);
+                            }
+                        });
+                    }
+                });
+            });
+            function getEmpCostCenter(empUid){
+                $.getJSON(App.api + "/employee/costcenter/data/" + empUid, function(data){
+                    console.log(data);
+                    $.each(data,function(i,item){
+                        $("#td-ccname").text(item.ccName);
+                        $("#td-ccdesc").text(item.ccDesc);
+                        $(".edit-btn").attr("data-uid",item.empCostUid);
+                    });
+                });
+            }
+            //Cost Center End
+            //Dependents Start
+            $(document).off("submit", "#new-dependent-form").on("submit", "#new-dependent-form", function(e) {
+                e.preventDefault();
+
+                var dependentName = $("input[name=dependentName]").val();
+                var dependentRelationship = $("select[name=dependentRelationship]").val();
+                var dependentBday = $("input[name=dependentBday]").val();
+                var dependentNumber = $("input[name=dependentNumber]").val();
+
+                console.log(dependentName +" "+ dependentRelationship+" "+dependentBday+" "+dependentNumber)
+
+                if(!dependentName || !dependentRelationship || !dependentBday || !dependentNumber){
+                    alert("Please Fill All The Fields");
+                }else{
+                    $.ajax({
+                        type: "POST",
+                        url: App.api + "/employee/dependent/new/" + empUid + "." + App.token,
+                        data: {
+                            dependentName: dependentName,
+                            dependentRelationship: dependentRelationship,
+                            dependentBday: dependentBday,
+                            dependentNumber: dependentNumber
+                        },
+                        success: function() {
+                            alert("Successfully Added!");
+                            $("#new-Dependents").modal("toggle");
+                            $("input[name=dependentName]").val("");
+                            $("select[name=dependentRelationship]").val("");
+                            $("input[name=dependentBday]").val("");
+                            $("input[name=dependentNumber]").val("");
+                            getEmployeeDependentPages(empUid);
+                        }
+                    });
+                }
+            });
+
+            function getEmployeeDependentPages(empUid){
+                var num = 0
+                var dependents = getJSONDoc(App.api + "/employee/dependent/pages/get/" + empUid + "." + App.token)
+                $.each(dependents,function(i,item){
+                    num++;
+                    $("#td-depctr").text(num);
+                    $("#td-name").text(item.name);
+                    $("#td-number").text(item.number);
+                    $("#td-relationship").text(item.relationship)
+                });
+            };
+
+            $("#table-dependents tbody").off("click", "td .edit-btn").on("click", "td .edit-btn", function(e) {
+                e.preventDefault();
+                var depUid = $(this).attr("data-uid");
+                console.log(depUid);
+                $.getJSON(App.api + "/employee/dependent/view/" + empUid + "." + depUid + "." + App.token, function(data) {
+                    if (data.status == 1) {
+                        $("input[value=Enable]").prop("checked", true);
+                    } else {
+                        $("input[value=Disable]").prop("checked", true);
+                    }
+                    $("input[name=dependentNameUpdate]").val(data.name);
+                    $("select[name=dependentRelationshipUpdate]").val(data.relationship)
+                    $("input[name=dependentBdayUpdate]").val(data.bday);
+                    $("input[name=dependentNumberUpdate]").val(data.number);
+                });
+                
+                $(document).on("submit", "#edit-dependent-form", function(e){
+                    e.preventDefault();
+                    var dependentName = $("input[name=dependentNameUpdate]").val();
+                    var dependentRelationship = $("select[name=dependentRelationshipUpdate]").val();
+                    var dependentBday = $("input[name=dependentBdayUpdate]").val();
+                    var dependentNumber = $("input[name=dependentNumberUpdate]").val();
+                    var status = 0;
+                    console.log(dependentName+" "+dependentRelationship+" "+dependentBday+" "+dependentNumber);
+                    if ($("input[name='status']").val()=="Enable") {
+                        status = 1;
+                    }
+                    if(!dependentName || !dependentRelationship || !dependentBday || !dependentNumber){
+                        alert("Please Fill All The Fields!");
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: App.api + "/employee/dependent/update/" + empUid + "." + depUid + "." + App.token,
+                            data: {
+                                dependentName: dependentName,
+                                dependentRelationship: dependentRelationship,
+                                dependentBday: dependentBday,
+                                dependentNumber: dependentNumber,
+                                status: status
+                            },
+                            success: function() {
+                                alert("Successfully Added!");
+                                $("#editEmpDependent").modal("toggle");
+                                $("input[name=dependentNameUpdate]").val("");
+                                $("select[name=dependentRelationshipUpdate]").val("");
+                                $("input[name=dependentBdayUpdate]").val("");
+                                $("input[name=dependentNumberUpdate]").val("");
+                                getEmployeeDependentPages(empUid);
+                            }
+                        });
+                    }
+                });
+            });
+            //Dependents End
+
+            //Education Start
+            $("#newEducationForm").on("submit", function(e) {
+                e.preventDefault();
+
+                $(".empLoading").show();
+
+                var level = $("select[name='employeeLevel']").val();
+                var school = $("input[name='employeeSchool']").val();
+                var major = $("input[name='employeeMajor']").val();
+                var year = $("input[name='employeeYear']").val();
+                var dstart = $("input[name='employeeDatestart']").val();
+                var dend = $("input[name='employeeDateend']").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: App.api + "/educational/addnew/" + empUid + "." + App.token,
+                    dataType: "json",
+                    data: {
+                        empid: uid,
+                        level: level,
+                        school: school,
+                        major: major,
+                        year: year,
+                        dstart: dstart,
+                        dend: dend
+                    },
+                    success: function(data){                        
+                        if(parseInt(data.success) === 1) {
+                            $(".empLoading").hide();
+                            alert("Successfully added record!");
+                            window.location.reload();   
+                        }                    
+                    }
+                });
+            });
+            //Education End
+            //Work Experience Start
+            $("#newWorkExForm").on("submit", function(e) {
+                e.preventDefault();
+
+                $(".empLoading").show();
+
+                var employer = $("input[name='employerName']").val();
+                var position = $("input[name='employmentPosition']").val();
+                var dstart = $("input[name='employeeDatestart']").val();
+                var dend = $("input[name='employeeDateend']").val();
+                var status = $("input[name='employmentStatus']").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: App.api + "/workexperience/addnew/" + uid + "." + App.token,
+                    dataType: "json",
+                    data: {
+                        employer: employer,
+                        position: position,
+                        dstart: dstart,
+                        dend: dend,
+                        status: status
+                    },
+                    success: function(data){                        
+                        if(parseInt(data.success) === 1) {
+                            $(".empLoading").hide();
+                            alert("Successfully added record!");
+                            window.location.reload();   
+                        }                    
+                    }
+                });
+            });
+            //Work Experience End
+
         });
 
         Path.map('#/trial/employment/status/:empUid').to(function(){
@@ -1130,8 +1476,16 @@ $(document).ready(function(){
         // RESUME
         Path.map('#/resume-application/').to(function(){
             App.canvas.html("").append($.Mustache.render("resume"));
-            var tableID = '#table-resume-aplication';
-            renderToDataTablePrint(tableID);
+            $('#table-resume-aplication').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Start",
+                        "previous": "Previous",
+                        "next": "Next",
+                        "last": "Last"
+                    }
+                }
+            });
         });
 
         // RESUME NEW BTN
@@ -1172,7 +1526,7 @@ $(document).ready(function(){
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("company-setup",templateData));
             var tableID = '#table-company-setup';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
             
 
             $("#new-settings-form").submit(function(e) {
@@ -1281,7 +1635,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("announcements",templateData));
             var tableID = '#table-announcement';
-            renderToDataTablePrint(tableID); 
+            renderToDataTable(tableID); 
             
             $("#addAnnouncement").submit(function(e){
                 e.preventDefault();
@@ -1386,7 +1740,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("cost-center",templateData));
             var tableID = '#table-cost-center';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $(document).off("submit", "#addCostCenter").on("submit", "#addCostCenter", function(e){
                 e.preventDefault();
@@ -1506,7 +1860,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("department",templateData));
             var tableID = '#table-department';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $("#new-department").submit(function(e){
                 e.preventDefault();
@@ -1603,7 +1957,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("education-level",templateData));
             var tableID ='#table-education-level';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $("#new-educ-level-form").submit(function(e) {
                 e.preventDefault();
@@ -1665,7 +2019,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("employment-status",templateData));
             var tableID = '#table-employment-status';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $("#new-empstatus-form").on("submit", function(e){
                 e.preventDefault();
@@ -1756,7 +2110,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("holiday",templateData));
             var tableID = '#table-holiday';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $(document).off("submit", "#new-holiday-form").on("submit", "#new-holiday-form",function(e){
                 e.preventDefault();
@@ -1872,7 +2226,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("leave-counts",templateData));
             tableID = '#table-leave-counts';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $(document).off("submit", "#new-leaveCount-form").on("submit", "#new-leaveCount-form", function(e){
                 e.preventDefault();
@@ -2011,7 +2365,7 @@ $(document).ready(function(){
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("location",templateData));
             tableID = '#table-location';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $(document).off("submit", "#location-form").on("submit", "#location-form",function(e){
                 e.preventDefault();
@@ -2121,7 +2475,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("overtime-type",templateData));
             tableID = "#table-overtime-type";
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $(document).off("submit", "#overtimeTypeForm").on("submit", "#overtimeTypeForm", function(e){
                 e.preventDefault();
@@ -2241,7 +2595,7 @@ $(document).ready(function(){
 
             App.canvas.html("").append($.Mustache.render("rest-day",templateData));
             var tableID = "#table-rest-day";
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $(document).off("submit", "#new-rest-form").on("submit", "#new-rest-form", function(e) {
                 e.preventDefault();
@@ -2349,7 +2703,7 @@ $(document).ready(function(){
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("rules",templateData));
             tableID = '#table-rules';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
             
             $(document).off("change",".selRule").on("change",".selRule",function(e){
                 e.preventDefault();
@@ -2451,7 +2805,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("shift",templateData));
             tableID = "#table-shift";
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $(document).off("submit", "#new-shift-form").on("submit", "#new-shift-form", function(e) {
                 e.preventDefault();
@@ -2553,7 +2907,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("memo",templateData));
             tableID = '#table-memo';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $("#newMemo").submit(function(){
                 var name = $("input[name=memoName]").val();
@@ -2635,7 +2989,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("certificate",templateData));
             tableID = '#table-certificate';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
 
             $("#newCertificate").submit(function(){
                 var name = $("input[name=certName]").val();
@@ -2716,7 +3070,7 @@ $(document).ready(function(){
             }
             App.canvas.html("").append($.Mustache.render("request",templateData));
             tableID = '#table-request';
-            renderToDataTablePrint(tableID);
+            renderToDataTable(tableID);
         });
 
         Path.map('#/billing/').to(function(){
@@ -2724,11 +3078,6 @@ $(document).ready(function(){
             // App.canvas.html("").append($.Mustache.render("billings-list"));
             
             $('#table-unpaid-billing').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    'csv', 'excel', 'pdf', 'print'
-                ],
                 "language": {
                     "paginate": {
                         "first": "Start",
@@ -2740,11 +3089,6 @@ $(document).ready(function(){
             });
 
             $('#table-paid-billing').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    'csv', 'excel', 'pdf', 'print'
-                ],
                 "language": {
                     "paginate": {
                         "first": "Start",
@@ -2756,11 +3100,6 @@ $(document).ready(function(){
             });
 
             $('#table-billing-list').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    'csv', 'excel', 'pdf', 'print'
-                ],
                 "language": {
                     "paginate": {
                         "first": "Start",
@@ -2772,6 +3111,26 @@ $(document).ready(function(){
             });
 
         });
+
+        Path.map("#/users/logout/").to(function(){
+            $.ajax({
+                type: "POST",
+                url: App.api + "/users/logout/" + App.token,
+                data: {
+                    user: localStorage.getItem("Username")
+                },
+                success: function() {
+                    localStorage.clear();
+                    window.location.href = "../auth/#/login/";
+                }
+            });
+        }).enter(clearPanel);
+
+        //---------------------------- EMPLOYEE USER ------------------------//
+        
+        // Path.map("#/profile/:uid").to(function(){
+
+        // });
 
         Path.root('#/dashboard/');
         Path.listen();

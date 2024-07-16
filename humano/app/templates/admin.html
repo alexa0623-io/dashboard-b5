@@ -8,7 +8,7 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <div style="cursor: pointer;">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <a href="#/users/logout/" style="color:white"><i class="fa-solid fa-right-from-bracket"></i></a>
                 </div>
             </div>
         </div>
@@ -872,12 +872,12 @@
                                             <select class="form-select" id="validationCustom01" name="marital"
                                              required>
                                                 <option selected disabled value="">--Select--</option>
-                                                <option value="1">Married</option>
-                                                <option value="2">Single</option>
-                                                <option value="3">Living Common Law</option>
-                                                <option value="4">Widowed</option>
-                                                <option value="5">Separate</option>
-                                                <option value="6">Divorced</option>
+                                                <option value="Married">Married</option>
+                                                <option value="Single">Single</option>
+                                                <option value="Living Common Law">Living Common Law</option>
+                                                <option value="Widowed">Widowed</option>
+                                                <option value="Separate">Separate</option>
+                                                <option value="Divorced">Divorced</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Please select a valid state.
@@ -1422,7 +1422,7 @@
                                         <tbody class="align-middle">
                                             {{#empRulesList}}
                                             <tr>
-                                                <td>{{ruleName}}</td>
+                                                <td id="td-ruleName">{{ruleName}}</td>
                                                 <td class="text-md-start text-end">
                                                     <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-rules" data-uid="{{ruleUid}}">Edit</button>  
                                                 </td>   
@@ -1441,21 +1441,15 @@
                                                 </div>
                 
                                                 <div class="body-modal">
-                                                    <form class="row my-1 needs-validation" novalidate>
+                                                    <form class="row my-1 needs-validation" id="edit-rule-form" novalidate>
                                                         <div class="modal-body-info">
                                                             <div class="">
                                                                 <label for="validationCustom01" class="form-label">Rules</label>
-                                                                <select class="form-select" id="validationCustom01" required>
+                                                                <select class="form-select" id="validationCustom01" name="employeeRulesEdit" required>
                                                                     <option selected disabled value="">--Select--</option>
-                                                                    <option value="2">6:00 AM - 3:00 PM (No Grace Period)</option>
-                                                                    <option value="2">7:00 AM - 4:00 PM (With Grace Period)</option>
-                                                                    <option value="2">7:00 PM - 4:00 AM (With Grace Period)</option>
-                                                                    <option value="3">8:00 AM - 5:00 PM (w/o Grace Period)</option>
-                                                                    <option value="2">8:00 AM - 5:00 PM (With Grace Period)</option>
-                                                                    <option value="3">9:00 AM - 6:00 PM (w/o Grace Period)</option>
-                                                                    <option value="2">9:00 AM - 6:00 PM (With Grace Period)</option>
-                                                                    <option value="3">9:00 AM - 7:00 PM (With Grace Period)</option>
-                                                                    <option value="3">9:00 PM - 7:00 AM (w/o Grace Period)</option>
+                                                                    {{#rulesList}}
+                                                                    <option value="{{ruleUid}}">{{ruleName}}</option>
+                                                                    {{/rulesList}}
                                                                 </select>
                                                                 <div class="invalid-feedback">
                                                                     Please select a valid state.
@@ -1463,13 +1457,13 @@
                                                             </div>
                                                             <div class="d-flex gap-5 mt-4">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Enable">
                                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                                         Enable
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Disable" checked>
                                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                                         Disable
                                                                     </label>
@@ -1528,10 +1522,10 @@
                                         <tbody class="align-middle">
                                             {{#empCostCenterList}}
                                             <tr>
-                                                <td>{{ccname}}</td>
-                                                <td>{{ccdesc}}</td>
+                                                <td id="td-ccname">{{ccname}}</td>
+                                                <td id="td-ccdesc">{{ccdesc}}</td>
                                                 <td class="text-md-start text-end">
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-cost-center" data-uid="{{empcostUid}}">Edit</button>  
+                                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-cost-center" data-uid="{{empCostUid}}">Edit</button>  
                                                 </td>   
                                             </tr>
                                             {{/empCostCenterList}}
@@ -1548,23 +1542,16 @@
                                                 </div>
                 
                                                 <div class="body-modal">
-                                                    <form class="row my-1 needs-validation" novalidate>
+                                                    <form class="row my-1 needs-validation" id="edit-costcenter-form" novalidate>
                                                         <div class="modal-body-info">
                                                             <div class="">
                                                                 <label for="validationCustom01" class="form-label">Cost Center</label>
-                                                                <select class="form-select" id="validationCustom01" required>
+                                                                <select class="form-select" name="edit-cost-center" id="validationCustom01" required>
                                                                     <option selected disabled value="">--Select--</option>
-                                                                    <option value="2">AISI - Pasig H.O. - Newly Hired - Daily Rate</option>
-                                                                    <option value="3">Avasia Information System, Inc. - Pasig - Pasig Head Office</option>
-                                                                    <option value="4">AISI - Laguna - Gardenia LIIP</option>
-                                                                    <option value="5">AISI - Cebu - Gardenia - Cebu</option>
-                                                                    <option value="6">AISI - CDO - Gardenia -Cagayan De Oro</option>
-                                                                    <option value="7">AISI - Davao - Davao Office</option>
-                                                                    <option value="8">AISI - Pampanga - Gardenia - Pampanga</option>
-                                                                    <option value="9">AISI - Baguio - Unisys Baguio</option>
-                                                                    <option value="10">Avasia Information System, Inc. - Execitive - Execitive Department</option>
-                                                                    <option value="10">Consultant - Business Development Group</option>
-                                                                    <option value="10">Resigned - Employee that already resigned</option>
+                                                                    {{#ccOptionList}}
+                                                                    <option value="{{costCenterUid}}">{{costCenterName}} - {{costCenterDesc}}</option>
+                                                                    {{/ccOptionList}}
+                                                                    
                                                                 </select>
                                                                 <div class="invalid-feedback">
                                                                     Please select a valid state.
@@ -1572,13 +1559,13 @@
                                                             </div>
                                                             <div class="d-flex gap-5 mt-4">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Enable">
                                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                                         Enable
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Disable" checked>
                                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                                         Disable
                                                                     </label>
@@ -1636,23 +1623,23 @@
                                         </div>
         
                                         <div class="body-modal"> 
-                                            <form class="row my-1 needs-validation" novalidate>
+                                            <form class="row my-1 needs-validation" id="new-dependent-form" novalidate>
                                                 <div class="modal-body-info">
                                                     <div class="mt-2">
                                                         <label for="validationCustom01" class="form-label">Dependent Name</label>
-                                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                                        <input type="text" class="form-control input" id="validationCustom01" name="dependentName" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">Dependent Relationship</label>
-                                                        <select class="form-select" id="validationCustom01" required>
+                                                        <select class="form-select" id="validationCustom01" name="dependentRelationship" required>
                                                             <option selected disabled value="">--Select--</option>
-                                                            <option value="1">Mother</option>
-                                                            <option value="2">Father</option>
-                                                            <option value="1">Spouse</option>
-                                                            <option value="2">Children</option>
+                                                            <option value="Mother">Mother</option>
+                                                            <option value="Father">Father</option>
+                                                            <option value="Spouse">Spouse</option>
+                                                            <option value="Child">Child</option>
                                                         </select>
                                                         <div class="invalid-feedback">
                                                             Please select a valid state.
@@ -1660,14 +1647,14 @@
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">Dependent Birthday</label>
-                                                        <input type="date" class="form-control input" id="validationCustom01" required>
+                                                        <input type="date" class="form-control input" id="validationCustom01" name="dependentBday" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">Dependent Contact #</label>
-                                                        <input type="number" class="form-control input" id="validationCustom01" required>
+                                                        <input type="number" class="form-control input" id="validationCustom01" name="dependentNumber" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
@@ -1703,12 +1690,12 @@
                                         <tbody class="align-middle">
                                             {{#dependentsList}}
                                             <tr>
-                                                <td>{{depctr}}</td>
-                                                <td>{{name}}</td>
-                                                <td>{{number}}</td>
-                                                <td>{{relationship}}</td>
+                                                <td id="td-depctr">{{depctr}}</td>
+                                                <td id="td-name">{{name}}</td>
+                                                <td id="td-number">{{number}}</td>
+                                                <td id="td-relationship">{{relationship}}</td>
                                                 <td class="text-md-start text-end">
-                                                    <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-Dependent" data-uid="{{uid}}">Edit</button>  
+                                                    <button class="edit-btn btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-Dependent" data-uid="{{uid}}">Edit</button>  
                                                 </td>   
                                             </tr>
                                             {{/dependentsList}}
@@ -1725,23 +1712,23 @@
                                                 </div>
                 
                                                 <div class="body-modal"> 
-                                                    <form class="row my-1 needs-validation" novalidate>
+                                                    <form class="row my-1 needs-validation" id="edit-dependent-form" novalidate>
                                                         <div class="modal-body-info">
                                                             <div>
                                                                 <label for="validationCustom01" class="form-label">Dependent Name</label>
-                                                                <input type="text" class="form-control input" id="validationCustom01" required>
+                                                                <input type="text" class="form-control input" id="validationCustom01" name="dependentNameUpdate" required>
                                                                 <div class="invalid-feedback">
                                                                     Please fill this up.
                                                                 </div>
                                                             </div>
                                                             <div class="mt-3">
                                                                 <label for="validationCustom01" class="form-label">Dependent Relationship</label>
-                                                                <select class="form-select" id="validationCustom01" required>
+                                                                <select class="form-select" id="validationCustom01" name="dependentRelationshipUpdate" required>
                                                                     <option selected disabled value="">--Select--</option>
-                                                                    <option value="1">Mother</option>
-                                                                    <option value="2">Father</option>
-                                                                    <option value="1">Spouse</option>
-                                                                    <option value="2">Children</option>
+                                                                    <option value="Mother">Mother</option>
+                                                                    <option value="Father">Father</option>
+                                                                    <option value="Spouse">Spouse</option>
+                                                                    <option value="Child">Child</option>
                                                                 </select>
                                                                 <div class="invalid-feedback">
                                                                     Please select a valid state.
@@ -1749,16 +1736,30 @@
                                                             </div>
                                                             <div class="mt-3">
                                                                 <label for="validationCustom01" class="form-label">Dependent Birthday</label>
-                                                                <input type="date" class="form-control input" id="validationCustom01" required>
+                                                                <input type="date" class="form-control input" id="validationCustom01" name="dependentBdayUpdate" required>
                                                                 <div class="invalid-feedback">
                                                                     Please fill this up.
                                                                 </div>
                                                             </div>
                                                             <div class="mt-3">
                                                                 <label for="validationCustom01" class="form-label">Dependent Contact #</label>
-                                                                <input type="number" class="form-control input" id="validationCustom01" required>
+                                                                <input type="text" class="form-control input" id="validationCustom01" name="dependentNumberUpdate" required>
                                                                 <div class="invalid-feedback">
                                                                     Please fill this up.
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex gap-5 mt-4">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Enable">
+                                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                                        Enable
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Disable" checked>
+                                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                                        Disable
+                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1813,16 +1814,15 @@
                                         </div>
         
                                         <div class="body-modal"> 
-                                            <form class="row my-1 needs-validation" novalidate>
+                                            <form class="row my-1 needs-validation" id="newEducationForm" novalidate>
                                                 <div class="modal-body-info">
                                                     <div class="">
                                                         <label for="validationCustom01" class="form-label">Level</label>
-                                                        <select class="form-select" id="validationCustom01" required>
+                                                        <select class="form-select" id="validationCustom01" name="employeeLevel" required>
                                                             <option selected disabled value="">--Select--</option>
-                                                            <option value="1">Primary</option>
-                                                            <option value="2">Secondary</option>
-                                                            <option value="3">Vocational</option>
-                                                            <option value="4">Tertiary</option>
+                                                            {{#educationLevelList}}
+                                                            <option value="{{educLevelUid}}">{{level}}</option>
+                                                            {{/educationLevelList}}
                                                         </select>
                                                         <div class="invalid-feedback">
                                                             Please select a valid state.
@@ -1830,21 +1830,34 @@
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">School</label>
-                                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                                        <input type="text" class="form-control input" id="validationCustom01" name="employeeSchool" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">Course</label>
-                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Major" required>
+                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Major" name="employeeMajor" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="validationCustom01" class="form-label">Year</label>
+                                                        <input type="text" class="form-control input" id="validationCustom01" name="employeeYear" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">School Year</label>
-                                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                                        <input type="date" class="form-control input" id="validationCustom01" name="employeeDatestart" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <input type="date" class="form-control input" id="validationCustom01" name="employeeDateend" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
@@ -1914,10 +1927,9 @@
                                                                 <label for="validationCustom01" class="form-label">Level</label>
                                                                 <select class="form-select" id="validationCustom01" required>
                                                                     <option selected disabled value="">--Select--</option>
-                                                                    <option value="1">Primary</option>
-                                                                    <option value="2">Secondary</option>
-                                                                    <option value="1">Vocational</option>
-                                                                    <option value="2">Tertiary</option>
+                                                                    {{#educationLevelList}}
+                                                                    <option value="{{educLevelUid}}">{{level}}</option>
+                                                                    {{/educationLevelList}}
                                                                 </select>
                                                                 <div class="invalid-feedback">
                                                                     Please select a valid state.
@@ -1996,32 +2008,38 @@
                                         </div>
         
                                         <div class="body-modal"> 
-                                            <form class="row my-1 needs-validation" novalidate>
+                                            <form class="row my-1 needs-validation" id="newWorkExForm" novalidate>
                                                 <div class="modal-body-info">
                                                     <div>
                                                         <label for="validationCustom01" class="form-label">Employer</label>
-                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Employer" required>
+                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Employer" name="employerName" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">Position</label>
-                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Position" required>
+                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Position" name="employmentPosition" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">Date Employeed</label>
-                                                        <input type="text" class="form-control input" id="validationCustom01" required>
+                                                        <input type="date" class="form-control input" id="validationCustom01" name="employeeDatestart" required>
+                                                        <div class="invalid-feedback">
+                                                            Please fill this up.
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <input type="date" class="form-control input" id="validationCustom01" name="employeeDateend" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
                                                     </div>
                                                     <div class="mt-3">
                                                         <label for="validationCustom01" class="form-label">Employment Status</label>
-                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Status" required>
+                                                        <input type="text" class="form-control input" id="validationCustom01" placeholder="Status" name="employmentStatus" required>
                                                         <div class="invalid-feedback">
                                                             Please fill this up.
                                                         </div>
@@ -2056,6 +2074,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="align-middle">
+                                            {{#workExperienceList}}
                                             <tr>
                                                 <td>{{number}}</td>
                                                 <td>{{employer}}</td>
@@ -2066,6 +2085,7 @@
                                                     <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-work">Edit</button>  
                                                 </td>   
                                             </tr>
+                                            {{/workExperienceList}}
                                         </tbody>
                                     </table>    
                                     
