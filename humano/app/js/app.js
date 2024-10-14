@@ -1019,7 +1019,7 @@ $(document).ready(function(){
                         $.each(data, function(i, item){
                             $("#td-type").text(item.type);
                             $("#td-datehired").text(item.dateHired);
-                            $("#td-datestarted").text(item.dateResigned);
+                            $("#td-datestarted").text(item.dateStarted);
                             $("#td-dateresigned").text(item.dateResigned);
                         });
                         console.log(data);
@@ -1099,20 +1099,12 @@ $(document).ready(function(){
 
             function getDepartmentDetails(empUid){
                 $.getJSON(App.api + "/employee/departments/view/" + empUid + "." + App.token,function(data){
-                    console.log(data);
-                    $("#table-dependents").DataTable().fnDestroy();
-                    $.each(data, function(i, item) {
-                        number++;
-                        var html = "<tr>";
-                        html += "<td>" + number + "</td>";
-                        html += "<td>" + item.name + "</td>";
-                        html += "<td>" + item.number + "</td>";
-                        html += "<td>" + item.relationship + "</td>";
-                        html += "<td>" + item.bday + "</td>";
-                        html += "<td class='text-md-start text-end'><button class='edit-btn btn btn-outline-success' data-bs-dismiss='modal' data-bs-toggle='modal' aria-label='Close' data-bs-target='#edit-Dependent' data-uid='"+ item.employeeDependentUid +"'data-toggle='modal'>Edit</button></td>";
-                        html += "</tr>";
-
-                        $("#table-dependents tbody").append(html);
+                    console.log(data.list);
+                    $.each(data.list, function(i, item) {
+                        $("#td-deptname").text(item.department);
+                        $("#editBtn").attr("data-uid",item.uid);
+                        $("#editBtn").attr("data-dept",item.dept);
+                        $("#editBtn").attr("data-post",item.position);
                     });
                 });
             }
@@ -1468,10 +1460,6 @@ $(document).ready(function(){
             //Work Experience End
 
         });
-
-        Path.map('#/trial/employment/status/:empUid').to(function(){
-            console.log("Hello " + this.params["empUid"]);
-        })
 
         // RESUME
         Path.map('#/resume-application/').to(function(){

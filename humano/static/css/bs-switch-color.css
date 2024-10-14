@@ -1,0 +1,6 @@
+.bootstrap-switch .bootstrap-switch-handle-on {
+    background-color: #107a71 !important; /* Custom "On" color */
+}
+.bootstrap-switch .bootstrap-switch-handle-off {
+    background-color: #FAA045 !important; /* Custom "Off" color */
+}

@@ -92,3 +92,79 @@ function renderToDataTable(tableID)
         }
     });
 }
+
+function initDateTimePicker(fieldID){
+    const datetimepicker = new tempusDominus.TempusDominus(document.getElementById(fieldID),{
+        display: {
+        components: {
+        calendar: true,
+        date: true,
+        month: true,
+        year: true,
+        decades: true,
+        clock: true,
+        hours: true,
+        minutes: true,
+        seconds: false
+        }
+    },
+    localization: {
+        format: 'yyyy-MM-dd hh:mm T'}
+    });
+}
+
+function initTimePicker(fieldID){
+    $(fieldID).timepicker({ 'timeFormat': 'h:i A' });
+}
+
+function DateTimePickerSetValue(fieldID,timeValue)
+{
+    const datetimepicker = new tempusDominus.TempusDominus(document.getElementById(fieldID),{
+        display: {
+        components: {
+        calendar: true,
+        date: true,
+        month: true,
+        year: true,
+        decades: true,
+        clock: true,
+        hours: true,
+        minutes: true,
+        seconds: false
+        }
+    },
+    localization: {
+        format: 'yyyy-MM-dd hh:mm T'}
+    });
+    const timeInDate = new tempusDominus.DateTime(new Date(timeValue));
+    datetimepicker.dates.setValue(timeInDate);
+}
+
+function initBootstrapSwitch(fieldID)
+{
+    $(fieldID).bootstrapSwitch({
+        onText: "Enable",
+        offText: "Disable"
+    });
+}
+
+function initSelect2(selectID)
+{
+    $(selectID).select2({
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+        minimumResultsForSearch: 0,
+    });
+}
+
+function initSelect2Modal(selectID,modalID)
+{
+    $(selectID).select2({
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+        minimumResultsForSearch: 0,
+        dropdownParent:$(modalID)
+    });
+}

@@ -1,5 +1,6 @@
 <?php
-ORM::configure('mysql:host=localhost;dbname=aisi_humano');
+// ORM::configure('mysql:host=localhost;dbname=aisi_humano');
+ORM::configure('mysql:host=localhost;dbname=aisi_humano_demo');
 ORM::configure('username', 'root');
 ORM::configure('password', 'root');
 ORM::configure('logging', true);

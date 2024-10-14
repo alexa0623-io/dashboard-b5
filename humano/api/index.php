@@ -3619,7 +3619,7 @@ $app->get("/employee/costcenter/data/:uid", function($uid){
 # Employee Costcenter Single Data 
 $app->get("/employee/costcenter/single/data/:uid", function($uid){
     $data = getEmpCostCenterDataByUid($uid);
-
+    $response = array();
     if($data){
         $response = array(
             "empCostUid" => $data->emp_cost_center_uid,
@@ -3630,7 +3630,6 @@ $app->get("/employee/costcenter/single/data/:uid", function($uid){
             "status"     => $data->status
         );
     }
-
     echo jsonify($response);
 });
 
