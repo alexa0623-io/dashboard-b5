@@ -4103,6 +4103,7 @@ $(document).ready(function(){
             App.canvas.html("").append($.Mustache.render("krono-time-logs-view"));
             var tableID = '#table-time-logs-view';
             renderToDataTablePrint(tableID);
+            console.log("Hello");
         });
 
         Path.map('#/event-logs/').to(function(){
