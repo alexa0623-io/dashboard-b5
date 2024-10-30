@@ -10,8 +10,11 @@
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/bootstrap.css">
 
+    <!-- Bootstrap Switch CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/bs-switch-color.css">
+
     <!-- DataTable -->
-     
     <!-- <link rel="stylesheet" href="../static/dataTable1/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="../static/dataTable1/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="../static/dataTable1/css/jquery.dataTables.min.css">
@@ -27,7 +30,9 @@
     <link rel="stylesheet" href="../static/css/404.css">
     <link rel="stylesheet" href="../krono-user/css/profile.css">
     <link rel="stylesheet" href="../krono-user/css/timesheet.css">
+    <link rel="stylesheet" href="/krono/css/calendar.css">
     <!-- <link rel="stylesheet" href="../krono-user/css/krono-user.css"> -->
+
 </head>
 <body >
     <div id="layout" class="w-100">
@@ -35,6 +40,20 @@
         <div class="w-100">
             <nav id="navCanvas" class="fixed-top"></nav>
             <div id="canvas" class="">
+            </div>
+        </div>
+    </div>
+    <!-- Loading screen -->
+    <div id='loading-humano' class='modal' style='margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: #eefbf9; z-index: 30001; opacity: 0.8;'>
+        <div class="loading d-flex align-items-center justify-content-center gap-5" style="height:100vh">
+            <span class="loader"></span>
+            <div class="loadingScreen">
+                <span class="loadingScreen__text__span">h</span>
+                <span class="loadingScreen__text__span">u</span>
+                <span class="loadingScreen__text__span">m</span>
+                <span class="loadingScreen__text__span">a</span>
+                <span class="loadingScreen__text__span">n</span>
+                <span class="loadingScreen__text__span">o</span>
             </div>
         </div>
     </div>
@@ -58,6 +77,9 @@
     <script src="../static/dataTable1/js/vfs_fonts.js"></script>
     <script src="../static/dataTable1/js/jszip.min.js"></script>
 
+     <!-- Bootstrap Switch JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
+
 
     <!-- <script src="../static/dataTable/dataTables-v2.0.7.js"></script>
     <script src="../static/dataTable/dataTables.bootstrap5.js"></script> -->
@@ -66,7 +88,7 @@
     <script src="../static/dataTables/datatables.min.css"></script>
     <script src="../static/dataTables/buttons.bootstrap4.css"></script> -->
 
-    
+    <script src="../node_modules/moment/moment.js"></script>
 
     <script src="js/krono-user.js"></script>
 

@@ -26,7 +26,6 @@ $(document).ready(function(){
             });
                         
         },
-        
     
         sidebarLink : function(){
             $(document).ready(function() {
@@ -126,6 +125,64 @@ $(document).ready(function(){
                     }
                 });
             });
+        },
+
+        calendar:function(){
+            console.log("This is the calendar render function");
+            const currentDate = $(".current-date");
+            const daysTag = $(".days");
+            const prevNextIcon = document.querySelectorAll(".icon-nav");
+            
+            const months = ["January","February","March","April","May","June","July","August","September","October","November", "December"]
+            let date = new Date(),
+            currYear = date.getFullYear(),
+            currMonth = date.getMonth();
+            const calendarRender = () => {
+                let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
+                lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
+                lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), // getting last day of month
+                lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+                let liTag = "";
+
+                for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
+                    liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+                }
+
+                for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
+                    // adding active class to li if the current day, month, and year matched
+                    let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
+                                && currYear === new Date().getFullYear() ? "active" : "";
+                    liTag += `<li class="${isToday}">${i}</li>`;
+                }
+
+                for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
+                    liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
+                }
+                currentDate.text(`${months[currMonth]} ${currYear}`); // passing current mon and yr as currentDate text
+                daysTag.html(liTag);
+            }
+            calendarRender();
+            
+            $(document).off("click",".icon-nav").on("click",".icon-nav",function(){
+                var iconId = $(this).attr("id");
+                if(iconId === "prev")
+                {
+                    currMonth--
+                }
+                else
+                {
+                    currMonth++;
+                }
+                console.log(iconId, currMonth);
+                if(currMonth < 0 || currMonth > 11) {
+                    date = new Date(currYear, currMonth, new Date().getDate());
+                    currYear = date.getFullYear(); 
+                    currMonth = date.getMonth(); 
+                } else {
+                    date = new Date();
+                }
+                calendarRender();
+            });
         }
     }
 
@@ -134,11 +191,6 @@ $(document).ready(function(){
     }
 
     function attachUsernameInLink(){
-        $(".nav-link-dashboard").attr('href','#/dashboard/'+App.username);
-        $(".nav-link-profile").attr('href','#/profile/'+App.username);
-        $(".nav-link-dependents").attr('href','#/dependents/'+App.username);
-        $(".nav-link-workexp").attr('href','#/work-experience/'+App.username);
-        $(".nav-link-education").attr('href','#/education/'+App.username);
         $(".nav-link-traindev").attr('href','#/training/development/'+App.username);
         $(".nav-link-loans").attr('href','#/loans/'+App.username);
         $(".nav-link-certificate").attr('href','#/certificate/'+App.username);
@@ -146,6 +198,12 @@ $(document).ready(function(){
         $(".nav-link-knowbased").attr('href','#/knowledgebased/'+App.username);
     }
     $.Mustache.load('templates/user.html').done(function(){
+        var data = getJSONDoc(App.api + "/get/user/data/" + App.username);
+        var templateData = {
+            empUid:App.username,
+            empName:data.name
+        }
+        console.log(templateData);
         App.toggleSidebar();
         App.sidebarLink();
         App.deskArrow();
@@ -153,8 +211,8 @@ $(document).ready(function(){
         App.navbarLinkDropdown();
         App.uploadImage();
         App.formValidation();
-        App.sideCanvas.html("").append($.Mustache.render("side-nav"));
-        App.navCanvas.html("").append($.Mustache.render("admin-nav"));
+        App.sideCanvas.html("").append($.Mustache.render("side-nav",templateData));
+        App.navCanvas.html("").append($.Mustache.render("admin-nav",templateData));
         attachUsernameInLink();
         
         Path.map('#/dashboard/:id').to(function(){
@@ -236,6 +294,7 @@ $(document).ready(function(){
 			}			
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("user-dash",templateData));
+            App.calendar();
             var tableID = ['#table-birthday-celebration','#table-new-employee',];
             $.each(tableID,function(i,item){
                 renderToDataTableDashboard(item);
@@ -799,8 +858,14 @@ $(document).ready(function(){
             });
         }).enter(clearPanel);
 
-
-        Path.root();
+        
+        Path.root("#/profile/:id");
+        Path.rescue(function() { 
+            var temp = {
+                euid: App.username
+            }
+            App.canvas.html("").append($.Mustache.render("404", temp));
+        });
         Path.listen();
     });
 });

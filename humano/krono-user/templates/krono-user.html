@@ -8,7 +8,7 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <div style="cursor: pointer;">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <a href="#/users/logout/" style="color:white"><i class="fa-solid fa-right-from-bracket"></i></a>
                 </div>
             </div>
         </div>
@@ -30,34 +30,34 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul id="mobile-btn"  class="navbar-nav me-auto mb-2 mb-lg-0 mt-3">
                         <li class="nav-item">
-                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/dashboard/">Dashboard</a>
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/dashboard/{{empUid}}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/profile/">Profile</a>
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/profile/{{empUid}}">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/timesheet/">Time Sheet</a>
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/timesheet/{{empUid}}">Time Sheet</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#/leave-absent/">
+                            <a class="nav-link d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#/leave-absent/{{empUid}}">
                                 <span class="">Leave / Absent</span>
                                 <span class="krono-user-text bg-secondary px-2 py-1 text-white rounded">0</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#/overtime/">
+                            <a class="nav-link d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#/overtime/{{empUid}}">
                                 <span class="group-hover:text-white">Overtime</span>
                                 <span class="krono-user-text bg-info px-2 py-1 text-white rounded">0</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#/holiday-restday/">
+                            <a class="nav-link d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#/holiday-restday/{{empUid}}">
                                 <span class="group-hover:text-white">Holiday & Restday</span>
                                 <span class="krono-user-text bg-danger px-2 py-1 text-white rounded">0</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/payslip/">Payslip</a>
+                            <a class="nav-link px-2 py-2.5" aria-current="page" href="#/payslip/{{empUid}}">Payslip</a>
                         </li>
                     </ul>
                     <hr class="my-3">
@@ -87,7 +87,7 @@
                         <div id="side-circle" class="d-flex align-items-center justify-content-center rounded-circle">
                             <i class="fas fa-user"></i>
                         </div>
-                        <p class="mt-2">John Doe</p>
+                        <p class="mt-2">{{empName}}</p>
                     </div>
                     <hr class="mx-3">
                 </div>
@@ -96,25 +96,25 @@
                 <div class="h-full">
                     <ul id="side-menu" class="navbar-nav me-auto mb-2 px-2">
                         <li>
-                            <a href="#/dashboard/" class="sidebar-link d-flex align-items-center">
+                            <a href="#/dashboard/{{empUid}}" class="sidebar-link d-flex align-items-center">
                                 <i id="icon" class="fa-solid fa-house"></i>
                                 <span class="" style="margin-left: -4px;">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#/profile/" class="sidebar-link d-flex align-items-center">
+                            <a href="#/profile/{{empUid}}" class="sidebar-link d-flex align-items-center">
                                 <i id="icon" class="fa-solid fa-user"></i>
-                                <spa class="align-middle">Profile</span>
+                                <span class="align-middle">Profile</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#/timesheet/" class="sidebar-link d-flex align-items-center">
+                            <a href="#/timesheet/{{empUid}}" class="sidebar-link d-flex align-items-center">
                                 <i id="icon" class="fa-solid fa-arrow-up-right-from-square"></i>
-                                <spa class="align-middle">Time Sheet</span>
+                                <span class="align-middle">Time Sheet</span>
                             </a>
                         </li>
                         <li class="krono-user">
-                            <a href="#/leave-absent/" class="sidebar-link d-flex justify-content-between align-items-center">
+                            <a href="#/leave-absent/{{empUid}}" class="sidebar-link d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
                                     <i id="icon" class="fa-solid fa-clock"></i>
                                     <span class="align-middle">Leave / Absent</span>
@@ -123,7 +123,7 @@
                             </a>
                         </li>
                         <li class="krono-user">
-                            <a href="#/overtime/" class="sidebar-link d-flex justify-content-between align-items-center">
+                            <a href="#/overtime/{{empUid}}" class="sidebar-link d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
                                     <i id="icon" class="fa-regular fa-circle"></i>
                                     <span class="align-middle">Overtime</span>
@@ -132,18 +132,12 @@
                             </a>
                         </li>
                         <li class="krono-user">
-                            <a href="#/holiday-restday/" class="sidebar-link d-flex justify-content-between align-items-center">
+                            <a href="#/holiday-restday/{{empUid}}" class="sidebar-link d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
                                     <i id="icon" class="krono-user-absent fa-solid fa-calendar-days"></i>
                                     <span class="align-middle">Holiday & Restday</span>
                                 </div>
                                 <span class="krono-user-text bg-danger px-2 py-1 text-white rounded">0</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/payslip/" class="sidebar-link d-flex align-items-center">
-                                <i id="icon" class="fa-solid fa-money-bill" style="margin-top: 3px;"></i>
-                                <span class="align-middle" style="margin-left: -2px;">Payslip</span>
                             </a>
                         </li>
                     </ul>
@@ -217,13 +211,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-nowrap">
+                                    {{#birthday}}
                                     <tr class="border-b">
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
+                                        <td class="">{{birthday}}</td>
+                                        <td class="">{{empNo}}</td>
+                                        <td class="">{{name}}</td>
+                                        <td class="">{{department}}</td>
+                                        <td class="">{{age}}</td>
                                     </tr>
+                                    {{/birthday}}
                                 </tbody>
                             </table>
                         </div>
@@ -236,95 +232,28 @@
                         <div class="bg1 card-header rounded-top ">
                             <p class="h-100 d-flex align-items-center px-3 fw-medium">Calendar</p>
                         </div>  
-
-                        
-                        <!-- <div class="">
-                            <div id="calendar" class="custom-day-header">
-
-                            </div>
-                        </div> -->
-                        <div id="cal" class="w-full mt-1">
-                            <div>
+                        <div id="cal" class="w-full">
+                            <div class="calendar">
                                 <div id="month" class="d-flex align-items-center justify-content-between text-black">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                    <span>March 2024</span>    
-                                    <i class="fa-solid fa-chevron-right text-[#107A71] text-sm"></i>
+                                    <i id="prev" class="icon-nav fa-solid fa-chevron-left"></i>
+                                    <span class="current-date"></span>    
+                                    <i id="next" class="icon-nav fa-solid fa-chevron-right text-[#107A71] text-sm"></i>
                                 </div>
-                                <div class="w-full flex justify-center text-center px-1 text-nowrap">
-                                    <table class="w-100">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" >S</th>
-                                                <th scope="col" >M</th>
-                                                <th scope="col" >T</th>
-                                                <th scope="col" >W</th>
-                                                <th scope="col" >T</th>
-                                                <th scope="col" >F</th>
-                                                <th scope="col" >S</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="col" id="light">25</td>
-                                                <td scope="col" id="light">26</td>
-                                                <td scope="col" id="light">27</th>
-                                                <td scope="col" id="light">28</th>
-                                                <td scope="col" id="light">29</th>
-                                                <td scope="col">1</th>
-                                                <td scope="col">2</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">3</td>
-                                                <td scope="col">4</td>
-                                                <td scope="col">5</th>
-                                                <td scope="col">6</th>
-                                                <td scope="col">7</th>
-                                                <td scope="col">8</th>
-                                                <td scope="col">9</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">10</td>
-                                                <td scope="col">11</td>
-                                                <td scope="col">12</th>
-                                                <td scope="col">13</th>
-                                                <td scope="col">14</th>
-                                                <td scope="col">15</th>
-                                                <td scope="col">16</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">17</td>
-                                                <td scope="col">18</td>
-                                                <td scope="col">19</th>
-                                                <td scope="col">20</th>
-                                                <td scope="col">21</th>
-                                                <td scope="col">22</th>
-                                                <td scope="col">23</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">24</td>
-                                                <td scope="col">25</td>
-                                                <td scope="col">26</th>
-                                                <td scope="col">27</th>
-                                                <td scope="col">28</th>
-                                                <td scope="col">29</th>
-                                                <td scope="col">30</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">31</td>
-                                                <td scope="col" id="light">1</td>
-                                                <td scope="col" id="light">2</th>
-                                                <td scope="col" id="light">3</th>
-                                                <td scope="col" id="light">4</th>
-                                                <td scope="col" id="light">5</th>
-                                                <td scope="col" id="light">6</th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <ul class="weeks">
+                                    <li>S</li>
+                                    <li>M</li>
+                                    <li>T</li>
+                                    <li>W</li>
+                                    <li>T</li>
+                                    <li>F</li>
+                                    <li>S</li>
+                                </ul>
+                                <ul class="days"></ul>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
 
             <!-- New Employee -->
@@ -346,12 +275,14 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-nowrap">
+                                    {{#newemployee}}
                                     <tr class="border-b">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{count}}</td>
+                                        <td>{{empNo}}</td>
+                                        <td>{{name}}</td>
+                                        <td>{{datehired}}</td>
                                     </tr>
+                                    {{/newemployee}}
                                 </tbody>
                             </table>
                         </div>
@@ -365,7 +296,7 @@
 <!-- PROFILE -->
 <script type="text/template" id="krono-user-profile">
     <div class="back-main h-100 px-4">
-        <span class="profile fw-medium">EMPLOYEE / PERSONAL DETAILS</span>
+        <span class="profile fw-medium">PERSONAL DETAILS</span>
         <div class="master-tab-content d-flex flex-lg-row flex-column gap-3 mt-md-3 mt-2">
             <div class="tab-user h-25 d-flex flex-column justify-content-center rounded bg-white p-3">
                 <div id="tab-drop" class="d-flex flex-column justify-content-center align-items-center text-center rounded-2 mb-3">
@@ -463,13 +394,13 @@
                         <div class="row pt-md-4 pt-2 px-md-4 px-3 mb-md-4 mb-0">
                             <div class="col-md-4 mt-md-0 mt-3">
                                 <label class="form-label">Full Name</label>
-                                <input type="text" class="input form-control" placeholder="first name">
+                                <input type="text" class="input form-control" name="firstname" placeholder="first name">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="mid-last input form-control" placeholder="middle name">
+                                <input type="text" class="mid-last input form-control" name="middlename" placeholder="middle name">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="mid-last input form-control" placeholder="last name">
+                                <input type="text" class="mid-last input form-control" name="lastname" placeholder="last name">
                             </div>
                         </div>
                         
@@ -479,15 +410,15 @@
                         <div class="row px-md-4 px-3 mb-md-4 mb-0">
                             <div class="col-md-4 mt-md-0 mt-3">
                                 <label class="form-label">Nickname</label>
-                                <input type="text" class="input form-control">
+                                <input type="text" name="nickname" class="input form-control">
                             </div>  
                             <div class="col-md-4 mt-md-0 mt-3">
                                 <label class="form-label">Birthday</label>
-                                <input type="date" class="input form-control">
+                                <input type="date" name="bday" class="input form-control">
                             </div>
                             <div class="col-md-4 mt-md-0 mt-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="input form-control">
+                                <input type="email" name="email" class="input form-control">
                             </div>
                         </div>
                         
@@ -497,7 +428,7 @@
                         <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Gender</label>
-                                <select class="form-select" id="validationCustom01" required>
+                                <select class="form-select" name="gender" id="validationCustom01" required>
                                     <option selected disabled value="">--Select--</option>
                                     <option value="1">Male</option>
                                     <option value="2">Female</option>
@@ -508,14 +439,14 @@
                             </div>
                             <div class="col-md-6 mt-md-0 mt-3">
                                 <label for="validationCustom01" class="form-label">Marital</label>
-                                <select class="form-select" id="validationCustom01" required>
+                                <select class="form-select" name="marital" id="validationCustom01" required>
                                     <option selected disabled value="">--Select--</option>
-                                    <option value="1">Married</option>
-                                    <option value="2">Single</option>
-                                    <option value="3">Living Common Law</option>
-                                    <option value="4">Widowed</option>
-                                    <option value="5">Separate</option>
-                                    <option value="6">Divorced</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Living Common Law">Living Common Law</option>
+                                    <option value="Widowed">Widowed</option>
+                                    <option value="Separate">Separate</option>
+                                    <option value="Divorced">Divorced</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select a valid state.
@@ -527,8 +458,11 @@
                         <div class="row px-md-4 px-3 mb-md-4 mb-0">
                             <div class="col-md-6 mt-md-0 mt-3">
                                 <label for="validationCustom01" class="form-label">Nationality</label>
-                                <select class="form-select" id="validationCustom01" required>
+                                <select class="form-select" id="validationCustom01" name="nationality" required>
                                     <option selected disabled value="">--Select--</option>
+                                    {{#nationalList}}
+                                    <option value="{{name}}">{{name}}</option>
+                                    {{/nationalList}}
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select a valid state.
@@ -546,16 +480,16 @@
                         <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
                             <div class="col-md-3">
                                 <label class="form-label">House Info</label>
-                                <input type="text" class="input form-control" placeholder="House No./Street">
+                                <input type="text" class="input form-control" name="housenumber" placeholder="House No./Street">
                             </div>  
                             <div class="col-md-3">
-                                <input type="text" class="mid-last input form-control" placeholder="Barangay">
+                                <input type="text" class="mid-last input form-control" name="barangay" placeholder="Barangay">
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="mid-last input form-control" placeholder="City">
+                                <input type="text" class="mid-last input form-control" name="city" placeholder="City">
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="mid-last input form-control" placeholder="Region">
+                                <input type="text" class="mid-last input form-control" name="region" placeholder="Region">
                             </div>
                         </div>
 
@@ -565,15 +499,15 @@
                         <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
                             <div class="col-md-4">
                                 <label class="form-label">Height</label>
-                                <input type="text" class="input form-control">
+                                <input type="text" name="height" class="input form-control">
                             </div>
                             <div class="col-md-4 mt-md-0 mt-3">
                                 <label class="form-label">Weight</label>
-                                <input type="text" class="input form-control">
+                                <input type="text" name="weight" class="input form-control">
                             </div>
                             <div class="col-md-4 mt-md-0 mt-3">
                                 <label class="form-label">Blood Type</label>
-                                <input type="text" class="input form-control">
+                                <input type="text" name="bloodtype" class="input form-control">
                             </div>
                         </div>
                         
@@ -583,11 +517,11 @@
                         <div class="with-hr row px-md-4 px-3 mb-md-4 mb-0">
                             <div class="col-md-6">
                                 <label class="form-label">Driver License</label>
-                                <input type="text" class="input form-control">
+                                <input type="text" name="driverLicense" class="input form-control">
                             </div>
                             <div class="col-md-6 mt-md-0 mt-3">
                                 <label class="form-label">License Expired</label>
-                                <input type="text" class="input form-control">
+                                <input type="text" name="expiryLicense" class="input form-control">
                             </div>
                         </div>
 
@@ -597,19 +531,19 @@
                         <div class="row px-md-4 px-3 mb-md-4 mb-0">
                             <div class="col-md-3 mt-md-0 mt-3">
                                 <label class="form-label">SSS</label>
-                                <input type="text" class="input form-control" placeholder="SSS">
+                                <input type="text" name="sssNo" class="input form-control" placeholder="SSS">
                             </div>  
                             <div class="col-md-3 mt-md-0 mt-3">
                                 <label class="form-label">BIR</label>
-                                <input type="text" class="input form-control" placeholder="BIR">
+                                <input type="text" name="taxNo" class="input form-control" placeholder="BIR">
                             </div>  
                             <div class="col-md-3 mt-md-0 mt-3">
                                 <label class="form-label">Philhealth No.</label>
-                                <input type="text" class="input form-control" placeholder="Philhealth No.">
+                                <input type="text" name="philhealthNo" class="input form-control" placeholder="Philhealth No.">
                             </div>  
                             <div class="col-md-3 mt-md-0 mt-3">
                                 <label class="form-label">Pag-ibig No.</label>
-                                <input type="text" class="input form-control" placeholder="Pag-ibig No.">
+                                <input type="text" class="input form-control" name="pagibigNo" placeholder="Pag-ibig No.">
                             </div>  
                         </div>
                         
@@ -619,13 +553,11 @@
                         <div class="row px-md-4 px-3 mb-md-4 mb-3">
                             <div class="col-md-6 mt-md-0 mt-3">
                                 <label for="validationCustom01" class="form-label">Tax Status</label>
-                                <select class="form-select" id="validationCustom01" required>
+                                <select class="form-select" name="tax-status" id="validationCustom01" required>
                                     <option selected disabled value="">--Select--</option>
-                                    <option value="1">Z</option>
-                                    <option value="2">S/ME</option>
-                                    <option value="1">ME1/S2</option>
-                                    <option value="2">ME2/S2</option>
-                                    <option value="2">ME3/S3</option>
+                                    {{#taxStatusList}}
+                                    <option value="{{uid}}">{{taxStatus}}</option>
+                                    {{/taxStatusList}}
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select a valid state.
@@ -633,7 +565,7 @@
                             </div>
                             <div class="col-md-6 mt-md-0 mt-3">
                                 <label for="validationCustom01" class="form-label">Status</label>
-                                <select class="form-select" id="validationCustom01" required>
+                                <select class="form-select" id="validationCustom01" name="status" required>
                                     <option selected disabled value="">--Select--</option>
                                     <option value="1">Active</option>
                                     <option value="2">Inactive</option>
@@ -645,7 +577,7 @@
                         </div>
                         
                         <div class="tab-btn px-md-4 px-3 pb-md-5 pb-4">
-                            <button class="ok rounded border-0 w-100">Update</button>
+                            <button class="ok rounded border-0 w-100" id="update-btn">Update</button>
                         </div>  
                     </form> 
                 </div>
@@ -663,18 +595,18 @@
             </div>
             
             <div class="request">
-                <form class="mt-2 p-md-4 p-3 needs-validation" novalidate>
+                <form class="mt-2 p-md-4 p-3 needs-validation" id="empTimesheetform" novalidate>
                     <div class="row">
                         <div class="col-md-4">
                             <label for="validationCustom01" class="form-label fw-medium">From</label>
-                            <input type="date" class="form-control input" id="validationCustom01" required>
+                            <input type="date" id="tdEmpTimesheetStartDate" name="tdEmpTimesheetStartDate" class="form-control input" required>
                             <div class="invalid-feedback">
                                 Please fill this up.
                             </div>
                         </div>
                         <div class="col-md-4 mt-md-0 mt-3">
                             <label for="validationCustom01" class="form-label fw-medium">To</label>
-                            <input type="date" class="form-control input" id="validationCustom01" required>
+                            <input type="date" class="form-control input" id="tdEmpTimesheetEndDate" name="tdEmpTimesheetEndDate" required>
                             <div class="invalid-feedback">
                                 Please fill this up.
                             </div>
@@ -744,94 +676,75 @@
                                     <th>Undertime</th>
                                     <th>Worked</th>
                                     <th>#</th>
-                                    <th>Date</
+                                    <th>Date</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Monday</td>
-                                    <td>ddddd</td>
-                                    <td>Worked</td>
-                                    <td>Worked</td>
-                                    <td>Worked</td>
-                                    <td>Worked</td>
-                                    <td>Worked</td>
-                                    <td>Worked</td>
-                                </tr>
                             </tbody>
                         </table>    
                         
                         <!-- Edit Modal -->
-                        <div class="modal fade" id="edit-all" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
+                        <div class="modal fade" id="adjustmentTimeRequest" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
-                                        <p class="modal-title" id="editAll">Edit Work Schedule</p>
+                                        <p class="modal-title" id="editAll">Request Adjustment</p>
                                         <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                     </div>
-    
-                                    <div class="body-modal"> 
-                                        <form class="row my-1 needs-validation" novalidate>
+
+                                    <div class="body-modal">
+                                        <form class="row my-1 needs-validation" id="applyOffsetEmpTimeForm" novalidate>
                                             <div class="modal-body-info">
                                                 <div class="">
-                                                    <label for="validationCustom01" class="form-label fw-medium">Employee Name</label>
-                                                    <select class="form-select" id="validationCustom01" required>
-                                                        <option selected disabled value="">--Select--</option>
-                                                        <option value="1"></option>
-                                                        <option value="2"></option>
-                                                        <option value="3"></option>
-                                                        <option value="4"></option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        Please select a valid state.
-                                                    </div>
+                                                    <small class="text-danger error-message">This adjustment form will only accept paired time in & out for a single date.</small><br>
+                                                    <small class="text-danger error-message">*You are only allowed to apply during this cutoff period.</small>
+                                                </div> 
+                                                <div class="mt-3">
+                                                    <label class="label" >Date</label>
+                                                    <input type="text" class="form-control" name="timeRequestDate" id="timeRequestDate" />
+                                                    <span class="error-message" id="error-message-timeRequestDate"></span>
                                                 </div>
                                                 <div class="mt-3">
-                                                    <label for="validationCustom01" class="form-label fw-medium">Leave Type</label>
-                                                    <select class="form-select" id="validationCustom01" required>
-                                                        <option selected disabled value="">--Select--</option>
-                                                        <option value="1"></option>
-                                                        <option value="2"></option>
-                                                        <option value="3"></option>
-                                                        <option value="4"></option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        Please select a valid state.
-                                                    </div>
+                                                    <label>Time In</label>
+                                                    <input type="text" class="form-control" name="timeRequestIn" id="timeRequestIn" />
+                                                    <span class="error-message" id="error-message-timeRequestIn"></span>
                                                 </div>
                                                             
                                                 <div class="row mt-3">
-                                                    <div class="col-md-6">
-                                                        <label for="validationCustom01" class="form-label fw-medium">From</label>
-                                                        <input type="date" class="form-control input" id="validationCustom01" required>
-                                                        <div class="invalid-feedback">
-                                                            Please fill this up.
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mt-md-0 mt-3">
-                                                        <label for="validationCustom01" class="form-label fw-medium">To</label>
-                                                        <input type="date" class="form-control input" id="validationCustom01" required>
-                                                        <div class="invalid-feedback">
-                                                            Please fill this up.
-                                                        </div>
+                                                    <div class="">
+                                                        <label>Time Out</label>
+                                                        <input type="text" class="form-control" name="timeRequestOut" id="timeRequestOut" />
+                                                        <span class="error-message" id="error-message-timeRequestOut"></span>
                                                     </div>
                                                 </div>
                                                 <div class="mt-3">
-                                                    <label for="validationCustom01" class="form-label fw-medium">Reason</label>
-                                                    <textarea name="" class="form-control" rows="5" id="comment" id="validationCustom01" required></textarea>
-                                                    <div class="invalid-feedback">
-                                                        Please fill this up.
-                                                    </div>
+                                                    <label>Type of Adjustment:</label>
+                                                    <input type="text" class="form-control timeReasonss" name="timeRequestTypeOfAdjustment" id="timeTypeOfAdjustment" placeholder="Clock In/Out Or Both"/>
+                                                    <span class="error-message" id="error-message-timeRequestTypeOfAdjustment"></span>
                                                 </div>
-    
+                                                <div class="mt-3">
+                                                    <label>Reason:</label>
+                                                    <input type="text" class="form-control timeReasonss" name="timeRequestReason" id="timeRequestReason" placeholder="Ex: Slow Connection"/>
+                                                    <span class="error-message" id="error-message-timeRequestReason"></span>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label>Schedule:</label>
+                                                    <input type="text" class="form-control timeReasonss" name="timeRequestSchedule" id="timeRequestSchedule" placeholder="Ex. My sched is 9am-6pm"/>
+                                                    <span class="error-message" id="error-message-timeRequestSchedule"></span>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label>Acknowledged By:</label>
+                                                    <input type="text" class="form-control timeReasonss" name="timeRequestAcknowledgeBy" id="timeRequestAcknowledgeBy"/>
+                                                    <span class="error-message" id="error-message-timeRequestAcknowledgeBy"></span>
+                                                </div>
                                             </div>
     
                                             <!-- Button -->
                                             <div class="button-modal">
                                                 <div class="w-100 d-flex justify-content-end gap-2 border-top">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <button class="btn btn-success bg-blue" type="submit">Update</button>
+                                                    <button class="btn btn-success bg-blue" type="submit">Submit</button>
                                                 </div>
                                             </div>
                                         </form> 
@@ -853,32 +766,30 @@
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3 fw-medium">
                 <span class="fw-medium">Leave Request</span>
                 <div class="d-flex gap-2">
-                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#leaveRequest">
                         Request
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="leaveRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
                             <p class="modal-title" id="exampleModalLabel">Request Leave</p>
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
-
                         <div class="body-modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                            <form class="row my-1 needs-validation" id="applyLeaveForm" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label fw-medium">Leave Type</label>
-                                        <select class="form-select" id="validationCustom01" required>
+                                        <select class="form-select" name="employeeLeaveType" id="employeeLeaveType" required>
                                             <option selected disabled value="">--Select--</option>
-                                            <option value="1"></option>
-                                            <option value="2"></option>
-                                            <option value="3"></option>
-                                            <option value="4"></option>
+                                            {{#leaveTypeList}}
+                                            <option value="{{leaveUid}}">{{leaveName}}</option>
+                                            {{/leaveTypeList}}
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a valid state.
@@ -887,14 +798,14 @@
                                     <div class="row mt-3">
                                         <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label fw-medium">From</label>
-                                            <input type="date" class="form-control input" id="validationCustom01" required>
+                                            <input type="date"  class="form-control input" name="employeeApplyLeaveFrom" id="employeeApplyLeaveFrom" required>
                                             <div class="invalid-feedback">
                                                 Please fill this up.
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-md-0 mt-3">
                                             <label for="validationCustom01" class="form-label fw-medium">To</label>
-                                            <input type="date" class="form-control input" id="validationCustom01" required>
+                                            <input type="date" class="form-control input" name="employeeApplyLeaveTo" id="employeeApplyLeaveTo" required>
                                             <div class="invalid-feedback">
                                                 Please fill this up.
                                             </div>
@@ -902,7 +813,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label fw-medium">Reason</label>
-                                        <textarea name="" class="form-control" rows="5" id="comment" id="validationCustom01" required></textarea>
+                                        <textarea name="" class="form-control" rows="5" id="comment" name="employeeApplyLeaveReason" id="employeeApplyLeaveReason" required></textarea>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -931,30 +842,32 @@
                             <span class="text-danger">0</span>
                         </div>
                         <div class="leave-count-info mx-md-4 mx-3 mt-2 px-4 p-3 d-flex flex-wrap justify-content-between gap-2 align-items-center border rounded">
+                            {{#leaveCounts}}
                             <div class="d-flex gap-1 align-items-center">
                                 <span>Birthday :</span>
-                                <span>0</span>
+                                <span>{{BL}}</span>
                             </div>
                             <div class="d-flex gap-1 align-items-center">
                                 <span>Sick :</span>
-                                <span>0</span>
+                                <span>{{SL}}</span>
                             </div>
                             <div class="d-flex gap-1 align-items-center">
                                 <span>Bereavement :</span>
-                                <span>0</span>
+                                <span>{{BV}}</span>
                             </div>
                             <div class="d-flex gap-1 align-items-center">
                                 <span>Vacation :</span>
-                                <span>0</span>
+                                <span>{{VL}}</span>
                             </div>
                             <div class="d-flex gap-1 align-items-center">
                                 <span>Maternity :</span>
-                                <span>0</span>
+                                <span>{{ML}}</span>
                             </div>
                             <div class="d-flex gap-1 align-items-center">
                                 <span>Paternity :</span>
-                                <span>0</span>
+                                <span>{{PL}}</span>
                             </div>
+                            {{/leaveCounts}}
                         </div>
                     </div>
                     
@@ -962,7 +875,7 @@
                     <!-- LAGEND -->
                     <div class="px-md-4 px-3 fw-medium">
                         <span class="leave-count-title">Pending Request:</span>
-                        <span class="text-danger">0</span>
+                        <span class="text-danger" id="pendingLeaveNotification"></span>
                     </div>
                     <div class="time-legend w-100 d-flex justify-content-center align-items-center  mt-3 px-md-4 px-3 py-3 gap-lg-5 gap-md-4 gap-0">
                         <div class="">
@@ -989,18 +902,18 @@
                     </div>
                 </div>
     
-                <form class="mt-2 p-md-4 p-3 needs-validation" novalidate>
+                <form class="mt-2 p-md-4 p-3 needs-validation" id="formDate" novalidate>
                     <div class="row">
                         <div class="col-md-4">
                             <label for="validationCustom01" class="form-label fw-medium">From</label>
-                            <input type="date" class="form-control input" id="validationCustom01" required>
+                            <input type="date" class="form-control input" id="validationCustom01" name="startDate" required>
                             <div class="invalid-feedback">
                                 Please fill this up.
                             </div>
                         </div>
                         <div class="col-md-4 mt-md-0 mt-3">
                             <label for="validationCustom01" class="form-label fw-medium">To</label>
-                            <input type="date" class="form-control input" id="validationCustom01" required>
+                            <input type="date" class="form-control input" id="validationCustom01" name="endDate" required>
                             <div class="invalid-feedback">
                                 Please fill this up.
                             </div>
@@ -1009,13 +922,6 @@
                             <button class="button-ok w-100 btn text-center text-white p-2" type="submit">Filter</button>
                         </div>
                     </div>
-                    
-                    <!-- Button -->
-                    <!-- <div class="row mt-3 d-flex justify-content-end">
-                        <div class="col-md-6">
-                            <button class="button-ok w-100 btn text-center text-white p-2" type="submit">OK</button>
-                        </div>
-                    </div> -->
                 </form>
 
                 <!-- TABLE -->
@@ -1051,39 +957,66 @@
                         </table>    
                         
                         <!-- Edit Modal -->
-                        <div class="modal fade" id="edit-all" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
+                        <div class="modal fade" id="leaveEdit" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
-                                        <p class="modal-title" id="editAll">Edit Work Schedule</p>
+                                        <p class="modal-title" id="editAll">Update Leave Request</p>
                                         <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                     </div>
-    
                                     <div class="body-modal"> 
                                         <form class="row my-1 needs-validation" novalidate>
                                             <div class="modal-body-info">
                                                 <div class="">
                                                     <label for="validationCustom01" class="form-label fw-medium">Valid From</label>
-                                                    <input type="date" class="form-control input" id="validationCustom01" required>
+                                                    <input type="date" class="form-control input" name="leaveStart" id="leaveStart" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
                                                 </div>
                                                 <div class="mt-3">
                                                     <label for="validationCustom01" class="form-label fw-medium">Valid To</label>
-                                                    <input type="date" class="form-control input" id="validationCustom01" required>
+                                                    <input type="date" class="form-control input" name="leaveEnd" id="leaveEnd" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
                                                 </div>
                                             </div>
-    
                                             <!-- Button -->
                                             <div class="button-modal">
                                                 <div class="w-100 d-flex justify-content-end gap-2 border-top">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                     <button class="btn btn-success bg-blue" type="submit">Update</button>
                                                 </div>
+                                            </div>
+                                        </form> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Delete Modal -->
+                        <div class="modal fade" id="leaveDelete" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                                        <p class="modal-title" id="editAll">Update Leave Request</p>
+                                        <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                                    </div>
+                                    <div class="body-modal"> 
+                                        <form class="row my-1 needs-validation" novalidate>
+                                            <div class="modal-body-info">
+                                                <div class="">
+                                                    <h4>Are you sure you want to remove this request?</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Button -->
+                                            <div class="button-modal">
+                                                <form id="deleteLeaveType" role="form">
+                                                    <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button class="btn btn-success bg-blue" type="submit">Confirm</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </form> 
                                     </div>
@@ -1104,51 +1037,51 @@
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3 fw-medium">
                 <span class="fw-medium">Overtime Request</span>
                 <div class="d-flex gap-2">
-                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#overtimeRequest">
                         Request
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="overtimeRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
-                            <p class="modal-title" id="exampleModalLabel">Request Leave</p>
+                            <p class="modal-title" id="exampleModalLabel">Request Overtime</p>
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
                         <div class="body-modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                            <form class="row my-1 needs-validation" id="applyOvertimeForm" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
                                         <label for="validationCustom01" class="form-label fw-medium">From</label>
-                                        <input type="date" class="form-control input" id="validationCustom01" required>
+                                        <input type="date" class="form-control input" name="employeeApplyOvertimeFrom" id="employeeApplyOvertimeFrom" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
 
-                                        <input type="time" class="form-control input mt-2" id="validationCustom01" required>
+                                        <input type="time" class="form-control input mt-2" name="employeeApplyOvertimeFromTime" id="employeeApplyOvertimeFromTime" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label fw-medium">To</label>
-                                        <input type="date" class="form-control input" id="validationCustom01" required>
+                                        <input type="date" class="form-control input" name="employeeApplyOvertimeTo" id="employeeApplyOvertimeTo" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
 
-                                        <input type="time" class="form-control input mt-2" id="validationCustom01" required>
+                                        <input type="time" class="form-control input mt-2" name="employeeApplyOvertimeToTime" id="employeeApplyOvertimeToTime" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label fw-medium">Reason</label>
-                                        <textarea name="" class="form-control" rows="5" id="comment" id="validationCustom01" required></textarea>
+                                        <textarea name="" class="form-control" rows="5" name="employeeApplyOvertimeReason" id="employeeApplyOvertimeReason" required></textarea>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -1167,21 +1100,45 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="overtimeDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                            <p class="modal-title" id="exampleModalLabel">Delete Request</p>
+                            <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                        </div>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="deleteovertime" novalidate>
+                                <div class="modal-body-info">
+                                    <h4>Are you sure you want to remove this request?</h4>
+                                </div>
+                                <!-- Button -->
+                                <div class="button-modal">
+                                    <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-success bg-blue" type="submit">Confirm</button>
+                                    </div>
+                                </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <div class="request">
-    
-                <form class="my-2 p-md-4 p-3 needs-validation" novalidate>
+                <form class="my-2 p-md-4 p-3 needs-validation" id="formDate" novalidate>
                     <div class="row">
                         <div class="col-md-4">
                             <label for="validationCustom01" class="form-label fw-medium">Start Date</label>
-                            <input type="date" class="form-control input" id="validationCustom01" required>
+                            <input type="date" class="form-control input" name="startDate" id="startDate" required>
                             <div class="invalid-feedback">
                                 Please fill this up.
                             </div>
                         </div>
                         <div class="col-md-4 mt-md-0 mt-3">
                             <label for="validationCustom01" class="form-label fw-medium">End Date</label>
-                            <input type="date" class="form-control input" id="validationCustom01" required>
+                            <input type="date" class="form-control input" name="endDate" id="endDate" required>
                             <div class="invalid-feedback">
                                 Please fill this up.
                             </div>
@@ -1195,7 +1152,7 @@
                 <!-- LAGEND -->
                 <div class="px-md-4 px-3 fw-medium">
                     <span class="leave-count-title">Pending Request:</span>
-                    <span class="text-danger">0</span>
+                    <span class="text-danger" id="forPending"></span>
                 </div>
                 <div class="time-legend w-100 d-flex justify-content-center align-items-center  mt-3 px-md-4 px-3 py-3 gap-lg-5 gap-md-4 gap-0">
                     <div class="">
@@ -1240,29 +1197,15 @@
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="text-md-start text-end">
-                                        <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-all">Edit</button>  
-                                    </td>   
-                                </tr>
                             </tbody>
                         </table>    
                         
                         <!-- Edit Modal -->
-                        <div class="modal fade" id="edit-all" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
+                        <div class="modal fade" id="overtimeRequestEdit" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
-                                        <p class="modal-title" id="editAll">Edit Work Schedule</p>
+                                        <p class="modal-title" id="editAll">Update Overtime Request</p>
                                         <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                     </div>
     
@@ -1271,34 +1214,51 @@
                                             <div class="modal-body-info">
                                                 <div class="">
                                                     <label for="validationCustom01" class="form-label fw-medium">From</label>
-                                                    <input type="date" class="form-control input" id="validationCustom01" required>
+                                                    <input type="date" class="form-control input" name="employeeApplyOvertimeFromEdit" id="employeeApplyOvertimeFromEdit" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
             
-                                                    <input type="time" class="form-control input mt-2" id="validationCustom01" required>
+                                                    <input type="time" class="form-control input mt-2" name="employeeApplyOvertimeFromTimeEdit" id="employeeApplyOvertimeFromTimeEdit" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
                                                 </div>
                                                 <div class="mt-3">
                                                     <label for="validationCustom01" class="form-label fw-medium">To</label>
-                                                    <input type="date" class="form-control input" id="validationCustom01" required>
+                                                    <input type="date" class="form-control input" name="employeeApplyOvertimeToEdit" id="employeeApplyOvertimeToEdit" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
             
-                                                    <input type="time" class="form-control input mt-2" id="validationCustom01" required>
+                                                    <input type="time" class="form-control input mt-2" name="employeeApplyOvertimeToTimeEdit" id="employeeApplyOvertimeToTimeEdit" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
                                                 </div>
                                                 <div class="mt-3">
                                                     <label for="validationCustom01" class="form-label fw-medium">Reason</label>
-                                                    <textarea name="" class="form-control" rows="5" id="comment" id="validationCustom01" required></textarea>
+                                                    <textarea class="form-control" rows="5" name="employeeApplyOvertimeReasons" id="employeeApplyOvertimeReasons" required></textarea>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label for="validationCustom01" class="form-label fw-medium">Request Status</label>
+                                                    <select class="form-control" name="employeeRequestStatus" id="employeeRequestStatus" disabled>
+                                                        <option>--Select--</option>
+                                                        <option value="Pending">Pending</option>
+                                                        <option value="Approved">Approve</option>
+                                                        <option value="Certified">Certify</option>
+                                                        <option value="Denied">Denied</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please fill this up.
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label for="validationCustom01" class="form-label fw-medium">Request Status</label><br>
+                                                    <input type="checkbox" name="status" id="status" />
                                                 </div>
                                             </div>
     
@@ -1328,51 +1288,62 @@
             <div id="text-btn" class="d-flex align-items-center justify-content-between px-md-4 px-3 fw-medium">
                 <span class="fw-medium">Holiday & Rest Day</span>
                 <div class="d-flex gap-2">
-                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="new rounded border-0 text-white" data-bs-toggle="modal" data-bs-target="#holidayRequest">
                         Request
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="holidayRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
-                            <p class="modal-title" id="exampleModalLabel">Request Leave</p>
+                            <p class="modal-title" id="exampleModalLabel">Holiday & Rest Day Request - Add</p>
                             <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
 
                         <div class="body-modal">
-                            <form class="row my-1 needs-validation" novalidate>
+                            <form class="row my-1 needs-validation" id="applyHolidayForm" novalidate>
                                 <div class="modal-body-info">
                                     <div class="">
+                                        <label for="validationCustom01" class="form-label fw-medium">Type</label>
+                                        <select class="form-select" id='holiday-type' name='holiday-type' required>
+                                            <option selected disabled value="">--Holiday Type List--</option>
+                                            {{#holidayTypesList}}
+                                            <option value="{{holidayTypeUid}}">{{nameType}}</option>
+                                            {{/holidayTypesList}}
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid state.
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
                                         <label for="validationCustom01" class="form-label fw-medium">From</label>
-                                        <input type="date" class="form-control input" id="validationCustom01" required>
+                                        <input type="date" class="form-control input" name="dateHolidayFrom" id="dateHolidayFrom" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
-
-                                        <input type="time" class="form-control input mt-2" id="validationCustom01" required>
+                                        <input type="time" class="form-control input mt-2" name="holidayFromTime" id="holidayFromTime" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label fw-medium">To</label>
-                                        <input type="date" class="form-control input" id="validationCustom01" required>
+                                        <input type="date" class="form-control input" name="dateHolidayTo" id="dateHolidayTo" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
 
-                                        <input type="time" class="form-control input mt-2" id="validationCustom01" required>
+                                        <input type="time" class="form-control input mt-2" name="holidayToTime" id="holidayToTime" required>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <label for="validationCustom01" class="form-label fw-medium">Reason</label>
-                                        <textarea name="" class="form-control" rows="5" id="comment" id="validationCustom01" required></textarea>
+                                        <textarea name="" class="form-control" rows="5" name="holidayReason" id="holidayReason" required></textarea>
                                         <div class="invalid-feedback">
                                             Please fill this up.
                                         </div>
@@ -1391,52 +1362,64 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="holidayDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                            <p class="modal-title" id="exampleModalLabel">Delete Request</p>
+                            <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
+                        </div>
+                        <div class="body-modal">
+                            <form class="row my-1 needs-validation" id="deleteovertime" novalidate>
+                                <div class="modal-body-info">
+                                    <h4>Are you sure you want to remove this request?</h4>
+                                </div>
+                                <!-- Button -->
+                                <div class="button-modal">
+                                    <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-success bg-blue" type="submit">Confirm</button>
+                                    </div>
+                                </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <div class="request">
     
-                <form class="my-2 p-md-4 p-3 needs-validation" novalidate>
+                <form class="my-2 p-md-4 p-3 needs-validation" id="holidayForm" novalidate>
                     <div class="">
                         <div class="">
-                            <select class="form-select" id="validationCustom01" required>
+                            <select class="form-select" id='holiday-type' name='holiday-type' required>
                                 <option selected disabled value="">--Holiday List--</option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
+                                {{#holidaysList}}
+                                <option value="{{holidayTypeUid}}">{{nameType}}</option>
+                                {{/holidaysList}}
                             </select>
                             <div class="invalid-feedback">
                                 Please select a valid state.
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="validationCustom01" class="form-label fw-medium">Start Date</label>
-                                <input type="date" class="form-control input" id="validationCustom01" required>
+                                <input type="date" class="form-control input" name="startDate" id="startDate" required>
                                 <div class="invalid-feedback">
                                     Please fill this up.
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-md-0 mt-3">
+                            <div class="col-md-4 mt-md-0 mt-3">
                                 <label for="validationCustom01" class="form-label fw-medium">End Date</label>
-                                <input type="date" class="form-control input" id="validationCustom01" required>
+                                <input type="date" class="form-control input" name="endDate" id="endDate" required>
                                 <div class="invalid-feedback">
                                     Please fill this up.
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label for="validationCustom01" class="form-label fw-medium">Status</label>
-                                <select class="form-select" id="validationCustom01" required>
-                                    <option selected disabled value="">--Select--</option>
-                                    <option value="1"></option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please select a valid state.
-                                </div>
-                            </div>
-                            <div class="col-md-6" style="margin-top: 32px">
-                                <button class="button-ok w-100 btn text-center text-white p-2" type="submit">OK</button>
+                            <div class="filter-ok col-md-4 mt-md-0">
+                                <button class="button-ok w-100 btn text-center text-white p-2" type="submit">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -1490,65 +1473,79 @@
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="text-md-start text-end">
-                                        <button class="action2 btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-all">Edit</button>  
-                                    </td>   
-                                </tr>
                             </tbody>
                         </table>    
                         
                         <!-- Edit Modal -->
-                        <div class="modal fade" id="edit-all" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
+                        <div class="modal fade" id="editholidayRequest" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
-                                        <p class="modal-title" id="editAll">Edit Work Schedule</p>
+                                        <p class="modal-title" id="editAll">Holiday & Rest Day - Edit</p>
                                         <i class="fa-solid fa-x" style="cursor: pointer;" data-bs-dismiss="modal" aria-label="Close"></i>
                                     </div>
     
                                     <div class="body-modal"> 
-                                        <form class="row my-1 needs-validation" novalidate>
+                                        <form class="row my-1 needs-validation" id="applyEditHolidayForm" novalidate>
                                             <div class="modal-body-info">
                                                 <div class="">
+                                                    <select class="form-select" id='edit-holiday-type' name='edit-holiday-type' required>
+                                                        <option selected disabled value="">--Holiday List--</option>
+                                                        {{#holidaysList}}
+                                                        <option value="{{holidayTypeUid}}">{{nameType}}</option>
+                                                        {{/holidaysList}}
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a valid state.
+                                                    </div>
+                                                </div>
+                                                <div class="">
                                                     <label for="validationCustom01" class="form-label fw-medium">From</label>
-                                                    <input type="date" class="form-control input" id="validationCustom01" required>
+                                                    <input type="date" class="form-control input" name="edit-dateHolidayFrom" id="edit-dateHolidayFrom" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
             
-                                                    <input type="time" class="form-control input mt-2" id="validationCustom01" required>
+                                                    <input type="time" class="form-control input mt-2" name="edit-holidayFromTime" id="edit-holidayFromTime" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
                                                 </div>
                                                 <div class="mt-3">
                                                     <label for="validationCustom01" class="form-label fw-medium">To</label>
-                                                    <input type="date" class="form-control input" id="validationCustom01" required>
+                                                    <input type="date" class="form-control input" name="edit-dateHolidayTo" id="edit-dateHolidayTo" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
             
-                                                    <input type="time" class="form-control input mt-2" id="validationCustom01" required>
+                                                    <input type="time" class="form-control input mt-2" name="edit-holidayToTime" id="edit-holidayToTime" required>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
                                                 </div>
                                                 <div class="mt-3">
                                                     <label for="validationCustom01" class="form-label fw-medium">Reason</label>
-                                                    <textarea name="" class="form-control" rows="5" id="comment" id="validationCustom01" required></textarea>
+                                                    <textarea name="" class="form-control" rows="5" name="edit-holidayReason" id="edit-holidayReason" required></textarea>
                                                     <div class="invalid-feedback">
                                                         Please fill this up.
                                                     </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label for="validationCustom01" class="form-label fw-medium">Request Status</label>
+                                                    <select class="form-control" name="employeeRequestStatus" id="employeeRequestStatus" disabled>
+                                                        <option>--</option>
+                                                        <option value="Pending">Pending</option>
+                                                        <option value="Approved">Approve</option>
+                                                        <option value="Certified">Certify</option>
+                                                        <option value="Denied">Denied</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please fill this up.
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <label for="validationCustom01" class="form-label fw-medium">Status</label>
+                                                    <input type="checkbox" class="form-control" name="status" id="status" required/>
                                                 </div>
                                             </div>
     
@@ -1573,7 +1570,7 @@
 
 <!-- PAYSLIP -->
 <!-- 404 -->
-<script type="text/template" id="krono-user-payslip">
+<script type="text/template" id="404">
     <div class="error h-100">
         <div class="d-flex flex-column justify-content-center align-items-center h-100 text-center mt-5">
             <p>Oops! Page not found.</p>

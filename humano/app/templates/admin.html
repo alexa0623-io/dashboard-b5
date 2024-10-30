@@ -51,7 +51,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link mreport-btn d-flex justify-content-between align-items-center text-white px-2 py-2.5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="flex items-center">
-                                    <span>Seetings</span>
+                                    <span>Settings</span>
                                 </div>
                                 <div>
                                     <i id="mreport-arrow" class="fa-solid fa-angle-down"></i>
@@ -105,7 +105,7 @@
                         <div id="side-circle" class="d-flex align-items-center justify-content-center rounded-circle">
                             <i class="fas fa-user"></i>
                         </div>
-                        <p class="mt-2">John Doe</p>
+                        <p class="mt-2">{{empName}}</p>
                     </div>
                     <hr class="mx-3">
                 </div>
@@ -140,7 +140,7 @@
                                 <i id="request-arrow" class="fa-solid fa-angle-down"></i>
                             </a>
                             <ul id="request" class="sidebar-dropdown collapse rounded" data-bs-parent="#sidebar">
-                                <li class="sidebar-item w-100"><a href="#" class="sidebar-drop">○ Cash Advance</a></li>
+                                <li class="sidebar-item w-100"><a href="#/cash/advance" class="sidebar-drop">○ Cash Advance</a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item">
@@ -300,91 +300,23 @@
                         <div class="bg1 card-header rounded-top ">
                             <p class="h-100 d-flex align-items-center px-3 fw-medium">Calendar</p>
                         </div>  
-
-                        
-                        <!-- <div class="">
-                            <div id="calendar" class="custom-day-header">
-
-                            </div>
-                        </div> -->
-                        <div id="cal" class="w-full mt-1">
-                            <div>
+                        <div id="cal" class="w-full">
+                            <div class="calendar">
                                 <div id="month" class="d-flex align-items-center justify-content-between text-black">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                    <span>March 2024</span>    
-                                    <i class="fa-solid fa-chevron-right text-[#107A71] text-sm"></i>
+                                    <i id="prev" class="icon-nav fa-solid fa-chevron-left"></i>
+                                    <span class="current-date"></span>    
+                                    <i id="next" class="icon-nav fa-solid fa-chevron-right text-[#107A71] text-sm"></i>
                                 </div>
-                                <div class="w-full flex justify-center text-center px-1 text-nowrap">
-                                    <table class="w-100">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" >S</th>
-                                                <th scope="col" >M</th>
-                                                <th scope="col" >T</th>
-                                                <th scope="col" >W</th>
-                                                <th scope="col" >T</th>
-                                                <th scope="col" >F</th>
-                                                <th scope="col" >S</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="col" id="light">25</td>
-                                                <td scope="col" id="light">26</td>
-                                                <td scope="col" id="light">27</th>
-                                                <td scope="col" id="light">28</th>
-                                                <td scope="col" id="light">29</th>
-                                                <td scope="col">1</th>
-                                                <td scope="col">2</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">3</td>
-                                                <td scope="col">4</td>
-                                                <td scope="col">5</th>
-                                                <td scope="col">6</th>
-                                                <td scope="col">7</th>
-                                                <td scope="col">8</th>
-                                                <td scope="col">9</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">10</td>
-                                                <td scope="col">11</td>
-                                                <td scope="col">12</th>
-                                                <td scope="col">13</th>
-                                                <td scope="col">14</th>
-                                                <td scope="col">15</th>
-                                                <td scope="col">16</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">17</td>
-                                                <td scope="col">18</td>
-                                                <td scope="col">19</th>
-                                                <td scope="col">20</th>
-                                                <td scope="col">21</th>
-                                                <td scope="col">22</th>
-                                                <td scope="col">23</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">24</td>
-                                                <td scope="col">25</td>
-                                                <td scope="col">26</th>
-                                                <td scope="col">27</th>
-                                                <td scope="col">28</th>
-                                                <td scope="col">29</th>
-                                                <td scope="col">30</th>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">31</td>
-                                                <td scope="col" id="light">1</td>
-                                                <td scope="col" id="light">2</th>
-                                                <td scope="col" id="light">3</th>
-                                                <td scope="col" id="light">4</th>
-                                                <td scope="col" id="light">5</th>
-                                                <td scope="col" id="light">6</th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <ul class="weeks">
+                                    <li>S</li>
+                                    <li>M</li>
+                                    <li>T</li>
+                                    <li>W</li>
+                                    <li>T</li>
+                                    <li>F</li>
+                                    <li>S</li>
+                                </ul>
+                                <ul class="days"></ul>
                             </div>
                         </div>
                     </div>
@@ -4795,5 +4727,15 @@
             </div>
         </div>
     </div>
+</script>
+
+<!-- 404 -->
+<script type="text/template" id="404">
+    <div class="error h-100">
+        <div class="d-flex flex-column justify-content-center align-items-center h-100 text-center mt-5">
+            <p>Oops! Page not found.</p>
+            <p class="">We could not find the page you were looking for. Meanwhile, you may <a href="#/dashboard/" >return to dashboard</a> or try using the search form.</p>
+        </div>
+    </div>    
 </script>
 

@@ -192,6 +192,65 @@ $(document).ready(function(){
         
             });
         },
+
+        calendar:function(){
+            console.log("This is the calendar render function");
+            const currentDate = $(".current-date");
+            const daysTag = $(".days");
+            const prevNextIcon = document.querySelectorAll(".icon-nav");
+            
+            const months = ["January","February","March","April","May","June","July","August","September","October","November", "December"]
+            let date = new Date(),
+            currYear = date.getFullYear(),
+            currMonth = date.getMonth();
+            const calendarRender = () => {
+                let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
+                lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
+                lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), // getting last day of month
+                lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+                let liTag = "";
+
+                for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
+                    liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+                }
+
+                for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
+                    // adding active class to li if the current day, month, and year matched
+                    let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
+                                && currYear === new Date().getFullYear() ? "active" : "";
+                    liTag += `<li class="${isToday}">${i}</li>`;
+                }
+
+                for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
+                    liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
+                }
+                currentDate.text(`${months[currMonth]} ${currYear}`); // passing current mon and yr as currentDate text
+                daysTag.html(liTag);
+            }
+            calendarRender();
+            
+            $(document).off("click",".icon-nav").on("click",".icon-nav",function(){
+                var iconId = $(this).attr("id");
+                if(iconId === "prev")
+                {
+                    currMonth--
+                }
+                else
+                {
+                    currMonth++;
+                }
+                console.log(iconId, currMonth);
+                if(currMonth < 0 || currMonth > 11) {
+                    date = new Date(currYear, currMonth, new Date().getDate());
+                    currYear = date.getFullYear(); 
+                    currMonth = date.getMonth(); 
+                } else {
+                    date = new Date();
+                }
+                calendarRender();
+            });
+            
+        }
     }
 
     function clearPanel() {
@@ -245,6 +304,10 @@ $(document).ready(function(){
 	// }
 
     $.Mustache.load('templates/admin.html').done(function(){
+        var data = getJSONDoc(App.api + "/get/user/data/" + App.username);
+        var templateData = {
+            empName:data.name
+        }
         App.toggleSidebar();
         App.sidebarLink();
         App.deskArrow();
@@ -256,8 +319,8 @@ $(document).ready(function(){
         App.formValidation();
         // App.calendarDash();
         // App.calendarDash();
-        App.sideCanvas.html("").append($.Mustache.render("side-nav"));
-        App.navCanvas.html("").append($.Mustache.render("admin-nav"));
+        App.sideCanvas.html("").append($.Mustache.render("side-nav",templateData));
+        App.navCanvas.html("").append($.Mustache.render("admin-nav",templateData));
 
         
         Path.map('#/dashboard/').to(function(){
@@ -339,6 +402,7 @@ $(document).ready(function(){
 			}			
             console.log(templateData);
             App.canvas.html("").append($.Mustache.render("dash-container",templateData));
+            App.calendar();
             $('#table-birthday-celebration').DataTable({
                 "order": [[0, 'desc']],
                 "pageLength": 5,
@@ -3121,6 +3185,9 @@ $(document).ready(function(){
         // });
 
         Path.root('#/dashboard/');
+        Path.rescue(function() { 
+            App.canvas.html("").append($.Mustache.render("404"));
+        });
         Path.listen();
     });
 });

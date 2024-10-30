@@ -162,8 +162,8 @@ $(document).ready(function() {
                                       	//break;
 									}
 									else if(humano_module === "KRONO") {
-										//window.location.href = "../krono/#/profile/" + data.EmployeeId;
-										window.location.href = "../krono/#/employee/dashboard/" + data.EmployeeId;
+										window.location.href = "../krono-user/#/profile/" + data.EmployeeId;
+										// window.location.href = "../krono/#/employee/dashboard/" + data.EmployeeId;
 									}
 									else if(humano_module === "PAYROLL") {
 										//window.location.href = "../payroll/#/profile/" + data.EmployeeId;

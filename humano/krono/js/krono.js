@@ -27,7 +27,6 @@ $(document).ready(function(){
                         
         },
         
-    
         sidebarLink : function(){
             $(document).ready(function() {
                 $(".sidebar-link").click(function(event) {
@@ -323,6 +322,11 @@ $(document).ready(function(){
     }
 
     $.Mustache.load('templates/krono.html').done(function(){
+        var data = getJSONDoc(App.api + "/get/user/data/" + App.username);
+        var templateData = {
+            empUid:App.username,
+            empName:data.name
+        }
         App.toggleSidebar();
         App.sidebarLink();
         App.deskArrow();
@@ -332,8 +336,8 @@ $(document).ready(function(){
         App.uploadFile();
         App.formValidation();
         App.removeDrag();
-        App.sideCanvas.html("").append($.Mustache.render("side-nav"));
-        App.navCanvas.html("").append($.Mustache.render("admin-nav"));
+        App.sideCanvas.html("").append($.Mustache.render("side-nav",templateData));
+        App.navCanvas.html("").append($.Mustache.render("admin-nav",templateData));
 
         // DASHBOARD
         Path.map('#/dashboard/').to(function(){
@@ -4099,11 +4103,64 @@ $(document).ready(function(){
 			});
         });
 
-        Path.map('#/time-logs-view/').to(function(){
-            App.canvas.html("").append($.Mustache.render("krono-time-logs-view"));
+        Path.map('#/timekeeping/log/file/view/:var').to(function(){
+            var uid = this.params["var"];
+			var timekeeping = getJSONDoc(App.api + "/timekeeping/log/file/view/" + uid);
+            var timekeepingList = [];
+            var number = 0;
+            $.each(timekeeping, function(i, item){
+                number++;
+				var timekeep = {
+					No: number,
+					uid: item.uid,
+                    name: item.empName,
+                    daysPresent: item.daysPresent,
+					hoursWork: item.hoursWork,
+					daysAbsent: item.daysAbsent,
+					late: item.late,
+					undertime: item.undertime,
+					totalTardy: item.totalTardy
+                }                
+                timekeepingList.push(timekeep);
+            });
+
+            var exportMe = [];			
+			var piso = {
+				uid: uid, 
+				token: App.token
+			}			
+			exportMe.push(piso);
+			
+            var templateData = {
+                timekeepLog: timekeepingList,
+				exportMe: exportMe
+            }
+
+            console.log(templateData);
+
+            App.canvas.html("").append($.Mustache.render("krono-time-logs-view",templateData));
             var tableID = '#table-time-logs-view';
             renderToDataTablePrint(tableID);
-            console.log("Hello");
+
+            $("#export-summary").on("click", function () {				
+				function exportMe(uid) {
+					$.ajax({
+						type: "GET",
+						url: App.api + "/export_dtr_summary.php?var=" + uid + "." + App.token,
+						dataType: "json",
+						success: function(data) {
+							if(parseInt(data.success) === 1) {
+								alert("Process successfully!");
+							}
+							else if(parseInt(data.error) === 1) {
+								alert("Process encountered some error, please try again!");
+							}
+						}
+					});
+				}
+				exportMe(uid);
+				//alert("Yes! " + uid);
+			});
         });
 
         Path.map('#/event-logs/').to(function(){

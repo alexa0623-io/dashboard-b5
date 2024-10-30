@@ -111,7 +111,7 @@
                         <div id="side-circle" class="d-flex align-items-center justify-content-center rounded-circle">
                             <i class="fas fa-user"></i>
                         </div>
-                        <p class="mt-2">John Doe</p>
+                        <p class="mt-2">{{empName}}</p>
                     </div>
                     <hr class="mx-3">
                 </div>
@@ -854,7 +854,7 @@
                                     <div class="row px-md-4 px-3 mb-md-4 mb-3">
                                         <div class="col-md-6 mt-md-0 mt-3">
                                             <label for="validationCustom01" class="form-label">Tax Status</label>
-                                            <select class="form-select" id="validationCustom01" name=tax-status required>
+                                            <select class="form-select" id="validationCustom01" name="tax-status" required>
                                                 <option selected disabled value="">--Select--</option>
                                                 {{#taxStatusList}}
                                                 <option value="{{uid}}">{{taxStatus}}</option>
@@ -4421,7 +4421,6 @@
             <div id="text-btn" class="px-md-4 px-3 fw-medium">
                 <span class="fw-medium">Import DTR</span>
             </div>
-
             <div id="dropZone" class="pb-2">
                 <form action="/file-upload" class="dropzone" id="my-great-dropzone">
                     <div class="dz-default dz-message gap-2 flex-column align-items-center" data-dz-message>
@@ -4635,13 +4634,13 @@
                                 <td>{{dateCreated}}</td>
                                 <td>{{dateModify}}</td>
                                 <td> 
-                                    <button class="action1 btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-employee">
+                                    <button class="action1 btn btn-outline-primary btn-processLog" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#processLog" data-id="{{uid}}">
                                         <i class="fa-solid fa-circle-check"></i>
                                     </button> 
-                                    <a href="#/time-logs-view/" class="action1 btn btn-outline-success">
+                                    <a href="#/timekeeping/log/file/view/{{uid}}" class="action1 btn btn-outline-success">
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </a> 
-                                    <button class="action1 btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-access">
+                                    <button class="action1 btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" aria-label="Close" data-bs-target="#edit-modal-access" data-id="{{uid}}">
                                         <i class="fa-solid fa-trash"></i>
                                     </button> 
                                 </td>
@@ -4650,7 +4649,29 @@
                         </tbody>
                     </table>
                 </div>
-                
+            </div>
+            <div class="modal fade" id="processLog" tabindex="-1" aria-labelledby="editAll" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="header-modal d-flex justify-content-between align-items-center border-bottom">
+                            <p class="modal-title" id="editAll">Process Timekeeping</p>
+                        </div>
+                        <div class="body-modal"> 
+                            <form class="row my-1 needs-validation" id="processTimelog" novalidate>
+                                <div class="modal-body-info">
+                                    <h4>Are you sure you want to [PROCESS] this record?</h4>
+                                </div>
+                                <input type="hidden" name="process-uid" id="process-uid" />
+                                <div class="button-modal">
+                                    <div class="w-100 d-flex justify-content-end gap-2 border-top">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-success bg-blue" type="submit">Yes</button>
+                                    </div>
+                                </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -4684,16 +4705,18 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                            {{#timekeepLog}}
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{No}}</td>
+                                <td>{{name}}</td>
+                                <td>{{daysPresent}}</td>
+                                <td>{{hoursWork}}</td>
+                                <td>{{daysAbsent}}</td>
+                                <td>{{late}}</td>
+                                <td>{{undertime}}</td>
+                                <td>{{totalTardy}}</td>
                             </tr>
+                            {{/timekeepLog}}
                         </tbody>
                     </table>
                 </div>

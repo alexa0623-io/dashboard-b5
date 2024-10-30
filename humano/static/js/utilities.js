@@ -144,7 +144,8 @@ function initBootstrapSwitch(fieldID)
 {
     $(fieldID).bootstrapSwitch({
         onText: "Enable",
-        offText: "Disable"
+        offText: "Disable",
+        size: 'small'
     });
 }
 
@@ -167,4 +168,10 @@ function initSelect2Modal(selectID,modalID)
         minimumResultsForSearch: 0,
         dropdownParent:$(modalID)
     });
+}
+
+function timeParser(time)
+{
+  var parsedTime = moment(time,'LT').format("HH:mm");
+  return parsedTime
 }
